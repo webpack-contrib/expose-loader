@@ -7,5 +7,5 @@ module.exports.pitch = function(remainingRequest) {
 	if(!this.query) throw new Error("query parameter is missing");
 	return "module.exports = " +
 		"global[" + JSON.stringify(this.query.substr(1)) + "] = " +
-		"require(" + JSON.stringify(remainingRequest) + ");";
+		"require(" + JSON.stringify("-!" + remainingRequest) + ");";
 };
