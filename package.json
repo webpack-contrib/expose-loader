@@ -5,6 +5,10 @@
 	"description": "expose loader module for webpack",
 	"dependencies": {
 	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:webpack/expose-loader.git"
+	},
 	"licenses": [
 		{
 			"type": "MIT",
