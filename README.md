@@ -19,9 +19,11 @@ Thus, `window.React` is then available to the Chrome React devtools extension.
 Alternately, you can set this in your config file:
 
 ```
+module: {
   loaders: [
     { test: require.resolve("react"), loader: "expose?React" }
   ]
+}
 ```
 
 The `require.resolve` is a node.js call (unrelated to `require.resolve` in webpack
