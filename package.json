@@ -1,6 +1,6 @@
 {
 	"name": "expose-loader",
-	"version": "0.5.3",
+	"version": "0.6.0",
 	"author": "Tobias Koppers @sokra",
 	"description": "expose loader module for webpack",
 	"dependencies": {
