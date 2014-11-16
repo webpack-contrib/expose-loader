@@ -4,14 +4,17 @@
 */
 
 function accesorString(value) {
-	var depths = value.split(".");
-	var length = depths.length;
+	var childProperties = value.split(".");
+	var length = childProperties.length;
+	var propertyString = "global";
 	var result = "";
 	
 	for (var i = 0; i < length; i++) {
-		result += "[" + JSON.stringify(depths[i]) + "]";
+		propertyString += "[" + JSON.stringify(childProperties[i]) + "]";
+		result += "if(!" + propertyString + ") " + propertyString + " = {};";
 	}
 
+	result += "module.exports = " + propertyString;
 	return result;
 }
 
@@ -19,7 +22,6 @@ module.exports = function() {};
 module.exports.pitch = function(remainingRequest) {
 	this.cacheable && this.cacheable();
 	if(!this.query) throw new Error("query parameter is missing");
-	return "module.exports = " +
-		"global" + accesorString(this.query.substr(1)) + " = " +
+	return accesorString(this.query.substr(1)) + " = " +
 		"require(" + JSON.stringify("-!" + remainingRequest) + ");";
 };
