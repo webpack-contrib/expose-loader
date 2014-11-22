@@ -10,8 +10,9 @@ function accesorString(value) {
 	var result = "";
 	
 	for (var i = 0; i < length; i++) {
+		if (i > 0)
+			result += "if(!" + propertyString + ") " + propertyString + " = {};";
 		propertyString += "[" + JSON.stringify(childProperties[i]) + "]";
-		result += "if(!" + propertyString + ") " + propertyString + " = {};";
 	}
 
 	result += "module.exports = " + propertyString;
