@@ -4,6 +4,7 @@
 	"author": "Tobias Koppers @sokra",
 	"description": "expose loader module for webpack",
 	"dependencies": {
+    		"loader-utils": "0.2.6"
 	},
 	"repository": {
 		"type": "git",
