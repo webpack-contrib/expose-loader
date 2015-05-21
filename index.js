@@ -8,10 +8,10 @@ function accesorString(value) {
 	var length = childProperties.length;
 	var propertyString = "global";
 	var result = "";
-	
-	for (var i = 0; i < length; i++) {
-		if (i > 0)
-			result += "if(!" + propertyString + ") " + propertyString + " = {};";
+
+	for(var i = 0; i < length; i++) {
+		if(i > 0)
+			result += "if(!" + propertyString + ") " + propertyString + " = {};\n";
 		propertyString += "[" + JSON.stringify(childProperties[i]) + "]";
 	}
 
