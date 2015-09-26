@@ -25,6 +25,14 @@ module: {
   ]
 }
 ```
+Also for multiple expose you can use `!` in loader string:
+```
+module: {
+  loaders: [
+    { test: require.resolve("jquery"), loader: "expose?$!expose?jQuery" },
+  ]
+}
+```
 
 The `require.resolve` is a node.js call (unrelated to `require.resolve` in webpack
 processing -- check the node.js docs instead). `require.resolve` gives you the
