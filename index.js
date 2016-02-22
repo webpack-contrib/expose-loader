@@ -2,6 +2,7 @@
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
 */
+var utils = require("loader-utils");
 
 function accesorString(value) {
 	var childProperties = value.split(".");
@@ -23,6 +24,7 @@ module.exports = function() {};
 module.exports.pitch = function(remainingRequest) {
 	this.cacheable && this.cacheable();
 	if(!this.query) throw new Error("query parameter is missing");
-	return accesorString(this.query.substr(1)) + " = " +
+	var query = utils.interpolateName(this, this.query, {});
+	return accesorString(query.substr(1)) + " = " +
 		"require(" + JSON.stringify("-!" + remainingRequest) + ");";
 };

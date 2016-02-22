@@ -40,6 +40,14 @@ module: {
   ]
 }
 ```
+Also for auto-expose all modules(maybe for debug) you can use `[name]` or another placeholders
+```
+module: {
+  loaders: [
+    { test: /\.js$/, loader: "expose?[name]" },
+  ]
+}
+```
 
 The `require.resolve` is a node.js call (unrelated to `require.resolve` in webpack
 processing -- check the node.js docs instead). `require.resolve` gives you the

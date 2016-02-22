@@ -3,7 +3,9 @@
   "version": "0.7.1",
   "author": "Tobias Koppers @sokra",
   "description": "expose loader module for webpack",
-  "dependencies": {},
+  "dependencies": {
+    "loader-utils": "^0.2.12"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:webpack/expose-loader.git"
