@@ -1,5 +1,12 @@
 # expose loader for webpack
 
+The expose loader adds modules to the global object. This is useful
+for debugging, or supporting libraries that depend on libraries in
+globals.
+
+**Note**: Modules must be `require()`'d within in your bundle, or they will not
+be exposed.
+
 ## Usage
 
 ``` javascript
