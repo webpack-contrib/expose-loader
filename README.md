@@ -10,7 +10,7 @@ be exposed.
 ## Usage
 
 ``` javascript
-require("expose?libraryName!./file.js");
+require("expose-loader?libraryName!./file.js");
 // Exposes the exports for file.js to the global context on property "libraryName".
 // In web browsers, window.libraryName is then available.
 ```
@@ -18,7 +18,7 @@ require("expose?libraryName!./file.js");
 This line works to expose React to the web browser to enable the Chrome React devtools:
 
 ```
-require("expose?React!react");
+require("expose-loader?React!react");
 ```
 
 Thus, `window.React` is then available to the Chrome React devtools extension.
@@ -28,7 +28,7 @@ Alternately, you can set this in your config file:
 ```
 module: {
   loaders: [
-    { test: require.resolve("react"), loader: "expose?React" }
+    { test: require.resolve("react"), loader: "expose-loader?React" }
   ]
 }
 ```
@@ -36,7 +36,7 @@ Also for multiple expose you can use `!` in loader string:
 ```
 module: {
   loaders: [
-    { test: require.resolve("jquery"), loader: "expose?$!expose?jQuery" },
+    { test: require.resolve("jquery"), loader: "expose-loader?$!expose-loader?jQuery" },
   ]
 }
 ```
