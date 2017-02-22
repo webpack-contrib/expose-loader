@@ -17,7 +17,7 @@ globals.<p>
 <h2 align="center">Install</h2>
 
 ```bash
-npm i eslint-config-webpack --save
+npm i expose-loader --save
 ```
 
 <h2 align="center">Usage</h2>
