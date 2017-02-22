@@ -17,7 +17,7 @@ globals.<p>
 <h2 align="center">Install</h2>
 
 ```bash
-npm i eslint-config-webpack --save
+npm i expose-loader --save
 ```
 
 <h2 align="center">Usage</h2>
@@ -42,18 +42,45 @@ Thus, `window.React` is then available to the Chrome React devtools extension.
 Alternately, you can set this in your config file:
 
 ```
+// webpack 1.x usage
 module: {
   loaders: [
     { test: require.resolve("react"), loader: "expose-loader?React" }
   ]
 }
+
+// webpack 2.x usage
+module: {
+  rules: [{
+          test: require.resolve('react'),
+          use: [{
+              loader: 'expose-loader',
+              options: 'React'
+          }]
+      }]
+}
 ```
 Also for multiple expose you can use `!` in loader string:
 ```
+// webpack 1.x usage
 module: {
   loaders: [
     { test: require.resolve("jquery"), loader: "expose-loader?$!expose-loader?jQuery" },
   ]
+}
+
+// webpack 2.x usage
+module: {
+  rules: [{
+          test: require.resolve('react'),
+          use: [{
+              loader: 'expose-loader',
+              options: 'React'
+          },{
+              loader: 'expose-loader',
+              options: 'react'
+          }]
+      }]
 }
 ```
 
