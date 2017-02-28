@@ -45,17 +45,17 @@ Alternately, you can set this in your config file:
 // webpack 1.x usage
 module: {
   loaders: [
-    { test: require.resolve("jquery"), loader: "expose-loader?jQuery" }
+    { test: require.resolve("react"), loader: "expose-loader?React" }
   ]
 }
 
 // webpack 2.x usage
 module: {
   rules: [{
-          test: require.resolve('jquery'),
+          test: require.resolve('react'),
           use: [{
               loader: 'expose-loader',
-              options: 'jQuery'
+              options: 'React'
           }]
       }]
 }
