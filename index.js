@@ -2,36 +2,27 @@
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
 */
-
-var path = require('path');
-
-function accesorString(value) {
-	var childProperties = value.split(".");
-	var length = childProperties.length;
-	var propertyString = "global";
-	var result = "";
-
-	for(var i = 0; i < length; i++) {
-		if(i > 0)
-			result += "if(!" + propertyString + ") " + propertyString + " = {};\n";
-		propertyString += "[" + JSON.stringify(childProperties[i]) + "]";
+var loaderUtils = require("loader-utils");
+var SourceNode = require("source-map").SourceNode;
+var SourceMapConsumer = require("source-map").SourceMapConsumer;
+var FOOTER = "/*** EXPOSES FROM expose-loader ***/\n";
+module.exports = function(content, sourceMap) {
+	if(this.cacheable) this.cacheable();
+	var query = loaderUtils.getOptions(this) || {};
+	var exposes = [];
+	var keys = Object.keys(query);
+	keys.forEach(function(name) {
+		exposes.push("globals[" + JSON.stringify(name) + "] = module.exports;");
+	});
+	if(sourceMap) {
+		var currentRequest = loaderUtils.getCurrentRequest(this);
+		var node = SourceNode.fromStringWithSourceMap(content, new SourceMapConsumer(sourceMap));
+		node.add("\n\n" + FOOTER + exposes.join("\n"));
+		var result = node.toStringWithSourceMap({
+			file: currentRequest
+		});
+		this.callback(null, result.code, result.map.toJSON());
+		return;
 	}
-
-	result += "module.exports = " + propertyString;
-	return result;
+	return content + "\n\n" + FOOTER + exposes.join("\n");
 }
-
-module.exports = function() {};
-module.exports.pitch = function(remainingRequest) {
-	// Change the request from an /abolute/path.js to a relative ./path.js
-	// This prevents [chunkhash] values from changing when running webpack
-	// builds in different directories.
-	const newRequestPath = remainingRequest.replace(
-		this.resourcePath,
-		'.' + path.sep + path.relative(this.context, this.resourcePath)
-	);
-	this.cacheable && this.cacheable();
-	if(!this.query) throw new Error("query parameter is missing");
-	return accesorString(this.query.substr(1)) + " = " +
-		"require(" + JSON.stringify("-!" + newRequestPath) + ");";
-};
