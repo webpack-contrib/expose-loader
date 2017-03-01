@@ -7,7 +7,7 @@ var SourceNode = require("source-map").SourceNode;
 var SourceMapConsumer = require("source-map").SourceMapConsumer;
 var FOOTER = "/*** EXPOSES FROM expose-loader ***/\n";
 module.exports = function(content, sourceMap) {
-	if(this.cacheable) this.cacheable();
+	this.cacheable && this.cacheable();
 	var query = loaderUtils.getOptions(this) || {};
 	var exposes = [];
 	var keys = Object.keys(query);
