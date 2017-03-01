@@ -1,6 +1,6 @@
 {
   "name": "expose-loader",
-  "version": "0.7.3",
+  "version": "1.0.0",
   "author": "Tobias Koppers @sokra",
   "description": "expose loader module for webpack",
   "dependencies": {
@@ -16,5 +16,8 @@
       "type": "MIT",
       "url": "http://www.opensource.org/licenses/mit-license.php"
     }
-  ]
+  ],
+  "engines": {
+    "node": ">=6.4.0"
+  }
 }
