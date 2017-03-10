@@ -41,6 +41,7 @@ Thus, `window.React` is then available to the Chrome React devtools extension.
 
 Alternately, you can set this in your config file:
 
+webpack v1 usage
 ```
 module: {
   loaders: [
@@ -48,12 +49,41 @@ module: {
   ]
 }
 ```
+webpack v2 usage
+```
+module: {
+  rules: [{
+          test: require.resolve('react'),
+          use: [{
+              loader: 'expose-loader',
+              options: 'React'
+          }]
+      }]
+}
+```
 Also for multiple expose you can use `!` in loader string:
+
+webpack v1 usage
 ```
 module: {
   loaders: [
     { test: require.resolve("jquery"), loader: "expose-loader?$!expose-loader?jQuery" },
   ]
+}
+```
+webpack v2 usage
+```
+module: {
+  rules: [{
+          test: require.resolve('jquery'),
+          use: [{
+              loader: 'expose-loader',
+              options: 'jQuery'
+          },{
+              loader: 'expose-loader',
+              options: '$'
+          }]
+      }]
 }
 ```
 
