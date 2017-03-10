@@ -62,6 +62,7 @@ module: {
 }
 ```
 Also for multiple expose you can use `!` in loader string:
+
 webpack v1 usage:
 ```
 module: {
