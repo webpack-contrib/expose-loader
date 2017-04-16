@@ -96,7 +96,7 @@ expose only applies to the react module. And it's only exposed when used in the
 bundle.
 
 
-[Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
+[Documentation: Using loaders](https://webpack.js.org/concepts/loaders/)
 
 <h2 align="center">Maintainers</h2>
 
