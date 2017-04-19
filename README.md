@@ -20,7 +20,7 @@ globals.<p>
 npm i expose-loader --save
 ```
 
-<h2 align="center">Usage</h2>
+<h2 align="center"><a href="https://webpack.js.org/concepts/loaders">Usage</a></h2>
 
 **Note**: Modules must be `require()`'d within in your bundle, or they will not
 be exposed.
@@ -95,8 +95,6 @@ absolute path to the module ("/.../app/node_modules/react/react.js"). So the
 expose only applies to the react module. And it's only exposed when used in the
 bundle.
 
-
-[Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
 
 <h2 align="center">Maintainers</h2>
 
