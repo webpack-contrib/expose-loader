@@ -9,9 +9,7 @@
       src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon.svg">
   </a>
   <h1>Expose Loader</h1>
-  <p>The expose loader adds modules to the global object. This is useful
-for debugging, or supporting libraries that depend on libraries in
-globals.<p>
+  <p>The expose loader adds modules to the global object. This is useful for debugging, or <a href="https://webpack.js.org/guides/shimming/">supporting libraries that depend on libraries in globals</a>.<p>
 </div>
 
 <h2 align="center">Install</h2>
@@ -89,9 +87,10 @@ module: {
 }
 ```
 
-The `require.resolve` is a node.js call (unrelated to `require.resolve` in webpack
-processing -- check the node.js docs instead). `require.resolve` gives you the
-absolute path to the module ("/.../app/node_modules/react/react.js"). So the
+The [`require.resolve`](https://nodejs.org/api/all.html#globals_require_resolve)
+is a Node.js call (unrelated to `require.resolve` in webpack
+processing). `require.resolve` gives you the
+absolute path to the module (`"/.../app/node_modules/react/react.js"`). So the
 expose only applies to the react module. And it's only exposed when used in the
 bundle.
 
