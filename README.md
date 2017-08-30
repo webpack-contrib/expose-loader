@@ -87,7 +87,7 @@ module: {
 }
 ```
 
-The [`require.resolve`](https://nodejs.org/api/all.html#globals_require_resolve)
+The [`require.resolve`](https://nodejs.org/api/all.html#modules_require_resolve)
 is a Node.js call (unrelated to `require.resolve` in webpack
 processing). `require.resolve` gives you the
 absolute path to the module (`"/.../app/node_modules/react/react.js"`). So the
