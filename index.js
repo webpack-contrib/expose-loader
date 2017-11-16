@@ -32,6 +32,7 @@ module.exports.pitch = function(remainingRequest) {
 	);
 	this.cacheable && this.cacheable();
 	if(!this.query) throw new Error("query parameter is missing");
+	this._module.userRequest = this._module.userRequest + '-exposed';
 	return accesorString(this.query.substr(1)) + " = " +
 		"require(" + JSON.stringify("-!" + newRequestPath) + ");";
 };
