@@ -32,6 +32,14 @@ module.exports.pitch = function(remainingRequest) {
 	);
 	this.cacheable && this.cacheable();
 	if(!this.query) throw new Error("query parameter is missing");
+    /*
+     * Workaround until module.libIdent() in webpack/webpack handles this correctly.
+     *
+     * fixes:
+     * - https://github.com/webpack-contrib/expose-loader/issues/55
+     * - https://github.com/webpack-contrib/expose-loader/issues/49
+     */
+	this._module.userRequest = this._module.userRequest + '-exposed';
 	return accesorString(this.query.substr(1)) + " = " +
 		"require(" + JSON.stringify("-!" + newRequestPath) + ");";
 };
