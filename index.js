@@ -26,12 +26,22 @@ module.exports.pitch = function(remainingRequest) {
 	// Change the request from an /abolute/path.js to a relative ./path.js
 	// This prevents [chunkhash] values from changing when running webpack
 	// builds in different directories.
-	const newRequestPath = remainingRequest.replace(
+  const newRequestPath = remainingRequest.replace(
 		this.resourcePath,
 		'.' + path.sep + path.relative(this.context, this.resourcePath)
 	);
 	this.cacheable && this.cacheable();
-	if(!this.query) throw new Error("query parameter is missing");
+  if(!this.query) throw new Error("query parameter is missing");
+  // Determine how to resolve the global object
+  let globalVar = this.query;
+  if (typeof this.query === 'object' && !Array.isArray(this.query)) {
+    if(!this.query.resolver) throw new Error("`query.resolver` key missing");
+    if(typeof this.query.resolver === 'function') {
+      globalVar = `?${this.query.resolver(this)}`;
+    } else {
+      globalVar = `?${this.query.resolver}`;
+    }
+  }
     /*
      * Workaround until module.libIdent() in webpack/webpack handles this correctly.
      *
@@ -39,7 +49,7 @@ module.exports.pitch = function(remainingRequest) {
      * - https://github.com/webpack-contrib/expose-loader/issues/55
      * - https://github.com/webpack-contrib/expose-loader/issues/49
      */
-	this._module.userRequest = this._module.userRequest + '-exposed';
-	return accesorString(this.query.substr(1)) + " = " +
+  this._module.userRequest = this._module.userRequest + '-exposed';
+  return accesorString(globalVar.substr(1)) + " = " +
 		"require(" + JSON.stringify("-!" + newRequestPath) + ");";
 };
