@@ -41,5 +41,5 @@ module.exports.pitch = function(remainingRequest) {
      */
 	this._module.userRequest = this._module.userRequest + '-exposed';
 	return accesorString(this.query.substr(1)) + " = " +
-		"require(" + JSON.stringify("-!" + newRequestPath) + ");";
+		"require(" + JSON.stringify("-!" + newRequestPath) + "); // jshint ignore:line";
 };
