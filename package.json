@@ -1,10 +1,13 @@
 {
   "name": "expose-loader",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "author": "Tobias Koppers @sokra",
   "description": "expose loader module for webpack",
   "license": "MIT",
   "main": "index.js",
+  "engines": {
+    "node": ">= 4.3 < 5.0.0 || >= 5.10"
+  },
   "scripts": {
     "release": "standard-version"
   },
@@ -12,18 +15,10 @@
   "devDependencies": {
     "standard-version": "^4.2.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/webpack-contrib/expose-loader.git"
-  },
-  "bugs": {
-    "url": "https://github.com/webpack-contrib/expose-loader/issues"
-  },
-  "homepage": "https://github.com/webpack-contrib/expose-loader",
   "peerDependencies": {
     "webpack": "^2.0.0 || ^3.0.0 || ^4.0.0"
   },
-  "engines": {
-    "node": ">= 4.3 < 5.0.0 || >= 5.10"
-  }
+  "repository": "https://github.com/webpack-contrib/expose-loader.git",
+  "bugs": "https://github.com/webpack-contrib/expose-loader/issues",
+  "homepage": "https://github.com/webpack-contrib/expose-loader"
 }

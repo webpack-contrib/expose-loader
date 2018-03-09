@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.5"></a>
+## [0.7.5](https://github.com/webpack-contrib/expose-loader/compare/v0.7.4...v0.7.5) (2018-03-09)
+
+
+### Bug Fixes
+
+* **package:** add `webpack >= v4.0.0` (`peerDependencies`) ([#67](https://github.com/webpack-contrib/expose-loader/issues/67)) ([daf39ea](https://github.com/webpack-contrib/expose-loader/commit/daf39ea))
+
+
+
 <a name="0.7.4"></a>
 ## 0.7.4 (2017-11-18)
 
