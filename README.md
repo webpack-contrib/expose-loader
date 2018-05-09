@@ -107,6 +107,28 @@ absolute path to the module (`"/.../app/node_modules/react/react.js"`). So the
 expose only applies to the react module. And it's only exposed when used in the
 bundle.
 
+------
+
+`expose-loader` creates a new entry file and moves the original. It is recommmended `expose-loader` rules come **before other rules** so that subsequent rules pick up all the files.
+```js
+// webpack.config.js
+module: {
+  rules: [
+    {
+      test: require.resolve('module-name'),
+      use: [{
+        loader: 'expose-loader',
+        options: 'moduleName',
+      }],
+    },
+    {
+      test: /\.m?js$/,
+      loader: 'babel-loader',
+    }
+  ]
+}
+```
+
 ## Contributing
 
 Please take a moment to read our contributing guidelines if you haven't yet done so.
