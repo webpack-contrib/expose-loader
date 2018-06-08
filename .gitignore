@@ -63,6 +63,7 @@ typings/
 /local
 /reports
 /node_modules
+/test/outputs
 .DS_Store
 Thumbs.db
 .idea
