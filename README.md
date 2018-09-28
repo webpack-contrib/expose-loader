@@ -100,7 +100,7 @@ module: {
 }
 ```
 
-The [`require.resolve`](https://nodejs.org/api/all.html#modules_require_resolve)
+The [`require.resolve`](https://nodejs.org/api/modules.html#modules_require_resolve_request_options)
 call is a Node.js function (unrelated to `require.resolve` in webpack
 processing). `require.resolve` gives you the
 absolute path to the module (`"/.../app/node_modules/react/react.js"`). So the
@@ -111,7 +111,7 @@ bundle.
 
 Please take a moment to read our contributing guidelines if you haven't yet done so.
 
-#### [CONTRIBUTING](./.github/CONTRIBUTING)
+#### [CONTRIBUTING](./.github/CONTRIBUTING.md)
 
 ## License
 
