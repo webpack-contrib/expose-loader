@@ -1,23 +1,28 @@
 import webpack from './helpers/compiler';
 
 describe('Loader', () => {
-  test('Defaults', async () => {
+  test('exposes module with webpack configuration syntax', async () => {
     const config = {
       loader: {
-        test: /\.js$/,
-        options: {},
+        test: /foo\.js$/,
+        options: 'foo',
       },
     };
 
-    const stats = await webpack('fixture.js', config);
+    const stats = await webpack('webpack.js', config);
     const { modules } = stats.toJson();
-    const [module] = modules;
+    const source = modules
+      .filter((module) => module.name.includes('-exposed'))
+      .map((module) => module.source);
+    expect(source).toMatchSnapshot();
+  });
 
-    if (module) {
-      const { source } = module;
-      expect(source).toMatchSnapshot();
-    } else {
-      expect(true).toEqual(true);
-    }
+  test('exposes module with inline import syntax', async () => {
+    const stats = await webpack('inline.js', {});
+    const { modules } = stats.toJson();
+    const source = modules
+      .filter((module) => module.name.includes('-exposed'))
+      .map((module) => module.source);
+    expect(source).toMatchSnapshot();
   });
 });
