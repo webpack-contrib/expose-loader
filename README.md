@@ -100,6 +100,26 @@ module: {
 }
 ```
 
+If you're using ES Modules (Harmony) you can run into an issue with expose-loader and your usage needs to add .default before using the exposed module. This can be frustrating. In this case you can pass an object to the options instead. For example if you want to expose a module that is using ESM and is exporting default (Some utility class for example).
+
+```js
+// webpack.config.js
+module: {
+  rules: [{
+    test: require.resolve('./path/to/my/utility'),
+    use: [{
+      loader: 'expose-loader',
+      options {
+          expose: 'Util',
+          exportKey: 'default'
+      }
+    }]
+  }]
+}
+```
+This will expose the global `Util` from the default export of the ES Module defined at `./path/to/my/utility`.
+
+
 The [`require.resolve`](https://nodejs.org/api/modules.html#modules_require_resolve_request_options)
 call is a Node.js function (unrelated to `require.resolve` in webpack
 processing). `require.resolve` gives you the
