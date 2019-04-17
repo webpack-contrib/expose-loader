@@ -103,8 +103,8 @@ module: {
 The [`require.resolve`](https://nodejs.org/api/modules.html#modules_require_resolve_request_options)
 call is a Node.js function (unrelated to `require.resolve` in webpack
 processing). `require.resolve` gives you the
-absolute path to the module (`"/.../app/node_modules/react/react.js"`). So the
-expose only applies to the react module. And it's only exposed when used in the
+absolute path to the module (`"/.../app/node_modules/jquery/dist/jquery.js"`). So the
+expose only applies to the jquery module. And it's only exposed when used in the
 bundle.
 
 ## Contributing
