@@ -13,7 +13,7 @@ const modules = (config) => {
             {
               test: config.loader.test || /\.js$/,
               use: {
-                loader: path.resolve(__dirname, '../../src'),
+                loader: path.resolve(__dirname, '../../lib'),
                 options: config.loader.options || {},
               },
             },
@@ -37,9 +37,10 @@ const output = (config) => {
 
 export default function(fixture, config, options) {
   config = {
-    devtool: config.devtool || 'sourcemap',
-    context: path.resolve(__dirname, '..', 'fixtures'),
-    entry: `./${fixture}`,
+    bail: true,
+    devtool: config.devtool || 'source-map',
+    context: process.cwd(),
+    entry: path.resolve(__dirname, '../fixtures', fixture),
     output: output(config),
     mode: 'development',
     module: modules(config),
@@ -47,6 +48,7 @@ export default function(fixture, config, options) {
       runtimeChunk: true,
     },
     plugins: plugins(config),
+    stats: 'verbose',
   };
 
   options = Object.assign({ output: false }, options);
