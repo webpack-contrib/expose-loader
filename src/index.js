@@ -10,26 +10,6 @@ import validateOptions from 'schema-utils';
 
 import schema from './options.json';
 
-function accessorString(value) {
-  const childProperties = value.split('.');
-  const { length } = childProperties;
-
-  let propertyString = 'global';
-  let result = '';
-
-  for (let i = 0; i < length; i++) {
-    if (i > 0) {
-      result += `if (!${propertyString}) ${propertyString} = {};\n`;
-    }
-
-    propertyString += `[${JSON.stringify(childProperties[i])}]`;
-  }
-
-  result += `module.exports = ${propertyString}`;
-
-  return result;
-}
-
 function loader() {}
 
 function pitch(remainingRequest) {
@@ -48,8 +28,6 @@ function pitch(remainingRequest) {
     `./${path.relative(this.context, this.resourcePath)}`
   );
 
-  const { expose } = options;
-
   /*
    * Workaround until module.libIdent() in webpack/webpack handles this correctly.
    *
@@ -59,9 +37,34 @@ function pitch(remainingRequest) {
    */
   this._module.userRequest = `${this._module.userRequest}-exposed`;
 
-  return `${accessorString(expose)} = require(${JSON.stringify(
+  const exposes = Array.isArray(options.expose)
+    ? options.expose
+    : [options.expose];
+
+  let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${JSON.stringify(
     `-!${newRequestPath}`
-  )});`;
+  )});\n`;
+
+  for (const expose of exposes) {
+    const childProperties = expose.split('.');
+    const { length } = childProperties;
+
+    let propertyString = 'global';
+
+    for (let i = 0; i < length; i++) {
+      if (i > 0) {
+        code += `if (!${propertyString}) ${propertyString} = {};\n`;
+      }
+
+      propertyString += `[${JSON.stringify(childProperties[i])}]`;
+    }
+
+    code += `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
+  }
+
+  code += `module.exports = ___EXPOSE_LOADER_IMPORT___;`;
+
+  return code;
 }
 
 export { loader, pitch };

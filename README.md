@@ -102,13 +102,7 @@ module.exports = {
           {
             loader: 'expose-loader',
             options: {
-              expose: 'jQuery',
-            },
-          },
-          {
-            loader: 'expose-loader',
-            options: {
-              expose: '$',
+              expose: ['$', 'jQuery'],
             },
           },
         ],

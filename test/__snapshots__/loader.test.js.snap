@@ -1,10 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`loader should work with multiple exposes with nested properties: errors 1`] = `Array []`;
+
+exports[`loader should work with multiple exposes with nested properties: module 1`] = `
+"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-multiple-exports.js\\");
+if (!global[\\"globalObject2\\"]) global[\\"globalObject2\\"] = {};
+global[\\"globalObject2\\"][\\"foo\\"] = ___EXPOSE_LOADER_IMPORT___;
+if (!global[\\"globalObject3\\"]) global[\\"globalObject3\\"] = {};
+global[\\"globalObject3\\"][\\"bar\\"] = ___EXPOSE_LOADER_IMPORT___;
+module.exports = ___EXPOSE_LOADER_IMPORT___;"
+`;
+
+exports[`loader should work with multiple exposes with nested properties: result 1`] = `
+Object {
+  "default": Object {
+    "commonjs": Object {
+      "globalObject1": Object {
+        "foo": "bar",
+      },
+    },
+    "commonjs2-multiple-exports": Object {
+      "globalObject2": Object {
+        "foo": "bar",
+      },
+      "globalObject3": Object {
+        "bar": "foo",
+      },
+    },
+    "commonjs2-single-export": Object {
+      "foo": "bar",
+    },
+    "module-default-export": Object {
+      "foo": "bar",
+    },
+    "module-named-exports": Object {
+      "globalObject5": Object {
+        "foo": "bar",
+      },
+      "globalObject6": Object {
+        "foo": "bar",
+      },
+    },
+  },
+}
+`;
+
+exports[`loader should work with multiple exposes with nested properties: warnings 1`] = `Array []`;
+
+exports[`loader should work with multiple exposes: errors 1`] = `Array []`;
+
+exports[`loader should work with multiple exposes: module 1`] = `
+"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-multiple-exports.js\\");
+global[\\"globalObject2\\"] = ___EXPOSE_LOADER_IMPORT___;
+global[\\"globalObject3\\"] = ___EXPOSE_LOADER_IMPORT___;
+module.exports = ___EXPOSE_LOADER_IMPORT___;"
+`;
+
+exports[`loader should work with multiple exposes: result 1`] = `
+Object {
+  "default": Object {
+    "commonjs": Object {
+      "globalObject1": Object {
+        "foo": "bar",
+      },
+    },
+    "commonjs2-multiple-exports": Object {
+      "globalObject2": Object {
+        "foo": "bar",
+      },
+      "globalObject3": Object {
+        "bar": "foo",
+      },
+    },
+    "commonjs2-single-export": Object {
+      "foo": "bar",
+    },
+    "module-default-export": Object {
+      "foo": "bar",
+    },
+    "module-named-exports": Object {
+      "globalObject5": Object {
+        "foo": "bar",
+      },
+      "globalObject6": Object {
+        "foo": "bar",
+      },
+    },
+  },
+}
+`;
+
+exports[`loader should work with multiple exposes: warnings 1`] = `Array []`;
+
 exports[`loader should work with nested property: errors 1`] = `Array []`;
 
 exports[`loader should work with nested property: module 1`] = `
-"if (!global[\\"globalObject1\\"]) global[\\"globalObject1\\"] = {};
-module.exports = global[\\"globalObject1\\"][\\"foo\\"] = require(\\"-!./global-commonjs.js\\");"
+"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs.js\\");
+if (!global[\\"globalObject1\\"]) global[\\"globalObject1\\"] = {};
+global[\\"globalObject1\\"][\\"foo\\"] = ___EXPOSE_LOADER_IMPORT___;
+module.exports = ___EXPOSE_LOADER_IMPORT___;"
 `;
 
 exports[`loader should work with nested property: result 1`] = `
@@ -45,7 +139,11 @@ exports[`loader should work with nested property: warnings 1`] = `Array []`;
 
 exports[`loader should work: errors 1`] = `Array []`;
 
-exports[`loader should work: module 1`] = `"module.exports = global[\\"globalObject1\\"] = require(\\"-!./global-commonjs.js\\");"`;
+exports[`loader should work: module 1`] = `
+"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs.js\\");
+global[\\"globalObject1\\"] = ___EXPOSE_LOADER_IMPORT___;
+module.exports = ___EXPOSE_LOADER_IMPORT___;"
+`;
 
 exports[`loader should work: result 1`] = `
 Object {
