@@ -14,7 +14,7 @@
 
 # expose-loader
 
-expose loader module for webpack
+The `expose-loader` loader allow you to expose module to `global` object (`self`, `window` and `global`).
 
 ## Getting Started
 
