@@ -3,8 +3,14 @@ import { getCompiler, compile } from './helpers';
 describe('validate options', () => {
   const tests = {
     expose: {
-      success: ['globalObject1', 'globalObject1.foo'],
-      failure: [false, true, /test/, '', [], {}],
+      success: [
+        'globalObject1',
+        'globalObject1.foo',
+        ['globalObject1'],
+        ['globalObject1.foo'],
+        ['globalObject1.foo', 'globalObject1.bar'],
+      ],
+      failure: [false, true, /test/, '', [], [''], {}],
     },
     unknown: {
       success: [],

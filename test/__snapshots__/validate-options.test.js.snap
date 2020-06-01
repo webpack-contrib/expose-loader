@@ -15,6 +15,11 @@ exports[`validate options should throw an error on the "expose" option with "/te
       [non-empty string, ...] (should not have fewer than 1 item)"
 `;
 
+exports[`validate options should throw an error on the "expose" option with "[""]" value 1`] = `
+"Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
+ - options.expose[0] should be an non-empty string."
+`;
+
 exports[`validate options should throw an error on the "expose" option with "[]" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options.expose should be an non-empty array."
