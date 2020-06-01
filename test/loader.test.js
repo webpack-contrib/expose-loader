@@ -1,6 +1,7 @@
 import {
   compile,
   execute,
+  getSourceMap,
   getCompiler,
   getErrors,
   getModuleSource,
@@ -69,6 +70,25 @@ describe('loader', () => {
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with sourceMap', async () => {
+    const compiler = getCompiler(
+      'simple-module-default.js',
+      {
+        expose: 'globalObject1.foo',
+      },
+      {
+        devtool: 'eval-cheap-module-source-map',
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(
+      getSourceMap(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('sourceMap');
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
