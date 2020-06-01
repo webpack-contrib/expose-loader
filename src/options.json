@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "expose": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        }
+      ]
+    }
+  },
+  "additionalProperties": false
+}
