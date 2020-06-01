@@ -8,15 +8,13 @@
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
+[![coverage][cover]][cover-url]
 [![chat][chat]][chat-url]
+[![size][size]][size-url]
 
 # expose-loader
 
 expose loader module for webpack
-
-## Requirements
-
-This module requires a minimum of Node v6.9.0 and Webpack v4.0.0.
 
 ## Getting Started
 
@@ -28,109 +26,127 @@ $ npm install expose-loader --save-dev
 
 Then add the loader to your `webpack` config. For example:
 
+**webpack.config.js**
+
 ```js
-// webpack.config.js
 module.exports = {
   module: {
     rules: [
       {
-        test: /.js/,
-        use: [
-          {
-            loader: `expose-loader`,
-            options: {...options}
-          }
-        ]
-      }
-    ]
-  }
-}
+        test: /\.js/i,
+        loader: 'expose-loader',
+        options: {
+          expose: '$',
+        },
+      },
+    ],
+  },
+};
 ```
 
 And then require the target file in your bundle's code:
 
+**src/entry.js**
+
 ```js
-// src/entry.js
-require("expose-loader?libraryName!./thing.js");
+require('expose-loader?expose=libraryName!./thing.js');
 ```
 
 And run `webpack` via your preferred method.
 
 ## Examples
 
+### Expose `jQuery`
+
 For example, let's say you want to expose jQuery as a global called `$`:
 
 ```js
-require("expose-loader?$!jquery");
+require('expose-loader?expose=$!jquery');
 ```
 
 Thus, `window.$` is then available in the browser console.
 
 Alternately, you can set this in your config file:
 
+**webpack.config.js**
+
 ```js
-// webpack.config.js
-module: {
-  rules: [{
-    test: require.resolve('jquery'),
-    use: [{
-      loader: 'expose-loader',
-      options: '$'
-    }]
-  }]
-}
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('jquery'),
+        loader: 'expose-loader',
+        options: {
+          expose: '$',
+        },
+      },
+    ],
+  },
+};
 ```
 
 Let's say you also want to expose it as `window.jQuery` in addition to `window.$`.
+
 For multiple expose you can use `!` in loader string:
 
+**webpack.config.js**
+
 ```js
-// webpack.config.js
-module: {
-  rules: [{
-    test: require.resolve('jquery'),
-    use: [{
-      loader: 'expose-loader',
-      options: 'jQuery'
-    },{
-      loader: 'expose-loader',
-      options: '$'
-    }]
-  }]
-}
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('jquery'),
+        rules: [
+          {
+            loader: 'expose-loader',
+            options: {
+              expose: 'jQuery',
+            },
+          },
+          {
+            loader: 'expose-loader',
+            options: {
+              expose: '$',
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
 ```
 
-The [`require.resolve`](https://nodejs.org/api/modules.html#modules_require_resolve_request_options)
-call is a Node.js function (unrelated to `require.resolve` in webpack
-processing). `require.resolve` gives you the
-absolute path to the module (`"/.../app/node_modules/react/react.js"`). So the
-expose only applies to the react module. And it's only exposed when used in the
-bundle.
+The [`require.resolve`](https://nodejs.org/api/modules.html#modules_require_resolve_request_options) call is a Node.js function (unrelated to `require.resolve` in webpack processing).
+`require.resolve` gives you the absolute path to the module (`"/.../app/node_modules/jquery/dist/jquery.js"`).
+So the expose only applies to the `jquery` module. And it's only exposed when used in the bundle.
 
 ## Contributing
 
 Please take a moment to read our contributing guidelines if you haven't yet done so.
 
-#### [CONTRIBUTING](./.github/CONTRIBUTING.md)
+## Contributing
+
+Please take a moment to read our contributing guidelines if you haven't yet done so.
+
+[CONTRIBUTING](./.github/CONTRIBUTING.md)
 
 ## License
 
-#### [MIT](./LICENSE)
+[MIT](./LICENSE)
 
 [npm]: https://img.shields.io/npm/v/expose-loader.svg
 [npm-url]: https://npmjs.com/package/expose-loader
-
 [node]: https://img.shields.io/node/v/expose-loader.svg
 [node-url]: https://nodejs.org
-
 [deps]: https://david-dm.org/webpack-contrib/expose-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/expose-loader
-
-[tests]: 	https://img.shields.io/circleci/project/github/webpack-contrib/expose-loader.svg
-[tests-url]: https://circleci.com/gh/webpack-contrib/expose-loader
-
+[tests]: https://github.com/webpack-contrib/expose-loader/workflows/expose-loader/badge.svg
+[tests-url]: https://github.com/webpack-contrib/expose-loader/actions
 [cover]: https://codecov.io/gh/webpack-contrib/expose-loader/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/expose-loader
-
-[chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
+[chat]: https://badges.gitter.im/webpack/webpack.svg
 [chat-url]: https://gitter.im/webpack/webpack
+[size]: https://packagephobia.now.sh/badge?p=expose-loader
+[size-url]: https://packagephobia.now.sh/result?p=expose-loader

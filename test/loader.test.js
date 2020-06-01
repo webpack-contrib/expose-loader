@@ -1,23 +1,43 @@
-import webpack from './helpers/compiler';
+import {
+  compile,
+  execute,
+  getCompiler,
+  getErrors,
+  getModuleSource,
+  getWarnings,
+  readAsset,
+} from './helpers';
 
-describe('Loader', () => {
-  test('Defaults', async () => {
-    const config = {
-      loader: {
-        test: /\.js$/,
-        options: {},
-      },
-    };
+describe('loader', () => {
+  it('should work', async () => {
+    const compiler = getCompiler('simple-module-default.js', {
+      expose: 'globalObject1',
+    });
+    const stats = await compile(compiler);
 
-    const stats = await webpack('fixture.js', config);
-    const { modules } = stats.toJson();
-    const [module] = modules;
+    expect(
+      getModuleSource('./global-commonjs.js-exposed', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
 
-    if (module) {
-      const { source } = module;
-      expect(source).toMatchSnapshot();
-    } else {
-      expect(true).toEqual(true);
-    }
+  it('should work with nested property', async () => {
+    const compiler = getCompiler('simple-module-default.js', {
+      expose: 'globalObject1.foo',
+    });
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-commonjs.js-exposed', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 });
