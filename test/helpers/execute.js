@@ -13,7 +13,23 @@ export default (code) => {
   module.filename = resource;
 
   // eslint-disable-next-line no-underscore-dangle
-  module._compile(code, resource);
+  module._compile(
+    `${code};
+const result = {};
+
+result['ExposeLoader'] = ExposeLoader;
+
+if (typeof myGlobal !== "undefined") {
+  result['myGlobal'] = myGlobal;
+}
+
+if (typeof myOtherGlobal !== "undefined") {
+  result['myOtherGlobal'] = myOtherGlobal;
+}
+
+module.exports = result;`,
+    resource
+  );
 
   return module.exports;
 };

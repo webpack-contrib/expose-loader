@@ -33,7 +33,7 @@ describe('validate options', () => {
     it(`should ${
       type === 'success' ? 'successfully validate' : 'throw an error on'
     } the "${key}" option with "${stringifyValue(value)}" value`, async () => {
-      const compiler = getCompiler('simple-module-default.js', {
+      const compiler = getCompiler('./simple-commonjs2-single-export.js', {
         [key]: value,
       });
 
@@ -49,7 +49,7 @@ describe('validate options', () => {
             compilation: { errors },
           } = stats;
 
-          expect(errors).toHaveLength(5);
+          expect(errors).toHaveLength(1);
           expect(() => {
             throw new Error(errors[0].error.message);
           }).toThrowErrorMatchingSnapshot();

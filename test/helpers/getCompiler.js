@@ -13,12 +13,13 @@ export default (fixture, loaderOptions = {}, config = {}) => {
       path: path.resolve(__dirname, '../outputs'),
       filename: '[name].bundle.js',
       chunkFilename: '[name].chunk.js',
-      libraryTarget: 'this',
+      library: 'ExposeLoader',
+      libraryTarget: 'var',
     },
     module: {
       rules: [
         {
-          test: /global.+\.js/i,
+          test: /global-.+\.js/i,
           rules: [
             {
               loader: path.resolve(__dirname, '../../src'),

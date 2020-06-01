@@ -5,7 +5,7 @@
 
 import path from 'path';
 
-import { getOptions } from 'loader-utils';
+import { getOptions, stringifyRequest } from 'loader-utils';
 import validateOptions from 'schema-utils';
 
 import schema from './options.json';
@@ -43,13 +43,19 @@ function pitch(remainingRequest) {
 
   let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${JSON.stringify(
     `-!${newRequestPath}`
-  )});\n`;
+  )});
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(${stringifyRequest(
+    this,
+    require.resolve('./runtime/getGlobalThis.js')
+  )});
+var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
+`;
 
   for (const expose of exposes) {
     const childProperties = expose.split('.');
     const { length } = childProperties;
 
-    let propertyString = 'global';
+    let propertyString = '___EXPOSE_LOADER_GLOBAL_THIS___';
 
     for (let i = 0; i < length; i++) {
       if (i > 0) {
