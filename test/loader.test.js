@@ -74,9 +74,9 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should work with sourceMap', async () => {
+  it('should work with inline sourceMap', async () => {
     const compiler = getCompiler(
-      'simple-module-default.js',
+      'simple-commonjs2-single-export.js',
       {
         expose: 'globalObject1.foo',
       },
@@ -89,6 +89,25 @@ describe('loader', () => {
     expect(
       getSourceMap(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('sourceMap');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with sourceMap', async () => {
+    const compiler = getCompiler(
+      'simple-commonjs2-single-export.js',
+      {
+        expose: 'globalObject1.foo',
+      },
+      {
+        devtool: 'source-map',
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(readAsset('main.bundle.js.map', compiler, stats)).toMatchSnapshot(
+      'sourceMap'
+    );
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });

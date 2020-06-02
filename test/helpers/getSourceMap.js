@@ -32,10 +32,5 @@ export default (code) => {
     }
   }
 
-  const mapUrl = match ? match[1] || match[2] || '' : null;
-
-  return `${mapUrl.slice(
-    0,
-    mapUrl.indexOf('base64') + 7
-  )} - map normalized for test`;
+  return match ? match[1] || match[2] || '' : null;
 };
