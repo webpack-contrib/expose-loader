@@ -120,10 +120,6 @@ So the expose only applies to the `jquery` module. And it's only exposed when us
 
 Please take a moment to read our contributing guidelines if you haven't yet done so.
 
-## Contributing
-
-Please take a moment to read our contributing guidelines if you haven't yet done so.
-
 [CONTRIBUTING](./.github/CONTRIBUTING.md)
 
 ## License
