@@ -1,104 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`validate options should throw an error on the "expose" option with "" value 1`] = `
+exports[`validate options should throw an error on the "exposes" option with "" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
- - options.expose should be an non-empty string."
+ - options.exposes should be an non-empty string."
 `;
 
-exports[`validate options should throw an error on the "expose" option with "/test/" value 1`] = `
+exports[`validate options should throw an error on the "exposes" option with "/test/" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
- - options.expose should be one of these:
+ - options.exposes should be one of these:
    non-empty string | [non-empty string, ...] (should not have fewer than 1 item)
    Details:
-    * options.expose should be a non-empty string.
-    * options.expose should be an array:
+    * options.exposes should be a non-empty string.
+    * options.exposes should be an array:
       [non-empty string, ...] (should not have fewer than 1 item)"
 `;
 
-exports[`validate options should throw an error on the "expose" option with "[""]" value 1`] = `
+exports[`validate options should throw an error on the "exposes" option with "[""]" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
- - options.expose[0] should be an non-empty string."
+ - options.exposes[0] should be an non-empty string."
 `;
 
-exports[`validate options should throw an error on the "expose" option with "[]" value 1`] = `
+exports[`validate options should throw an error on the "exposes" option with "[]" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
- - options.expose should be an non-empty array."
+ - options.exposes should be an non-empty array."
 `;
 
-exports[`validate options should throw an error on the "expose" option with "{}" value 1`] = `
+exports[`validate options should throw an error on the "exposes" option with "{}" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
- - options.expose should be one of these:
+ - options.exposes should be one of these:
    non-empty string | [non-empty string, ...] (should not have fewer than 1 item)
    Details:
-    * options.expose should be a non-empty string.
-    * options.expose should be an array:
+    * options.exposes should be a non-empty string.
+    * options.exposes should be an array:
       [non-empty string, ...] (should not have fewer than 1 item)"
 `;
 
-exports[`validate options should throw an error on the "expose" option with "false" value 1`] = `
+exports[`validate options should throw an error on the "exposes" option with "false" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
- - options.expose should be one of these:
+ - options.exposes should be one of these:
    non-empty string | [non-empty string, ...] (should not have fewer than 1 item)
    Details:
-    * options.expose should be a non-empty string.
-    * options.expose should be an array:
+    * options.exposes should be a non-empty string.
+    * options.exposes should be an array:
       [non-empty string, ...] (should not have fewer than 1 item)"
 `;
 
-exports[`validate options should throw an error on the "expose" option with "true" value 1`] = `
+exports[`validate options should throw an error on the "exposes" option with "true" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
- - options.expose should be one of these:
+ - options.exposes should be one of these:
    non-empty string | [non-empty string, ...] (should not have fewer than 1 item)
    Details:
-    * options.expose should be a non-empty string.
-    * options.expose should be an array:
+    * options.exposes should be a non-empty string.
+    * options.exposes should be an array:
       [non-empty string, ...] (should not have fewer than 1 item)"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "/test/" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { expose? }"
+   object { exposes? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "[]" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { expose? }"
+   object { exposes? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "{"foo":"bar"}" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { expose? }"
+   object { exposes? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "{}" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { expose? }"
+   object { exposes? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "1" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { expose? }"
+   object { exposes? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "false" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { expose? }"
+   object { exposes? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "test" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { expose? }"
+   object { exposes? }"
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "true" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options has an unknown property 'unknown'. These properties are valid:
-   object { expose? }"
+   object { exposes? }"
 `;

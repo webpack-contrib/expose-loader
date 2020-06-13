@@ -35,9 +35,9 @@ export default function loader(content, sourceMap) {
    */
   this._module.userRequest = `${this._module.userRequest}-exposed`;
 
-  const exposes = Array.isArray(options.expose)
-    ? options.expose
-    : [options.expose];
+  const exposes = Array.isArray(options.exposes)
+    ? options.exposes
+    : [options.exposes];
 
   let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${JSON.stringify(
     `-!${newRequestPath}`

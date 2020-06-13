@@ -2,7 +2,7 @@ import { getCompiler, compile } from './helpers';
 
 describe('validate options', () => {
   const tests = {
-    expose: {
+    exposes: {
       success: [
         'globalObject1',
         'globalObject1.foo',

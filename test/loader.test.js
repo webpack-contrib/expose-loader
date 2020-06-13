@@ -11,7 +11,7 @@ import {
 describe('loader', () => {
   it('should work', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
-      expose: 'myGlobal',
+      exposes: 'myGlobal',
     });
     const stats = await compile(compiler);
 
@@ -27,7 +27,7 @@ describe('loader', () => {
 
   it('should work with multiple exposes', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
-      expose: ['myGlobal', 'myOtherGlobal'],
+      exposes: ['myGlobal', 'myOtherGlobal'],
     });
     const stats = await compile(compiler);
 
@@ -43,7 +43,7 @@ describe('loader', () => {
 
   it('should work for a nested property for a global object', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
-      expose: 'myGlobal.nested',
+      exposes: 'myGlobal.nested',
     });
     const stats = await compile(compiler);
 
@@ -59,7 +59,7 @@ describe('loader', () => {
 
   it('should work for nested preporties for a global object', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
-      expose: ['myGlobal.nested', 'myOtherGlobal.nested'],
+      exposes: ['myGlobal.nested', 'myOtherGlobal.nested'],
     });
     const stats = await compile(compiler);
 
@@ -75,7 +75,7 @@ describe('loader', () => {
 
   it('should work from esModule export', async () => {
     const compiler = getCompiler('simple-module-single-export.js', {
-      expose: 'myGlobal',
+      exposes: 'myGlobal',
     });
     const stats = await compile(compiler);
 
