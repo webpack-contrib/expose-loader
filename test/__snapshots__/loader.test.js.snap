@@ -6,8 +6,13 @@ exports[`loader should work for a nested property for a global object: module 1`
 "var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
 var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
+var ___EXPOSE_LOADER_IMPORT_DEFAULT___ = ___EXPOSE_LOADER_IMPORT___.__esModule
+  ? ___EXPOSE_LOADER_IMPORT___.default
+ || ___EXPOSE_LOADER_IMPORT___
+
+  : ___EXPOSE_LOADER_IMPORT___
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"nested\\"] = ___EXPOSE_LOADER_IMPORT___;
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"nested\\"] = ___EXPOSE_LOADER_IMPORT_DEFAULT___;
 module.exports = ___EXPOSE_LOADER_IMPORT___;"
 `;
 
@@ -17,13 +22,6 @@ Object {
     "foo": "bar",
   },
   "myGlobal": Object {
-    "foo": "bar",
-    "nested": Object {
-      "foo": "bar",
-    },
-  },
-  "myOtherGlobal": Object {
-    "foo": "bar",
     "nested": Object {
       "foo": "bar",
     },
@@ -39,10 +37,15 @@ exports[`loader should work for nested preporties for a global object: module 1`
 "var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
 var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
+var ___EXPOSE_LOADER_IMPORT_DEFAULT___ = ___EXPOSE_LOADER_IMPORT___.__esModule
+  ? ___EXPOSE_LOADER_IMPORT___.default
+ || ___EXPOSE_LOADER_IMPORT___
+
+  : ___EXPOSE_LOADER_IMPORT___
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"nested\\"] = ___EXPOSE_LOADER_IMPORT___;
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"nested\\"] = ___EXPOSE_LOADER_IMPORT_DEFAULT___;
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"][\\"nested\\"] = ___EXPOSE_LOADER_IMPORT___;
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"][\\"nested\\"] = ___EXPOSE_LOADER_IMPORT_DEFAULT___;
 module.exports = ___EXPOSE_LOADER_IMPORT___;"
 `;
 
@@ -52,13 +55,11 @@ Object {
     "foo": "bar",
   },
   "myGlobal": Object {
-    "foo": "bar",
     "nested": Object {
       "foo": "bar",
     },
   },
   "myOtherGlobal": Object {
-    "foo": "bar",
     "nested": Object {
       "foo": "bar",
     },
@@ -68,14 +69,49 @@ Object {
 
 exports[`loader should work for nested preporties for a global object: warnings 1`] = `Array []`;
 
+exports[`loader should work from esModule export: errors 1`] = `Array []`;
+
+exports[`loader should work from esModule export: module 1`] = `
+"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-default-export.js\\");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
+var ___EXPOSE_LOADER_IMPORT_DEFAULT___ = ___EXPOSE_LOADER_IMPORT___.__esModule
+  ? ___EXPOSE_LOADER_IMPORT___.default
+ || ___EXPOSE_LOADER_IMPORT___
+
+  : ___EXPOSE_LOADER_IMPORT___
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT_DEFAULT___;
+module.exports = ___EXPOSE_LOADER_IMPORT___;"
+`;
+
+exports[`loader should work from esModule export: result 1`] = `
+Object {
+  "ExposeLoader": Object {
+    "default": Object {
+      "foo": "bar",
+    },
+  },
+  "myGlobal": Object {
+    "foo": "bar",
+  },
+}
+`;
+
+exports[`loader should work from esModule export: warnings 1`] = `Array []`;
+
 exports[`loader should work with multiple exposes: errors 1`] = `Array []`;
 
 exports[`loader should work with multiple exposes: module 1`] = `
 "var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
 var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
+var ___EXPOSE_LOADER_IMPORT_DEFAULT___ = ___EXPOSE_LOADER_IMPORT___.__esModule
+  ? ___EXPOSE_LOADER_IMPORT___.default
+ || ___EXPOSE_LOADER_IMPORT___
+
+  : ___EXPOSE_LOADER_IMPORT___
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT_DEFAULT___;
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = ___EXPOSE_LOADER_IMPORT_DEFAULT___;
 module.exports = ___EXPOSE_LOADER_IMPORT___;"
 `;
 
@@ -101,7 +137,12 @@ exports[`loader should work: module 1`] = `
 "var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
 var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
+var ___EXPOSE_LOADER_IMPORT_DEFAULT___ = ___EXPOSE_LOADER_IMPORT___.__esModule
+  ? ___EXPOSE_LOADER_IMPORT___.default
+ || ___EXPOSE_LOADER_IMPORT___
+
+  : ___EXPOSE_LOADER_IMPORT___
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT_DEFAULT___;
 module.exports = ___EXPOSE_LOADER_IMPORT___;"
 `;
 

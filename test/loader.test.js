@@ -72,4 +72,20 @@ describe('loader', () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
+
+  it('should work from esModule export', async () => {
+    const compiler = getCompiler('simple-module-single-export.js', {
+      expose: 'myGlobal',
+    });
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-module-default-export.js-exposed', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
 });

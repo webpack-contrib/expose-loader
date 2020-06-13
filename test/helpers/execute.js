@@ -14,8 +14,18 @@ export default (code) => {
 
   // eslint-disable-next-line no-underscore-dangle
   module._compile(
-    `${code};
+    `
 const result = {};
+    
+if (typeof myGlobal !== "undefined") {
+  delete myGlobal;
+}
+
+if (typeof myOtherGlobal !== "undefined") {
+  delete myOtherGlobal;
+}
+
+${code};
 
 result['ExposeLoader'] = ExposeLoader;
 

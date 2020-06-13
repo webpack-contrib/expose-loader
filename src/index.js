@@ -6,13 +6,12 @@
 import path from 'path';
 
 import { getOptions, stringifyRequest } from 'loader-utils';
+
 import validateOptions from 'schema-utils';
 
 import schema from './options.json';
 
-function loader() {}
-
-function pitch(remainingRequest) {
+export default function loader(content, sourceMap) {
   const options = getOptions(this);
 
   validateOptions(schema, options, {
@@ -20,13 +19,12 @@ function pitch(remainingRequest) {
     baseDataPath: 'options',
   });
 
+  const callback = this.async();
+
   // Change the request from an /abolute/path.js to a relative ./path.js
   // This prevents [chunkhash] values from changing when running webpack
   // builds in different directories.
-  const newRequestPath = remainingRequest.replace(
-    this.resourcePath,
-    `./${path.relative(this.context, this.resourcePath)}`
-  );
+  const newRequestPath = `./${path.relative(this.context, this.resourcePath)}`;
 
   /*
    * Workaround until module.libIdent() in webpack/webpack handles this correctly.
@@ -43,13 +41,15 @@ function pitch(remainingRequest) {
 
   let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${JSON.stringify(
     `-!${newRequestPath}`
-  )});
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(${stringifyRequest(
+  )});\n`;
+  code += `var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(${stringifyRequest(
     this,
     require.resolve('./runtime/getGlobalThis.js')
-  )});
-var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
-`;
+  )});\n`;
+  code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();\n`;
+  code += `var ___EXPOSE_LOADER_IMPORT_DEFAULT___ = ___EXPOSE_LOADER_IMPORT___.__esModule
+  ? ___EXPOSE_LOADER_IMPORT___.default\n || ___EXPOSE_LOADER_IMPORT___\n
+  : ___EXPOSE_LOADER_IMPORT___\n`;
 
   for (const expose of exposes) {
     const childProperties = expose.split('.');
@@ -65,12 +65,10 @@ var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
       propertyString += `[${JSON.stringify(childProperties[i])}]`;
     }
 
-    code += `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
+    code += `${propertyString} = ___EXPOSE_LOADER_IMPORT_DEFAULT___;\n`;
   }
 
   code += `module.exports = ___EXPOSE_LOADER_IMPORT___;`;
 
-  return code;
+  callback(null, `${code}`, sourceMap);
 }
-
-export { loader, pitch };
