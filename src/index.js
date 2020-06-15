@@ -11,6 +11,8 @@ import validateOptions from 'schema-utils';
 
 import schema from './options.json';
 
+import getExposes from './utils';
+
 export default function loader(content, sourceMap) {
   const options = getOptions(this);
 
@@ -18,8 +20,6 @@ export default function loader(content, sourceMap) {
     name: 'Expose Loader',
     baseDataPath: 'options',
   });
-
-  const callback = this.async();
 
   // Change the request from an /abolute/path.js to a relative ./path.js
   // This prevents [chunkhash] values from changing when running webpack
@@ -35,9 +35,18 @@ export default function loader(content, sourceMap) {
    */
   this._module.userRequest = `${this._module.userRequest}-exposed`;
 
-  const exposes = Array.isArray(options.exposes)
-    ? options.exposes
-    : [options.exposes];
+  const callback = this.async();
+
+  let exposes;
+
+  try {
+    exposes = getExposes(options.exposes);
+  } catch (error) {
+    this.emitError(error);
+    callback(null, content, sourceMap);
+
+    return;
+  }
 
   let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${JSON.stringify(
     `-!${newRequestPath}`
@@ -47,13 +56,15 @@ export default function loader(content, sourceMap) {
     require.resolve('./runtime/getGlobalThis.js')
   )});\n`;
   code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();\n`;
-  code += `var ___EXPOSE_LOADER_IMPORT_DEFAULT___ = ___EXPOSE_LOADER_IMPORT___.__esModule
-  ? ___EXPOSE_LOADER_IMPORT___.default\n || ___EXPOSE_LOADER_IMPORT___\n
-  : ___EXPOSE_LOADER_IMPORT___\n`;
 
   for (const expose of exposes) {
-    const childProperties = expose.split('.');
+    const childProperties = expose.globalName.split('.');
     const { length } = childProperties;
+    const { packageName } = expose;
+
+    if (typeof packageName !== 'undefined') {
+      code += `var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.${packageName}\n`;
+    }
 
     let propertyString = '___EXPOSE_LOADER_GLOBAL_THIS___';
 
@@ -65,10 +76,11 @@ export default function loader(content, sourceMap) {
       propertyString += `[${JSON.stringify(childProperties[i])}]`;
     }
 
-    code += `${propertyString} = ___EXPOSE_LOADER_IMPORT_DEFAULT___;\n`;
+    code +=
+      typeof packageName !== 'undefined'
+        ? `${propertyString} = ___EXPOSE_LOADER_IMPORT_NAMED___;\n`
+        : `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
   }
 
-  code += `module.exports = ___EXPOSE_LOADER_IMPORT___;`;
-
-  callback(null, `${code}`, sourceMap);
+  callback(null, `${content}\n${code}`, sourceMap);
 }
