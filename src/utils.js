@@ -12,15 +12,22 @@ function resolveExposes(item) {
       globalName: splittedItem[0],
       packageName: splittedItem[1],
     };
+  } else {
+    result = item;
   }
 
-  return result;
+  const nestedGlobalName =
+    typeof result.globalName === 'string'
+      ? result.globalName.split('.')
+      : result.globalName;
+
+  return { ...result, globalName: nestedGlobalName };
 }
 
 function getExposes(items) {
   let result = [];
 
-  if (typeof imports === 'string') {
+  if (typeof items === 'string') {
     result.push(resolveExposes(items));
   } else {
     result = [].concat(items).map((item) => resolveExposes(item));

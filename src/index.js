@@ -4,6 +4,7 @@
 */
 
 import path from 'path';
+import url from 'url';
 
 import {
   getOptions,
@@ -31,10 +32,22 @@ export default function loader(content, sourceMap) {
   // Change the request from an /abolute/path.js to a relative ./path.js
   // This prevents [chunkhash] values from changing when running webpack
   // builds in different directories.
-  const newRequestPath = `./${path.relative(
-    this.context,
-    getRemainingRequest(this)
-  )}`;
+  const remainingRequest = getRemainingRequest(this).split('!');
+
+  const remainingRequests =
+    typeof remainingRequest === 'string'
+      ? [remainingRequest]
+      : remainingRequest;
+
+  const newRequestPath = remainingRequests
+    .map(
+      (currentUrl) =>
+        `./${path
+          .relative(this.context, url.parse(currentUrl).pathname)
+          .split(path.sep)
+          .join('/')}`
+    )
+    .join('!');
 
   /*
    * Workaround until module.libIdent() in webpack/webpack handles this correctly.
@@ -52,8 +65,7 @@ export default function loader(content, sourceMap) {
   try {
     exposes = getExposes(options.exposes);
   } catch (error) {
-    this.emitError(error);
-    callback(null, content, sourceMap);
+    callback(error);
 
     return;
   }
@@ -68,9 +80,8 @@ export default function loader(content, sourceMap) {
   code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();\n`;
 
   for (const expose of exposes) {
-    const childProperties = expose.globalName.split('.');
-    const { length } = childProperties;
-    const { packageName } = expose;
+    const { globalName, packageName } = expose;
+    const { length } = globalName;
 
     if (typeof packageName !== 'undefined') {
       code += `var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.${packageName}\n`;
@@ -83,7 +94,7 @@ export default function loader(content, sourceMap) {
         code += `if (!${propertyString}) ${propertyString} = {};\n`;
       }
 
-      propertyString += `[${JSON.stringify(childProperties[i])}]`;
+      propertyString += `[${JSON.stringify(globalName[i])}]`;
     }
 
     code +=

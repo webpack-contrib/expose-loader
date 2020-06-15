@@ -4,6 +4,17 @@ describe('validate options', () => {
   const tests = {
     exposes: {
       success: [
+        {
+          globalName: 'myGlobal',
+        },
+        {
+          globalName: 'myGlobal_alias',
+          packageName: 'globalObject6',
+        },
+        {
+          globalName: ['myGlobal_alias', 'globalObject6'],
+          packageName: 'globalObject6',
+        },
         'globalObject1',
         'globalObject1.foo',
         ['globalObject1'],

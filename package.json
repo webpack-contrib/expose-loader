@@ -54,6 +54,7 @@
     "@webpack-contrib/defaults": "^6.3.0",
     "@webpack-contrib/eslint-config-webpack": "^3.0.0",
     "babel-jest": "^26.0.1",
+    "babel-loader": "^8.1.0",
     "commitlint-azure-pipelines-cli": "^1.0.3",
     "cross-env": "^7.0.2",
     "del": "^5.1.0",

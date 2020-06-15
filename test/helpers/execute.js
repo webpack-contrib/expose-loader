@@ -29,6 +29,10 @@ if (typeof myGlobal_alias !== "undefined") {
   delete myGlobal_alias;
 }
 
+if (typeof global['myGlobal.alias'] !== "undefined") {
+  delete global['myGlobal.alias'];
+}
+
 ${code};
 
 result['ExposeLoader'] = ExposeLoader;
@@ -43,6 +47,10 @@ if (typeof myOtherGlobal !== "undefined") {
 
 if (typeof myGlobal_alias !== "undefined") {
   result['myGlobal_alias'] = myGlobal_alias;
+}
+
+if (typeof global['myGlobal.alias'] !== "undefined") {
+  result['myGlobal.alias'] = global['myGlobal.alias'];
 }
 
 module.exports = result;`,
