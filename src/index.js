@@ -5,7 +5,14 @@
 
 import path from 'path';
 
-import { getOptions, stringifyRequest } from 'loader-utils';
+import {
+  getOptions,
+  stringifyRequest,
+  getCurrentRequest,
+  getRemainingRequest,
+} from 'loader-utils';
+
+import { SourceNode, SourceMapConsumer } from 'source-map';
 
 import validateOptions from 'schema-utils';
 
@@ -24,7 +31,10 @@ export default function loader(content, sourceMap) {
   // Change the request from an /abolute/path.js to a relative ./path.js
   // This prevents [chunkhash] values from changing when running webpack
   // builds in different directories.
-  const newRequestPath = `./${path.relative(this.context, this.resourcePath)}`;
+  const newRequestPath = `./${path.relative(
+    this.context,
+    getRemainingRequest(this)
+  )}`;
 
   /*
    * Workaround until module.libIdent() in webpack/webpack handles this correctly.
@@ -80,6 +90,20 @@ export default function loader(content, sourceMap) {
       typeof packageName !== 'undefined'
         ? `${propertyString} = ___EXPOSE_LOADER_IMPORT_NAMED___;\n`
         : `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
+  }
+
+  if (this.sourceMap && sourceMap) {
+    const node = SourceNode.fromStringWithSourceMap(
+      content,
+      new SourceMapConsumer(sourceMap)
+    );
+    node.add(`\n${code}`);
+    const result = node.toStringWithSourceMap({
+      file: getCurrentRequest(this),
+    });
+    this.callback(null, result.code, result.map.toJSON());
+
+    return;
   }
 
   callback(null, `${content}\n${code}`, sourceMap);
