@@ -10,7 +10,7 @@ function resolveExposes(item) {
 
     result = {
       globalName: splittedItem[0],
-      packageName: splittedItem[1],
+      localName: splittedItem[1],
     };
   } else {
     result = item;

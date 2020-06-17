@@ -20,7 +20,7 @@
             }
           ]
         },
-        "packageName": {
+        "localName": {
           "type": "string",
           "minLength": 1
         }

@@ -32,21 +32,18 @@ export default function loader(content, sourceMap) {
   // Change the request from an /abolute/path.js to a relative ./path.js
   // This prevents [chunkhash] values from changing when running webpack
   // builds in different directories.
-  const remainingRequest = getRemainingRequest(this).split('!');
+  const newRequestPath = getRemainingRequest(this)
+    .split('!')
+    .map((currentUrl) => {
+      const result = `./${path.relative(
+        this.context,
+        url.parse(currentUrl).pathname
+      )}`;
 
-  const remainingRequests =
-    typeof remainingRequest === 'string'
-      ? [remainingRequest]
-      : remainingRequest;
-
-  const newRequestPath = remainingRequests
-    .map(
-      (currentUrl) =>
-        `./${path
-          .relative(this.context, url.parse(currentUrl).pathname)
-          .split(path.sep)
-          .join('/')}`
-    )
+      return process.platform === 'win32'
+        ? result.split(path.sep).join('/')
+        : result;
+    })
     .join('!');
 
   /*
@@ -70,7 +67,8 @@ export default function loader(content, sourceMap) {
     return;
   }
 
-  let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${JSON.stringify(
+  let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${stringifyRequest(
+    this,
     `-!${newRequestPath}`
   )});\n`;
   code += `var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(${stringifyRequest(
@@ -80,11 +78,11 @@ export default function loader(content, sourceMap) {
   code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();\n`;
 
   for (const expose of exposes) {
-    const { globalName, packageName } = expose;
+    const { globalName, localName } = expose;
     const { length } = globalName;
 
-    if (typeof packageName !== 'undefined') {
-      code += `var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.${packageName}\n`;
+    if (typeof localName !== 'undefined') {
+      code += `var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.${localName}\n`;
     }
 
     let propertyString = '___EXPOSE_LOADER_GLOBAL_THIS___';
@@ -98,7 +96,7 @@ export default function loader(content, sourceMap) {
     }
 
     code +=
-      typeof packageName !== 'undefined'
+      typeof localName !== 'undefined'
         ? `${propertyString} = ___EXPOSE_LOADER_IMPORT_NAMED___;\n`
         : `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
   }
@@ -117,5 +115,9 @@ export default function loader(content, sourceMap) {
     return;
   }
 
-  callback(null, `${content}\n${code}`, sourceMap);
+  callback(
+    null,
+    `${code}\nmodule.exports = ___EXPOSE_LOADER_IMPORT___`,
+    sourceMap
+  );
 }

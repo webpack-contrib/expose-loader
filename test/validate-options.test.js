@@ -9,11 +9,11 @@ describe('validate options', () => {
         },
         {
           globalName: 'myGlobal_alias',
-          packageName: 'globalObject6',
+          localName: 'globalObject6',
         },
         {
           globalName: ['myGlobal_alias', 'globalObject6'],
-          packageName: 'globalObject6',
+          localName: 'globalObject6',
         },
         'globalObject1',
         'globalObject1.foo',
