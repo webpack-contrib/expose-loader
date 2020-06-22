@@ -31,6 +31,15 @@ Object {
 
 exports[`loader should be different modules id: warnings 1`] = `Array []`;
 
+exports[`loader should emit error because of invalid arguments: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Invalid command \\"\\" in \\"myGlobal_alias  |  globalObject6\\" for expose",
+]
+`;
+
+exports[`loader should emit error because of invalid arguments: warnings 1`] = `Array []`;
+
 exports[`loader should emit error because of many arguments: errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from \`replaced original path\`):

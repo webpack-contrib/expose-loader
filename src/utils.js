@@ -42,6 +42,12 @@ function splitCommand(command) {
     .map((item) => item.split(' '))
     .reduce((acc, val) => acc.concat(val), []);
 
+  for (const item of result) {
+    if (!item) {
+      throw new Error(`Invalid command "${item}" in "${command}" for expose`);
+    }
+  }
+
   return result;
 }
 

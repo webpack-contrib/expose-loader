@@ -341,4 +341,14 @@ describe('loader', () => {
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
+
+  it('should emit error because of invalid arguments', async () => {
+    const compiler = getCompiler('simple-module-named-export.js', {
+      exposes: ['myGlobal_alias  |  globalObject6'],
+    });
+    const stats = await compile(compiler);
+
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
 });
