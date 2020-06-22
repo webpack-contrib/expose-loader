@@ -223,6 +223,37 @@ Object {
 
 exports[`loader should work inline 2: warnings 1`] = `Array []`;
 
+exports[`loader should work interpolate: errors 1`] = `Array []`;
+
+exports[`loader should work interpolate: module 1`] = `
+"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"global-commonjs2-single-export\\"] = ___EXPOSE_LOADER_IMPORT___;
+if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = {};
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"global-commonjs2-single-export\\"] = ___EXPOSE_LOADER_IMPORT___;
+
+module.exports = ___EXPOSE_LOADER_IMPORT___"
+`;
+
+exports[`loader should work interpolate: result 1`] = `
+Object {
+  "ExposeLoader": Object {
+    "foo": "bar",
+  },
+  "global-commonjs2-single-export": Object {
+    "foo": "bar",
+  },
+  "myGlobal": Object {
+    "global-commonjs2-single-export": Object {
+      "foo": "bar",
+    },
+  },
+}
+`;
+
+exports[`loader should work interpolate: warnings 1`] = `Array []`;
+
 exports[`loader should work multiple commonjs exports: errors 1`] = `Array []`;
 
 exports[`loader should work multiple commonjs exports: module 1`] = `
