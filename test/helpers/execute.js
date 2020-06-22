@@ -33,6 +33,10 @@ if (typeof global['myGlobal.alias'] !== "undefined") {
   delete global['myGlobal.alias'];
 }
 
+if (typeof myGlobal_alias !== "undefined") {
+  delete global['global-commonjs2-single-export'];
+}
+
 ${code};
 
 result['ExposeLoader'] = ExposeLoader;
@@ -51,6 +55,10 @@ if (typeof myGlobal_alias !== "undefined") {
 
 if (typeof global['myGlobal.alias'] !== "undefined") {
   result['myGlobal.alias'] = global['myGlobal.alias'];
+}
+
+if (typeof global['global-commonjs2-single-export'] !== "undefined") {
+  result['global-commonjs2-single-export'] = global['global-commonjs2-single-export'];
 }
 
 module.exports = result;`,

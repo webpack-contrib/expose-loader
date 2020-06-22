@@ -11,6 +11,7 @@ import {
   stringifyRequest,
   getCurrentRequest,
   getRemainingRequest,
+  interpolateName,
 } from 'loader-utils';
 
 import { SourceNode, SourceMapConsumer } from 'source-map';
@@ -80,6 +81,9 @@ export default function loader(content, sourceMap) {
   for (const expose of exposes) {
     const { globalName, localName } = expose;
     const { length } = globalName;
+    const globalNameInterpolated = globalName.map((item) => {
+      return interpolateName(this, item, {});
+    });
 
     if (typeof localName !== 'undefined') {
       code += `var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.${localName}\n`;
@@ -92,7 +96,7 @@ export default function loader(content, sourceMap) {
         code += `if (!${propertyString}) ${propertyString} = {};\n`;
       }
 
-      propertyString += `[${JSON.stringify(globalName[i])}]`;
+      propertyString += `[${JSON.stringify(globalNameInterpolated[i])}]`;
     }
 
     code +=
