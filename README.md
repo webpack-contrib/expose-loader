@@ -24,49 +24,44 @@ To begin, you'll need to install `expose-loader`:
 $ npm install expose-loader --save-dev
 ```
 
-Then add the loader to your `webpack` config. For example:
+Then you can use the `expose-loader` using two approaches.
 
-**webpack.config.js**
+## Inline
 
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.js/i,
-        loader: 'expose-loader',
-        options: {
-          expose: '$',
-        },
-      },
-    ],
-  },
-};
-```
-
-And then require the target file in your bundle's code:
-
-**src/entry.js**
+**src/index.js**
 
 ```js
-require('expose-loader?expose=libraryName!./thing.js');
+import $ from 'expose-loader?exposes[]=$&exposes[]=jQuery!jquery';
+//
+// Adds the `jquery` to the `global` object under the names `$` and `jQuery`
 ```
-
-And run `webpack` via your preferred method.
-
-## Examples
-
-### Expose `jQuery`
-
-For example, let's say you want to expose jQuery as a global called `$`:
 
 ```js
-require('expose-loader?expose=$!jquery');
+import { concat } from 'expose-loader?exposes=_.concat!lodash/concat';
+//
+// Adds the `lodash/concat` to the `global` object under the name `_.concat`
 ```
 
-Thus, `window.$` is then available in the browser console.
+```js
+import {
+  map,
+  reduce,
+} from 'expose-loader?exposes[]=_.map|map&exposes[]=_.reduce|reduce!underscore';
+//
+// Adds the `map` and `reduce` method from `underscore` to the `global` object under the name `_.map` and `_.reduce`
+```
 
-Alternately, you can set this in your config file:
+The space (`%20`) or `|` is the separator between import segments.
+
+Description of string values can be found in the documentation below.
+
+## Using Configuration
+
+**src/index.js**
+
+```js
+import $ from 'jquery';
+```
 
 **webpack.config.js**
 
@@ -78,34 +73,25 @@ module.exports = {
         test: require.resolve('jquery'),
         loader: 'expose-loader',
         options: {
-          expose: '$',
+          exposes: ['$', 'jQuery'],
         },
       },
-    ],
-  },
-};
-```
-
-Let's say you also want to expose it as `window.jQuery` in addition to `window.$`.
-
-For multiple expose you can use `!` in loader string:
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
       {
-        test: require.resolve('jquery'),
-        rules: [
-          {
-            loader: 'expose-loader',
-            options: {
-              expose: ['$', 'jQuery'],
+        test: require.resolve('underscore'),
+        loader: 'expose-loader',
+        options: {
+          exposes: [
+            '_.map|map',
+            {
+              globalName: '_.reduce',
+              localName: 'reduce',
             },
-          },
-        ],
+            {
+              globalName: ['_', 'filter'],
+              localName: 'filter',
+            },
+          ],
+        },
       },
     ],
   },
@@ -115,6 +101,45 @@ module.exports = {
 The [`require.resolve`](https://nodejs.org/api/modules.html#modules_require_resolve_request_options) call is a Node.js function (unrelated to `require.resolve` in webpack processing).
 `require.resolve` gives you the absolute path to the module (`"/.../app/node_modules/jquery/dist/jquery.js"`).
 So the expose only applies to the `jquery` module. And it's only exposed when used in the bundle.
+
+And run `webpack` via your preferred method.
+
+## Options
+
+### exposes
+
+Type: `String|Object|Array`
+Default: `undefined`
+
+List of exposes.
+
+#### `String`
+
+Allows to use a string to describe an expose.
+
+The space (`%20`) or `|` is the separator between import segments.
+
+String syntax - `[[globalName] [localName]]`, where:
+
+##### globalName
+
+Type: `String|Array`
+Default: `undefined`
+
+Name of an exposed value in `global` object (**required**)
+
+Possible syntax:
+
+- `root`
+- `root.nested`
+- `["root", "nested"]` - may be useful if the dot is part of the name
+
+##### localName
+
+Type: `String`
+Default: `undefined`
+
+Name of an exposed value
 
 ## Contributing
 

@@ -2,8 +2,19 @@ import { getCompiler, compile } from './helpers';
 
 describe('validate options', () => {
   const tests = {
-    expose: {
+    exposes: {
       success: [
+        {
+          globalName: 'myGlobal',
+        },
+        {
+          globalName: 'myGlobal_alias',
+          localName: 'globalObject6',
+        },
+        {
+          globalName: ['myGlobal_alias', 'globalObject6'],
+          localName: 'globalObject6',
+        },
         'globalObject1',
         'globalObject1.foo',
         ['globalObject1'],

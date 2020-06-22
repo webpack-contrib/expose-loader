@@ -4,15 +4,24 @@
 */
 
 import path from 'path';
+import url from 'url';
 
-import { getOptions, stringifyRequest } from 'loader-utils';
+import {
+  getOptions,
+  stringifyRequest,
+  getCurrentRequest,
+  getRemainingRequest,
+} from 'loader-utils';
+
+import { SourceNode, SourceMapConsumer } from 'source-map';
+
 import validateOptions from 'schema-utils';
 
 import schema from './options.json';
 
-function loader() {}
+import getExposes from './utils';
 
-function pitch(remainingRequest) {
+export default function loader(content, sourceMap) {
   const options = getOptions(this);
 
   validateOptions(schema, options, {
@@ -23,10 +32,19 @@ function pitch(remainingRequest) {
   // Change the request from an /abolute/path.js to a relative ./path.js
   // This prevents [chunkhash] values from changing when running webpack
   // builds in different directories.
-  const newRequestPath = remainingRequest.replace(
-    this.resourcePath,
-    `./${path.relative(this.context, this.resourcePath)}`
-  );
+  const newRequestPath = getRemainingRequest(this)
+    .split('!')
+    .map((currentUrl) => {
+      const result = `./${path.relative(
+        this.context,
+        url.parse(currentUrl).pathname
+      )}`;
+
+      return process.platform === 'win32'
+        ? result.split(path.sep).join('/')
+        : result;
+    })
+    .join('!');
 
   /*
    * Workaround until module.libIdent() in webpack/webpack handles this correctly.
@@ -37,23 +55,35 @@ function pitch(remainingRequest) {
    */
   this._module.userRequest = `${this._module.userRequest}-exposed`;
 
-  const exposes = Array.isArray(options.expose)
-    ? options.expose
-    : [options.expose];
+  const callback = this.async();
 
-  let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${JSON.stringify(
+  let exposes;
+
+  try {
+    exposes = getExposes(options.exposes);
+  } catch (error) {
+    callback(error);
+
+    return;
+  }
+
+  let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${stringifyRequest(
+    this,
     `-!${newRequestPath}`
-  )});
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(${stringifyRequest(
+  )});\n`;
+  code += `var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(${stringifyRequest(
     this,
     require.resolve('./runtime/getGlobalThis.js')
-  )});
-var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
-`;
+  )});\n`;
+  code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();\n`;
 
   for (const expose of exposes) {
-    const childProperties = expose.split('.');
-    const { length } = childProperties;
+    const { globalName, localName } = expose;
+    const { length } = globalName;
+
+    if (typeof localName !== 'undefined') {
+      code += `var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.${localName}\n`;
+    }
 
     let propertyString = '___EXPOSE_LOADER_GLOBAL_THIS___';
 
@@ -62,15 +92,32 @@ var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
         code += `if (!${propertyString}) ${propertyString} = {};\n`;
       }
 
-      propertyString += `[${JSON.stringify(childProperties[i])}]`;
+      propertyString += `[${JSON.stringify(globalName[i])}]`;
     }
 
-    code += `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
+    code +=
+      typeof localName !== 'undefined'
+        ? `${propertyString} = ___EXPOSE_LOADER_IMPORT_NAMED___;\n`
+        : `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
   }
 
-  code += `module.exports = ___EXPOSE_LOADER_IMPORT___;`;
+  if (this.sourceMap && sourceMap) {
+    const node = SourceNode.fromStringWithSourceMap(
+      content,
+      new SourceMapConsumer(sourceMap)
+    );
+    node.add(`\n${code}`);
+    const result = node.toStringWithSourceMap({
+      file: getCurrentRequest(this),
+    });
+    this.callback(null, result.code, result.map.toJSON());
 
-  return code;
+    return;
+  }
+
+  callback(
+    null,
+    `${code}\nmodule.exports = ___EXPOSE_LOADER_IMPORT___`,
+    sourceMap
+  );
 }
-
-export { loader, pitch };

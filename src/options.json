@@ -1,22 +1,62 @@
 {
+  "definitions": {
+    "ObjectPattern": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "globalName": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1
+            }
+          ]
+        },
+        "localName": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": ["globalName"]
+    }
+  },
   "type": "object",
   "properties": {
-    "expose": {
+    "exposes": {
       "anyOf": [
         {
           "type": "string",
           "minLength": 1
         },
         {
+          "$ref": "#/definitions/ObjectPattern"
+        },
+        {
           "type": "array",
           "items": {
-            "type": "string",
-            "minLength": 1
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "$ref": "#/definitions/ObjectPattern"
+              }
+            ]
           },
           "minItems": 1
         }
       ]
     }
   },
+  "anyOf": [{ "required": ["exposes"] }],
   "additionalProperties": false
 }
