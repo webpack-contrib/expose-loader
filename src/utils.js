@@ -2,7 +2,7 @@ function resolveExposes(item) {
   let result;
 
   if (typeof item === 'string') {
-    const splittedItem = item.split(' ');
+    const splittedItem = item.split('|');
 
     if (splittedItem.length > 2) {
       throw new Error(`Invalid "${item}" for expose`);

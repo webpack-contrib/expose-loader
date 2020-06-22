@@ -1,3 +1,3 @@
-import myExports from '../../src/cjs.js?exposes=myGlobal%20default!./custom.js?foo=bar';
+import myExports from '../../src/cjs.js?exposes=myGlobal|default!./custom.js?foo=bar';
 
 export default myExports;

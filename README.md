@@ -46,12 +46,12 @@ import { concat } from 'expose-loader?exposes=_.concat!lodash/concat';
 import {
   map,
   reduce,
-} from 'expose-loader?exposes[]=_.map%20map&exposes[]=_.reduce%20reduce!underscore';
+} from 'expose-loader?exposes[]=_.map|map&exposes[]=_.reduce|reduce!underscore';
 //
 // Adds the `map` and `reduce` method from `underscore` to the `global` object under the name `_.map` and `_.reduce`
 ```
 
-The space (`%20`) is the separator between import segments.
+The space (`|`) is the separator between import segments.
 
 Description of string values can be found in the documentation below.
 
@@ -81,7 +81,7 @@ module.exports = {
         loader: 'expose-loader',
         options: {
           exposes: [
-            '_.map map',
+            '_.map|map',
             {
               globalName: '_.reduce',
               localName: 'reduce',
@@ -117,9 +117,9 @@ List of exposes.
 
 Allows to use a string to describe an expose.
 
-The space (`%20`) is the separator between import segments.
+The space (`|`) is the separator between import segments.
 
-String syntax - `[[globalName] [localName]]`, where:
+String syntax - `[[globalName]|[localName]]`, where:
 
 ##### globalName
 

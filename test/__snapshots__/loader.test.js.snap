@@ -34,7 +34,7 @@ exports[`loader should be different modules id: warnings 1`] = `Array []`;
 exports[`loader should emit error because of many arguments: errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from \`replaced original path\`):
-Error: Invalid \\"myGlobal_alias globalObject6 excessArgument\\" for expose",
+Error: Invalid \\"myGlobal_alias|globalObject6|excessArgument\\" for expose",
 ]
 `;
 
