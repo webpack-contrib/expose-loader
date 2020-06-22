@@ -133,6 +133,8 @@ Possible syntax:
 - `root`
 - `root.nested`
 - `["root", "nested"]` - may be useful if the dot is part of the name
+- `[[name]]` - expose module in `global` object under the name equal to the filename, for `single.js` it will be `global.single`.
+- `[myGlobal.[name]]` - expose module in `global.myGlobal` under the name equal to the filename, for `single.js` it will be `global.myGlobal.single`.
 
 ##### localName
 
