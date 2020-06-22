@@ -48,7 +48,7 @@ describe('loader', () => {
 
   it('should work multiple commonjs exports', async () => {
     const compiler = getCompiler('simple-commonjs2-multiple-export.js', {
-      exposes: ['myOtherGlobal', 'myGlobal.globalObject2|globalObject2'],
+      exposes: ['myOtherGlobal', 'myGlobal.globalObject2 globalObject2'],
     });
     const stats = await compile(compiler);
 
@@ -80,7 +80,7 @@ describe('loader', () => {
 
   it('should work for nested properties for a global object', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
-      exposes: ['myGlobal.nested', 'myOtherGlobal.nested|foo'],
+      exposes: ['myGlobal.nested', 'myOtherGlobal.nested foo'],
     });
     const stats = await compile(compiler);
 
@@ -113,9 +113,31 @@ describe('loader', () => {
   it('should work string config', async () => {
     const compiler = getCompiler('simple-module-named-export.js', {
       exposes: [
+        'myGlobal_alias.globalObject6 globalObject6',
+        'myGlobal_alias.globalObject7 globalObject7',
+        'myGlobal_alias.default default',
+        'myGlobal',
+        'myOtherGlobal',
+      ],
+    });
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-module-named-exports.js-exposed', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work string config 2', async () => {
+    const compiler = getCompiler('simple-module-named-export.js', {
+      exposes: [
         'myGlobal_alias.globalObject6|globalObject6',
         'myGlobal_alias.globalObject7|globalObject7',
-        'myGlobal_alias.default|default',
+        'myGlobal_alias.default default',
         'myGlobal',
         'myOtherGlobal',
       ],
@@ -147,7 +169,7 @@ describe('loader', () => {
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(stats.compilation.errors).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
@@ -162,7 +184,7 @@ describe('loader', () => {
           globalName: ['myGlobal_alias', 'globalObject7'],
           localName: 'globalObject7',
         },
-        'myGlobal_alias.default|default',
+        'myGlobal_alias.default default',
       ],
     });
     const stats = await compile(compiler);
@@ -312,7 +334,7 @@ describe('loader', () => {
 
   it('should emit error because of many arguments', async () => {
     const compiler = getCompiler('simple-module-named-export.js', {
-      exposes: ['myGlobal_alias|globalObject6|excessArgument'],
+      exposes: ['myGlobal_alias globalObject6 excessArgument'],
     });
     const stats = await compile(compiler);
 

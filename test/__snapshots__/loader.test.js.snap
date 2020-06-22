@@ -34,7 +34,7 @@ exports[`loader should be different modules id: warnings 1`] = `Array []`;
 exports[`loader should emit error because of many arguments: errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from \`replaced original path\`):
-Error: Invalid \\"myGlobal_alias|globalObject6|excessArgument\\" for expose",
+Error: Invalid \\"myGlobal_alias globalObject6 excessArgument\\" for expose",
 ]
 `;
 
@@ -365,6 +365,72 @@ Object {
 `;
 
 exports[`loader should work object config: warnings 1`] = `Array []`;
+
+exports[`loader should work string config 2: errors 1`] = `Array []`;
+
+exports[`loader should work string config 2: module 1`] = `
+"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-named-exports.js\\");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
+var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.globalObject6
+if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject6\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
+var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.globalObject7
+if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject7\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
+var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.default
+if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"default\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
+
+module.exports = ___EXPOSE_LOADER_IMPORT___"
+`;
+
+exports[`loader should work string config 2: result 1`] = `
+Object {
+  "ExposeLoader": Object {
+    "default": Object {
+      "default": [Function],
+      "globalObject6": Object {
+        "foo": "bar",
+      },
+      "globalObject7": Object {
+        "bar": "foo",
+      },
+    },
+  },
+  "myGlobal": Object {
+    "default": [Function],
+    "globalObject6": Object {
+      "foo": "bar",
+    },
+    "globalObject7": Object {
+      "bar": "foo",
+    },
+  },
+  "myGlobal_alias": Object {
+    "default": [Function],
+    "globalObject6": Object {
+      "foo": "bar",
+    },
+    "globalObject7": Object {
+      "bar": "foo",
+    },
+  },
+  "myOtherGlobal": Object {
+    "default": [Function],
+    "globalObject6": Object {
+      "foo": "bar",
+    },
+    "globalObject7": Object {
+      "bar": "foo",
+    },
+  },
+}
+`;
+
+exports[`loader should work string config 2: warnings 1`] = `Array []`;
 
 exports[`loader should work string config: errors 1`] = `Array []`;
 

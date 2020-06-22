@@ -51,7 +51,7 @@ import {
 // Adds the `map` and `reduce` method from `underscore` to the `global` object under the name `_.map` and `_.reduce`
 ```
 
-The space (`|`) is the separator between import segments.
+The space (`%20`) or `|` is the separator between import segments.
 
 Description of string values can be found in the documentation below.
 
@@ -117,9 +117,9 @@ List of exposes.
 
 Allows to use a string to describe an expose.
 
-The space (`|`) is the separator between import segments.
+The space (`%20`) or `|` is the separator between import segments.
 
-String syntax - `[[globalName]|[localName]]`, where:
+String syntax - `[[globalName] [localName]]`, where:
 
 ##### globalName
 

@@ -2,7 +2,7 @@ function resolveExposes(item) {
   let result;
 
   if (typeof item === 'string') {
-    const splittedItem = item.split('|');
+    const splittedItem = splitCommand(item);
 
     if (splittedItem.length > 2) {
       throw new Error(`Invalid "${item}" for expose`);
@@ -32,6 +32,15 @@ function getExposes(items) {
   } else {
     result = [].concat(items).map((item) => resolveExposes(item));
   }
+
+  return result;
+}
+
+function splitCommand(command) {
+  const result = command
+    .split('|')
+    .map((item) => item.split(' '))
+    .reduce((acc, val) => acc.concat(val), []);
 
   return result;
 }

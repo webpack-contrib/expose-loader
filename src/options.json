@@ -25,7 +25,7 @@
           "minLength": 1
         }
       },
-      "anyOf": [{ "required": ["globalName"] }]
+      "required": ["globalName"]
     }
   },
   "type": "object",
