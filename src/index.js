@@ -18,7 +18,7 @@ import validateOptions from 'schema-utils';
 
 import schema from './options.json';
 
-import { renameUserRequest, getExposes } from './utils';
+import { modifyUserRequest, getExposes } from './utils';
 
 export default function loader(content, sourceMap) {
   const options = getOptions(this);
@@ -52,7 +52,7 @@ export default function loader(content, sourceMap) {
    * - https://github.com/webpack-contrib/expose-loader/issues/55
    * - https://github.com/webpack-contrib/expose-loader/issues/49
    */
-  this._module.userRequest = renameUserRequest(this._module.userRequest);
+  this._module.userRequest = modifyUserRequest(this._module.userRequest);
 
   const callback = this.async();
 

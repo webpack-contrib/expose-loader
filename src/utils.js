@@ -1,3 +1,5 @@
+import path from 'path';
+
 function splitCommand(command) {
   const result = command
     .split('|')
@@ -53,15 +55,20 @@ function getExposes(items) {
   return result;
 }
 
-function renameUserRequest(request) {
+function modifyUserRequest(request) {
   const splittedRequest = request.split('!');
   const lastPartRequest = splittedRequest.pop().split('?', 2);
+  const pathObject = path.parse(lastPartRequest[0]);
 
-  lastPartRequest[0] = `${lastPartRequest[0]}-exposed`;
+  pathObject.base = `${path.basename(pathObject.base, pathObject.ext)}-exposed${
+    pathObject.ext
+  }`;
+
+  lastPartRequest[0] = path.format(pathObject);
 
   splittedRequest.push(lastPartRequest.join('?'));
 
   return splittedRequest.join('!');
 }
 
-export { getExposes, renameUserRequest };
+export { getExposes, modifyUserRequest };
