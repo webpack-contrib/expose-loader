@@ -14,7 +14,7 @@ import validateOptions from 'schema-utils';
 
 import schema from './options.json';
 
-import { getExposes, contextify, modifyUserRequest } from './utils';
+import { getExposes, contextify, getNewUserRequest } from './utils';
 
 export default function loader() {
   const options = getOptions(this);
@@ -31,7 +31,7 @@ export default function loader() {
    * - https://github.com/webpack-contrib/expose-loader/issues/55
    * - https://github.com/webpack-contrib/expose-loader/issues/49
    */
-  this._module.userRequest = modifyUserRequest(this._module.userRequest);
+  this._module.userRequest = getNewUserRequest(this._module.userRequest);
 
   const callback = this.async();
 

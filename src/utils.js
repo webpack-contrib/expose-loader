@@ -1,5 +1,21 @@
 import path from 'path';
 
+function getNewUserRequest(request) {
+  const splittedRequest = request.split('!');
+  const lastPartRequest = splittedRequest.pop().split('?', 2);
+  const pathObject = path.parse(lastPartRequest[0]);
+
+  pathObject.base = `${path.basename(pathObject.base, pathObject.ext)}-exposed${
+    pathObject.ext
+  }`;
+
+  lastPartRequest[0] = path.format(pathObject);
+
+  splittedRequest.push(lastPartRequest.join('?'));
+
+  return splittedRequest.join('!');
+}
+
 function splitCommand(command) {
   const result = command
     .split('|')
@@ -82,21 +98,4 @@ function contextify(context, request) {
     .join('!');
 }
 
-
-function modifyUserRequest(request) {
-  const splittedRequest = request.split('!');
-  const lastPartRequest = splittedRequest.pop().split('?', 2);
-  const pathObject = path.parse(lastPartRequest[0]);
-
-  pathObject.base = `${path.basename(pathObject.base, pathObject.ext)}-exposed${
-    pathObject.ext
-  }`;
-
-  lastPartRequest[0] = path.format(pathObject);
-
-  splittedRequest.push(lastPartRequest.join('?'));
-
-  return splittedRequest.join('!');
-}
-
-export { getExposes, contextify, modifyUserRequest };
+export { getNewUserRequest, getExposes, contextify };

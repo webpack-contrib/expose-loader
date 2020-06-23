@@ -344,7 +344,7 @@ describe('loader', () => {
     expect(module.hash).toBe(
       isWebpack5
         ? 'c440ca2d9d70459fecf24e8109d10515'
-        : 'a580dd85c96d18d417b3be8979faeee5'
+        : '40beb9b0cb6f070cad500e1179e00e12'
     );
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
@@ -393,7 +393,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-module-commonjs.js-exposed', stats)
+      getModuleSource('./global-module-commonjs-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -409,7 +409,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-module-es.js-exposed', stats)
+      getModuleSource('./global-module-es-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -425,7 +425,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-module-commonjs.js-exposed', stats)
+      getModuleSource('./global-module-commonjs-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -441,7 +441,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-module-es.js-exposed', stats)
+      getModuleSource('./global-module-es-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -457,7 +457,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-module-es-without-default.js-exposed', stats)
+      getModuleSource('./global-module-es-without-default-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
