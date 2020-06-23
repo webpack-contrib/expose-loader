@@ -22,7 +22,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-commonjs2-single-export.js-exposed', stats)
+      getModuleSource('./global-commonjs2-single-export-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -39,7 +39,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-commonjs2-multiple-exports.js-exposed', stats)
+      getModuleSource('./global-commonjs2-multiple-exports-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -56,7 +56,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-commonjs2-single-export.js-exposed', stats)
+      getModuleSource('./global-commonjs2-single-export-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -73,7 +73,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-commonjs2-multiple-exports.js-exposed', stats)
+      getModuleSource('./global-commonjs2-multiple-exports-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -90,7 +90,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-commonjs2-single-export.js-exposed', stats)
+      getModuleSource('./global-commonjs2-single-export-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -107,7 +107,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-commonjs2-single-export.js-exposed', stats)
+      getModuleSource('./global-commonjs2-single-export-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -123,7 +123,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-module-default-export.js-exposed', stats)
+      getModuleSource('./global-module-default-export-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -145,7 +145,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-module-named-exports.js-exposed', stats)
+      getModuleSource('./global-module-named-exports-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -167,7 +167,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-module-named-exports.js-exposed', stats)
+      getModuleSource('./global-module-named-exports-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -186,7 +186,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-module-named-exports.js-exposed', stats)
+      getModuleSource('./global-module-named-exports-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -212,7 +212,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-module-named-exports.js-exposed', stats)
+      getModuleSource('./global-module-named-exports-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -259,8 +259,41 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./custom.js?foo=bar-exposed', stats)
+      getModuleSource('./custom-exposed.js?foo=bar', stats)
     ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(readAsset('main.bundle.js.map', compiler, stats)).toBeDefined();
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work inline 1 without extension', async () => {
+    const compiler = getCompiler(
+      'inline-import-1.js',
+      {},
+      {
+        devtool: 'source-map',
+        module: {
+          rules: [
+            {
+              test: /.*custom/i,
+              use: [
+                {
+                  loader: 'babel-loader',
+                },
+              ],
+            },
+          ],
+        },
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./custom-exposed?foo=bar', stats)).toMatchSnapshot(
+      'module'
+    );
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
@@ -280,7 +313,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./simple-commonjs2-single-export.js-exposed', stats)
+      getModuleSource('./simple-commonjs2-single-export-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -307,17 +340,17 @@ describe('loader', () => {
     );
     const stats = await compile(compiler);
     const module = stats.compilation.modules.find((m) =>
-      m.id.endsWith('./simple-commonjs2-single-export.js-exposed')
+      m.id.endsWith('./simple-commonjs2-single-export-exposed.js')
     );
     const isWebpack5 = webpack.version[0] === '5';
 
     expect(
-      getModuleSource('./simple-commonjs2-single-export.js-exposed', stats)
+      getModuleSource('./simple-commonjs2-single-export-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(module.hash).toBe(
       isWebpack5
-        ? 'c440ca2d9d70459fecf24e8109d10515'
-        : 'e8401602c3b42c066e582bcd1f72cb36'
+        ? '60f98cee3e481afa035cc5b317197b92'
+        : '18981954a65740f4957667890c5b154b'
     );
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
@@ -351,7 +384,7 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./global-commonjs2-single-export.js-exposed', stats)
+      getModuleSource('./global-commonjs2-single-export-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
