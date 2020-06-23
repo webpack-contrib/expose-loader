@@ -2,7 +2,7 @@ function resolveExposes(item) {
   let result;
 
   if (typeof item === 'string') {
-    const splittedItem = splitCommand(item);
+    const splittedItem = splitCommand(item.trim());
 
     if (splittedItem.length > 2) {
       throw new Error(`Invalid "${item}" for expose`);
@@ -44,7 +44,9 @@ function splitCommand(command) {
 
   for (const item of result) {
     if (!item) {
-      throw new Error(`Invalid command "${item}" in "${command}" for expose`);
+      throw new Error(
+        `Invalid command "${item}" in "${command}" for expose. There must be only one separator: " ", or "|".`
+      );
     }
   }
 
