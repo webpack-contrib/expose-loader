@@ -19,7 +19,7 @@ export default (fixture, loaderOptions = {}, config = {}) => {
     module: {
       rules: [
         {
-          test: /global-.+\.js/i,
+          test: /(global-.+|rx\.all)\.js/i,
           rules: [
             {
               loader: path.resolve(__dirname, '../../src'),

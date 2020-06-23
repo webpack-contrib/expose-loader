@@ -27,7 +27,7 @@ export default function loader() {
   /*
    * Workaround until module.libIdent() in webpack/webpack handles this correctly.
    *
-   * fixes:
+   * Fixes:
    * - https://github.com/webpack-contrib/expose-loader/issues/55
    * - https://github.com/webpack-contrib/expose-loader/issues/49
    */
@@ -47,7 +47,7 @@ export default function loader() {
 
   // Change the request from an /abolute/path.js to a relative ./path.js.
   // This prevents [chunkhash] values from changing when running webpack builds in different directories.
-  const newRequest = contextify(this.rootContext, getRemainingRequest(this));
+  const newRequest = contextify(this.context, getRemainingRequest(this));
   const stringifiedNewRequest = stringifyRequest(this, `-!${newRequest}`);
 
   let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${stringifiedNewRequest});\n`;
