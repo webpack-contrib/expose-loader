@@ -9,18 +9,17 @@ import url from 'url';
 import {
   getOptions,
   stringifyRequest,
-  getCurrentRequest,
   getRemainingRequest,
   interpolateName,
 } from 'loader-utils';
-import { SourceNode, SourceMapConsumer } from 'source-map';
+
 import validateOptions from 'schema-utils';
 
 import schema from './options.json';
 
 import { modifyUserRequest, getExposes } from './utils';
 
-export default function loader(content, sourceMap) {
+export default function loader() {
   const options = getOptions(this);
 
   validateOptions(schema, options, {
@@ -114,23 +113,6 @@ export default function loader(content, sourceMap) {
         : `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
   }
 
-  if (this.sourceMap && sourceMap) {
-    const node = SourceNode.fromStringWithSourceMap(
-      content,
-      new SourceMapConsumer(sourceMap)
-    );
-
-    node.add(`\n${code}`);
-
-    const result = node.toStringWithSourceMap({
-      file: getCurrentRequest(this),
-    });
-
-    this.callback(null, result.code, result.map.toJSON());
-
-    return;
-  }
-
   if (isModule) {
     code += `export { default } from ${stringifyRequest(
       this,
@@ -141,5 +123,5 @@ export default function loader(content, sourceMap) {
     code += `module.exports = ___EXPOSE_LOADER_IMPORT___;`;
   }
 
-  callback(null, code, sourceMap);
+  callback(null, code);
 }
