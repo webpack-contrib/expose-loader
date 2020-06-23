@@ -138,7 +138,7 @@ describe('loader', () => {
         'myGlobal_alias.globalObject6|globalObject6',
         'myGlobal_alias.globalObject7|globalObject7',
         'myGlobal_alias.default default',
-        'myGlobal',
+        '    myGlobal   ',
         'myOtherGlobal',
       ],
     });

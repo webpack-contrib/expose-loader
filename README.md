@@ -28,6 +28,10 @@ Then you can use the `expose-loader` using two approaches.
 
 ## Inline
 
+The `|` or `%20` (space) separate command parts.
+
+> ⚠ `%20` is space in a query string, because you can't use spaces in URLs
+
 **src/index.js**
 
 ```js
@@ -50,8 +54,6 @@ import {
 //
 // Adds the `map` and `reduce` method from `underscore` to the `global` object under the name `_.map` and `_.reduce`
 ```
-
-The space (`%20`) or `|` is the separator between import segments.
 
 Description of string values can be found in the documentation below.
 
@@ -117,9 +119,9 @@ List of exposes.
 
 Allows to use a string to describe an expose.
 
-The space (`%20`) or `|` is the separator between import segments.
+The `" "` (space) or `|` separate command parts.
 
-String syntax - `[[globalName] [localName]]`, where:
+String syntax - `[[globalName] [localName]]` or `[[globalName]|[localName]]`, where:
 
 ##### globalName
 

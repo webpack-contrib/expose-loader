@@ -1,11 +1,28 @@
+function splitCommand(command) {
+  const result = command
+    .split('|')
+    .map((item) => item.split(' '))
+    .reduce((acc, val) => acc.concat(val), []);
+
+  for (const item of result) {
+    if (!item) {
+      throw new Error(
+        `Invalid command "${item}" in "${command}" for expose. There must be only one separator: " ", or "|".`
+      );
+    }
+  }
+
+  return result;
+}
+
 function resolveExposes(item) {
   let result;
 
   if (typeof item === 'string') {
-    const splittedItem = splitCommand(item);
+    const splittedItem = splitCommand(item.trim());
 
     if (splittedItem.length > 2) {
-      throw new Error(`Invalid "${item}" for expose`);
+      throw new Error(`Invalid "${item}" for exposes`);
     }
 
     result = {
@@ -31,21 +48,6 @@ function getExposes(items) {
     result.push(resolveExposes(items));
   } else {
     result = [].concat(items).map((item) => resolveExposes(item));
-  }
-
-  return result;
-}
-
-function splitCommand(command) {
-  const result = command
-    .split('|')
-    .map((item) => item.split(' '))
-    .reduce((acc, val) => acc.concat(val), []);
-
-  for (const item of result) {
-    if (!item) {
-      throw new Error(`Invalid command "${item}" in "${command}" for expose`);
-    }
   }
 
   return result;
