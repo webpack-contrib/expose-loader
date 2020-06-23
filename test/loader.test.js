@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 import path from 'path';
 
 import webpack from 'webpack';
@@ -12,6 +15,8 @@ import {
   getWarnings,
   readAsset,
 } from './helpers';
+
+jest.setTimeout(30000);
 
 describe('loader', () => {
   it('should work', async () => {
@@ -459,6 +464,28 @@ describe('loader', () => {
     expect(
       getModuleSource('./global-module-es-without-default-exposed.js', stats)
     ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with side-effects free modules', async () => {
+    const compiler = getCompiler(
+      'side-effects.js',
+      {
+        exposes: 'myGlobal',
+      },
+      {
+        mode: 'production',
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('rx.all-exposed.js', stats)).toMatchSnapshot(
+      'module'
+    );
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
