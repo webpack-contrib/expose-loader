@@ -30,9 +30,6 @@
   },
   "type": "object",
   "properties": {
-    "type": {
-      "enum": ["module", "commonjs"]
-    },
     "exposes": {
       "anyOf": [
         {

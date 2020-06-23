@@ -3,9 +3,6 @@
   Author Tobias Koppers @sokra
 */
 
-import path from 'path';
-import url from 'url';
-
 import {
   getOptions,
   stringifyRequest,
@@ -17,7 +14,7 @@ import validateOptions from 'schema-utils';
 
 import schema from './options.json';
 
-import { modifyUserRequest, getExposes } from './utils';
+import { getExposes, contextify, getNewUserRequest } from './utils';
 
 export default function loader() {
   const options = getOptions(this);
@@ -27,23 +24,6 @@ export default function loader() {
     baseDataPath: 'options',
   });
 
-  // Change the request from an /abolute/path.js to a relative ./path.js
-  // This prevents [chunkhash] values from changing when running webpack
-  // builds in different directories.
-  const newRequestPath = getRemainingRequest(this)
-    .split('!')
-    .map((currentUrl) => {
-      const result = `./${path.relative(
-        this.context,
-        url.parse(currentUrl).pathname
-      )}`;
-
-      return process.platform === 'win32'
-        ? result.split(path.sep).join('/')
-        : result;
-    })
-    .join('!');
-
   /*
    * Workaround until module.libIdent() in webpack/webpack handles this correctly.
    *
@@ -51,7 +31,7 @@ export default function loader() {
    * - https://github.com/webpack-contrib/expose-loader/issues/55
    * - https://github.com/webpack-contrib/expose-loader/issues/49
    */
-  this._module.userRequest = modifyUserRequest(this._module.userRequest);
+  this._module.userRequest = getNewUserRequest(this._module.userRequest);
 
   const callback = this.async();
 
@@ -65,21 +45,12 @@ export default function loader() {
     return;
   }
 
-  const isModule = options.type !== 'commonjs';
+  // Change the request from an /abolute/path.js to a relative ./path.js.
+  // This prevents [chunkhash] values from changing when running webpack builds in different directories.
+  const newRequest = contextify(this.rootContext, getRemainingRequest(this));
+  const stringifiedNewRequest = stringifyRequest(this, `-!${newRequest}`);
 
-  let code = '';
-
-  if (isModule) {
-    code = `import * as ___EXPOSE_LOADER_IMPORT___ from ${stringifyRequest(
-      this,
-      `-!${newRequestPath}`
-    )};\n`;
-  } else {
-    code = `var ___EXPOSE_LOADER_IMPORT___ = require(${stringifyRequest(
-      this,
-      `-!${newRequestPath}`
-    )});\n`;
-  }
+  let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${stringifiedNewRequest});\n`;
 
   code += `var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(${stringifyRequest(
     this,
@@ -89,9 +60,9 @@ export default function loader() {
 
   for (const expose of exposes) {
     const { globalName, moduleLocalName } = expose;
-    const globalNameInterpolated = globalName.map((item) => {
-      return interpolateName(this, item, {});
-    });
+    const globalNameInterpolated = globalName.map((item) =>
+      interpolateName(this, item, {})
+    );
 
     if (typeof moduleLocalName !== 'undefined') {
       code += `var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.${moduleLocalName}\n`;
@@ -113,15 +84,7 @@ export default function loader() {
         : `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
   }
 
-  if (isModule) {
-    code += `export { default } from ${stringifyRequest(
-      this,
-      `-!${newRequestPath}`
-    )};\n`;
-    code += `export * from ${stringifyRequest(this, `-!${newRequestPath}`)};\n`;
-  } else {
-    code += `module.exports = ___EXPOSE_LOADER_IMPORT___;`;
-  }
+  code += `module.exports = ___EXPOSE_LOADER_IMPORT___;\n`;
 
   callback(null, code);
 }

@@ -16,7 +16,6 @@ import {
 describe('loader', () => {
   it('should work', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
-      type: 'commonjs',
       exposes: 'myGlobal',
     });
     const stats = await compile(compiler);
@@ -33,7 +32,6 @@ describe('loader', () => {
 
   it('should work with "moduleLocalName"', async () => {
     const compiler = getCompiler('simple-commonjs2-multiple-export.js', {
-      type: 'commonjs',
       exposes: 'moduleMethod myGlobal',
     });
     const stats = await compile(compiler);
@@ -50,7 +48,6 @@ describe('loader', () => {
 
   it('should work with multiple exposes', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
-      type: 'commonjs',
       exposes: ['myGlobal', 'myOtherGlobal'],
     });
     const stats = await compile(compiler);
@@ -67,7 +64,6 @@ describe('loader', () => {
 
   it('should work multiple commonjs exports', async () => {
     const compiler = getCompiler('simple-commonjs2-multiple-export.js', {
-      type: 'commonjs',
       exposes: ['myOtherGlobal', 'myGlobal.globalObject2 globalObject2'],
     });
     const stats = await compile(compiler);
@@ -84,7 +80,6 @@ describe('loader', () => {
 
   it('should work for a nested property for a global object', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
-      type: 'commonjs',
       exposes: 'myGlobal.nested',
     });
     const stats = await compile(compiler);
@@ -101,7 +96,6 @@ describe('loader', () => {
 
   it('should work for nested properties for a global object', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
-      type: 'commonjs',
       exposes: ['myGlobal.nested', 'myOtherGlobal.nested foo'],
     });
     const stats = await compile(compiler);
@@ -349,8 +343,8 @@ describe('loader', () => {
     ).toMatchSnapshot('module');
     expect(module.hash).toBe(
       isWebpack5
-        ? '60f98cee3e481afa035cc5b317197b92'
-        : '18981954a65740f4957667890c5b154b'
+        ? 'b993fe180cfddcb0d654fd862e6f1afe'
+        : '40beb9b0cb6f070cad500e1179e00e12'
     );
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
@@ -378,13 +372,92 @@ describe('loader', () => {
 
   it('should work interpolate', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
-      type: 'commonjs',
       exposes: ['[name]', 'myGlobal.[name]'],
     });
     const stats = await compile(compiler);
 
     expect(
       getModuleSource('./global-commonjs2-single-export-exposed.js', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with CommonJS format when module in CommonJS format', async () => {
+    const compiler = getCompiler('loader-commonjs-with-commonjs.js', {
+      exposes: 'myGlobal',
+    });
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-module-commonjs-exposed.js', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with CommonJS module format when module in ES module format', async () => {
+    const compiler = getCompiler('loader-commonjs-with-es.js', {
+      exposes: 'myGlobal',
+    });
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-module-es-exposed.js', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with ES module format when module in CommonJS format', async () => {
+    const compiler = getCompiler('loader-es-with-commonjs.js', {
+      exposes: 'myGlobal',
+    });
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-module-commonjs-exposed.js', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with ES module format when module in ES format', async () => {
+    const compiler = getCompiler('loader-es-with-es.js', {
+      exposes: 'myGlobal',
+    });
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-module-es-exposed.js', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with ES module format when module in ES format without default', async () => {
+    const compiler = getCompiler('loader-es-with-es-without-default.js', {
+      exposes: 'myGlobal',
+    });
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-module-es-without-default-exposed.js', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))

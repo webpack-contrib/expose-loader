@@ -1,5 +1,21 @@
 import path from 'path';
 
+function getNewUserRequest(request) {
+  const splittedRequest = request.split('!');
+  const lastPartRequest = splittedRequest.pop().split('?', 2);
+  const pathObject = path.parse(lastPartRequest[0]);
+
+  pathObject.base = `${path.basename(pathObject.base, pathObject.ext)}-exposed${
+    pathObject.ext
+  }`;
+
+  lastPartRequest[0] = path.format(pathObject);
+
+  splittedRequest.push(lastPartRequest.join('?'));
+
+  return splittedRequest.join('!');
+}
+
 function splitCommand(command) {
   const result = command
     .split('|')
@@ -55,20 +71,31 @@ function getExposes(items) {
   return result;
 }
 
-function modifyUserRequest(request) {
-  const splittedRequest = request.split('!');
-  const lastPartRequest = splittedRequest.pop().split('?', 2);
-  const pathObject = path.parse(lastPartRequest[0]);
+function contextify(context, request) {
+  return request
+    .split('!')
+    .map((r) => {
+      const splitPath = r.split('?', 2);
 
-  pathObject.base = `${path.basename(pathObject.base, pathObject.ext)}-exposed${
-    pathObject.ext
-  }`;
+      if (/^[a-zA-Z]:\\/.test(splitPath[0])) {
+        splitPath[0] = path.win32.relative(context, splitPath[0]);
 
-  lastPartRequest[0] = path.format(pathObject);
+        if (!/^[a-zA-Z]:\\/.test(splitPath[0])) {
+          splitPath[0] = splitPath[0].replace(/\\/g, '/');
+        }
+      }
 
-  splittedRequest.push(lastPartRequest.join('?'));
+      if (/^\//.test(splitPath[0])) {
+        splitPath[0] = path.posix.relative(context, splitPath[0]);
+      }
 
-  return splittedRequest.join('!');
+      if (!/^(\.\.\/|\/|[a-zA-Z]:\\)/.test(splitPath[0])) {
+        splitPath[0] = `./${splitPath[0]}`;
+      }
+
+      return splitPath.join('?');
+    })
+    .join('!');
 }
 
-export { getExposes, modifyUserRequest };
+export { getNewUserRequest, getExposes, contextify };
