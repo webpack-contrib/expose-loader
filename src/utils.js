@@ -33,19 +33,35 @@ function splitCommand(command) {
   return result;
 }
 
+function parseBoolean(string, defaultValue = null) {
+  if (typeof string === 'undefined') {
+    return defaultValue;
+  }
+
+  switch (string.toLowerCase()) {
+    case 'true':
+      return true;
+    case 'false':
+      return false;
+    default:
+      return defaultValue;
+  }
+}
+
 function resolveExposes(item) {
   let result;
 
   if (typeof item === 'string') {
     const splittedItem = splitCommand(item.trim());
 
-    if (splittedItem.length > 2) {
+    if (splittedItem.length > 3) {
       throw new Error(`Invalid "${item}" for exposes`);
     }
 
     result = {
       globalName: splittedItem[0],
       moduleLocalName: splittedItem[1],
+      override: parseBoolean(splittedItem[2], false),
     };
   } else {
     result = item;

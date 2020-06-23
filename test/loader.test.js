@@ -391,6 +391,31 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
+  it('should work override', async () => {
+    const compiler = getCompiler(
+      'override-1.js',
+      {
+        exposes: {
+          globalName: ['myGlobal'],
+          override: true,
+        },
+      },
+      {
+        mode: 'development',
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-commonjs2-single-export-exposed.js', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
   it('should work with CommonJS format when module in CommonJS format', async () => {
     const compiler = getCompiler('loader-commonjs-with-commonjs.js', {
       exposes: 'myGlobal',

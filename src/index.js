@@ -58,6 +58,8 @@ export default function loader() {
   )});\n`;
   code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();\n`;
 
+  code += `var allowOverride = false;\n`;
+
   for (const expose of exposes) {
     const { globalName, moduleLocalName } = expose;
     const globalNameInterpolated = globalName.map((item) =>
@@ -76,12 +78,22 @@ export default function loader() {
       }
 
       propertyString += `[${JSON.stringify(globalNameInterpolated[i])}]`;
+
+      code +=
+        this.mode === 'development'
+          ? '\n'
+          : `if (${propertyString}) throw new Error('test');\n`;
+
+      code += `if(!${propertyString}) { allowOverride = true }\n`;
+      code += `if(${override}) { allowOverride = true }\n`;
     }
 
+    code += `if(allowOverride) {`;
     code +=
       typeof moduleLocalName !== 'undefined'
         ? `${propertyString} = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;\n`
         : `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
+    code += `}`;
   }
 
   code += `module.exports = ___EXPOSE_LOADER_IMPORT___;\n`;
