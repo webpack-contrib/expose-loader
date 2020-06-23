@@ -51,6 +51,30 @@ exports[`validate options should throw an error on the "exposes" option with "tr
       [non-empty string | object { globalName, moduleLocalName? }, ...] (should not have fewer than 1 item)"
 `;
 
+exports[`validate options should throw an error on the "type" option with "" value 1`] = `
+"Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
+ - options.type should be one of these:
+   \\"module\\" | \\"commonjs\\""
+`;
+
+exports[`validate options should throw an error on the "type" option with "[]" value 1`] = `
+"Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
+ - options.type should be one of these:
+   \\"module\\" | \\"commonjs\\""
+`;
+
+exports[`validate options should throw an error on the "type" option with "{}" value 1`] = `
+"Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
+ - options.type should be one of these:
+   \\"module\\" | \\"commonjs\\""
+`;
+
+exports[`validate options should throw an error on the "type" option with "string" value 1`] = `
+"Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
+ - options.type should be one of these:
+   \\"module\\" | \\"commonjs\\""
+`;
+
 exports[`validate options should throw an error on the "unknown" option with "/test/" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options misses the property 'exposes'. Should be:

@@ -2,6 +2,10 @@ import { getCompiler, compile } from './helpers';
 
 describe('validate options', () => {
   const tests = {
+    type: {
+      success: ['module', 'commonjs'],
+      failure: ['string', '', {}, []],
+    },
     exposes: {
       success: [
         {
@@ -46,9 +50,18 @@ describe('validate options', () => {
     it(`should ${
       type === 'success' ? 'successfully validate' : 'throw an error on'
     } the "${key}" option with "${stringifyValue(value)}" value`, async () => {
-      const compiler = getCompiler('./simple-commonjs2-single-export.js', {
-        [key]: value,
-      });
+      let compiler;
+
+      if (key === 'type') {
+        compiler = getCompiler('./simple-commonjs2-single-export.js', {
+          [key]: value,
+          exposes: 'myGlobal',
+        });
+      } else {
+        compiler = getCompiler('./simple-commonjs2-single-export.js', {
+          [key]: value,
+        });
+      }
 
       let stats;
 
