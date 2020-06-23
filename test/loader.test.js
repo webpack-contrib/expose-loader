@@ -471,7 +471,7 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it.only('should work with side-effects free modules', async () => {
+  it('should work with side-effects free modules', async () => {
     const compiler = getCompiler(
       'side-effects.js',
       {
