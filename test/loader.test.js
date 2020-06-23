@@ -1,6 +1,6 @@
 import path from 'path';
 
-// import webpack from 'webpack';
+import webpack from 'webpack';
 
 import {
   compile,
@@ -303,12 +303,16 @@ describe('loader', () => {
     const module = stats.compilation.modules.find((m) =>
       m.id.endsWith('./simple-commonjs2-single-export.js-exposed')
     );
+    const isWebpack5 = webpack.version[0] === '5';
 
-    // const bundleName = webpack.version[0] === '5' ? webpack5Filename : webpack4Filename;
     expect(
       getModuleSource('./simple-commonjs2-single-export.js-exposed', stats)
     ).toMatchSnapshot('module');
-    expect(module.hash).toBe('56f391f6477c50803096579fc5da431e');
+    expect(module.hash).toBe(
+      isWebpack5
+        ? '50d7da20999a39862d3808619816b5b3'
+        : '56f391f6477c50803096579fc5da431e'
+    );
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
