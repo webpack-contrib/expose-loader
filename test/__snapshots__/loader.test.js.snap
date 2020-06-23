@@ -57,7 +57,8 @@ var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobal
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
 
-module.exports = ___EXPOSE_LOADER_IMPORT___"
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
 `;
 
 exports[`loader should match hashes on all operating systems: warnings 1`] = `Array []`;
@@ -71,7 +72,8 @@ var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = {};
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"nested\\"] = ___EXPOSE_LOADER_IMPORT___;
 
-module.exports = ___EXPOSE_LOADER_IMPORT___"
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
 `;
 
 exports[`loader should work for a nested property for a global object: result 1`] = `
@@ -97,11 +99,12 @@ var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobal
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = {};
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"nested\\"] = ___EXPOSE_LOADER_IMPORT___;
-var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.foo
+var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.foo
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"][\\"nested\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"][\\"nested\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
 
-module.exports = ___EXPOSE_LOADER_IMPORT___"
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
 `;
 
 exports[`loader should work for nested properties for a global object: result 1`] = `
@@ -130,7 +133,8 @@ var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobal
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
 
-module.exports = ___EXPOSE_LOADER_IMPORT___"
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
 `;
 
 exports[`loader should work from esModule export: result 1`] = `
@@ -165,8 +169,8 @@ export default myExports;
 var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./../../node_modules/babel-loader/lib/index.js!./custom.js\\");
 var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
-var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.default
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
+var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.default
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
 "
 `;
 
@@ -189,7 +193,8 @@ var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobal
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
 
-module.exports = ___EXPOSE_LOADER_IMPORT___"
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
 `;
 
 exports[`loader should work inline 2: result 1`] = `
@@ -233,7 +238,8 @@ ___EXPOSE_LOADER_GLOBAL_THIS___[\\"global-commonjs2-single-export\\"] = ___EXPOS
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = {};
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"global-commonjs2-single-export\\"] = ___EXPOSE_LOADER_IMPORT___;
 
-module.exports = ___EXPOSE_LOADER_IMPORT___"
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
 `;
 
 exports[`loader should work interpolate: result 1`] = `
@@ -261,11 +267,12 @@ exports[`loader should work multiple commonjs exports: module 1`] = `
 var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.globalObject2
+var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject2
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"globalObject2\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"globalObject2\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
 
-module.exports = ___EXPOSE_LOADER_IMPORT___"
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
 `;
 
 exports[`loader should work multiple commonjs exports: result 1`] = `
@@ -296,51 +303,24 @@ Object {
 
 exports[`loader should work multiple commonjs exports: warnings 1`] = `Array []`;
 
-exports[`loader should work multiple name from one package: errors 1`] = `Array []`;
-
-exports[`loader should work multiple name from one package: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
-var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-
-module.exports = ___EXPOSE_LOADER_IMPORT___"
-`;
-
-exports[`loader should work multiple name from one package: result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "foo": "bar",
-  },
-  "myGlobal": Object {
-    "foo": "bar",
-  },
-  "myOtherGlobal": Object {
-    "foo": "bar",
-  },
-}
-`;
-
-exports[`loader should work multiple name from one package: warnings 1`] = `Array []`;
-
 exports[`loader should work multiple syntax to array: errors 1`] = `Array []`;
 
 exports[`loader should work multiple syntax to array: module 1`] = `
 "var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-named-exports.js\\");
 var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
-var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.globalObject6
+var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject6
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject6\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
-var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.globalObject7
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject6\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject7
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject7\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
-var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.default
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject7\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.default
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"default\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"default\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
 
-module.exports = ___EXPOSE_LOADER_IMPORT___"
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
 `;
 
 exports[`loader should work multiple syntax to array: result 1`] = `
@@ -376,11 +356,12 @@ exports[`loader should work object config: module 1`] = `
 "var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-named-exports.js\\");
 var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
-var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.globalObject6
+var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject6
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal.alias\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal.alias\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal.alias\\"][\\"globalObject6\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal.alias\\"][\\"globalObject6\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
 
-module.exports = ___EXPOSE_LOADER_IMPORT___"
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
 `;
 
 exports[`loader should work object config: result 1`] = `
@@ -412,19 +393,20 @@ exports[`loader should work string config 2: module 1`] = `
 "var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-named-exports.js\\");
 var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
-var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.globalObject6
+var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject6
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject6\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
-var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.globalObject7
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject6\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject7
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject7\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
-var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.default
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject7\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.default
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"default\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"default\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
 
-module.exports = ___EXPOSE_LOADER_IMPORT___"
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
 `;
 
 exports[`loader should work string config 2: result 1`] = `
@@ -478,19 +460,20 @@ exports[`loader should work string config: module 1`] = `
 "var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-named-exports.js\\");
 var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
-var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.globalObject6
+var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject6
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject6\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
-var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.globalObject7
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject6\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject7
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject7\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
-var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.default
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject7\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.default
 if (!___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"]) ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"default\\"] = ___EXPOSE_LOADER_IMPORT_NAMED___;
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"default\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
 
-module.exports = ___EXPOSE_LOADER_IMPORT___"
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
 `;
 
 exports[`loader should work string config: result 1`] = `
@@ -538,6 +521,34 @@ Object {
 
 exports[`loader should work string config: warnings 1`] = `Array []`;
 
+exports[`loader should work with "moduleLocalName": errors 1`] = `Array []`;
+
+exports[`loader should work with "moduleLocalName": module 1`] = `
+"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-multiple-exports.js\\");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
+var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.myGlobal
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"moduleMethod\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
+`;
+
+exports[`loader should work with "moduleLocalName": result 1`] = `
+Object {
+  "ExposeLoader": Object {
+    "globalObject2": Object {
+      "foo": "bar",
+    },
+    "globalObject3": Object {
+      "bar": "foo",
+    },
+  },
+}
+`;
+
+exports[`loader should work with "moduleLocalName": warnings 1`] = `Array []`;
+
 exports[`loader should work with multiple exposes: errors 1`] = `Array []`;
 
 exports[`loader should work with multiple exposes: module 1`] = `
@@ -547,7 +558,8 @@ var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
 
-module.exports = ___EXPOSE_LOADER_IMPORT___"
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
 `;
 
 exports[`loader should work with multiple exposes: result 1`] = `
@@ -574,7 +586,8 @@ var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobal
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
 
-module.exports = ___EXPOSE_LOADER_IMPORT___"
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
 `;
 
 exports[`loader should work: result 1`] = `

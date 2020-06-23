@@ -9,14 +9,16 @@ describe('validate options', () => {
         },
         {
           globalName: 'myGlobal_alias',
-          localName: 'globalObject6',
+          moduleLocalName: 'globalObject6',
         },
         {
           globalName: ['myGlobal_alias', 'globalObject6'],
-          localName: 'globalObject6',
+          moduleLocalName: 'globalObject6',
         },
         'globalObject1',
+        'globalObject1 myMethodName',
         'globalObject1.foo',
+        'globalObject1.foo myMethodName',
         ['globalObject1'],
         ['globalObject1.foo'],
         ['globalObject1.foo', 'globalObject1.bar'],

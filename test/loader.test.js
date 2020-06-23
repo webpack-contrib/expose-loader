@@ -1,6 +1,6 @@
 import path from 'path';
 
-import webpack from 'webpack';
+// import webpack from 'webpack';
 
 import {
   compile,
@@ -22,6 +22,22 @@ describe('loader', () => {
 
     expect(
       getModuleSource('./global-commonjs2-single-export.js-exposed', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with "moduleLocalName"', async () => {
+    const compiler = getCompiler('simple-commonjs2-multiple-export.js', {
+      exposes: 'moduleMethod myGlobal',
+    });
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-commonjs2-multiple-exports.js-exposed', stats)
     ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
@@ -158,7 +174,7 @@ describe('loader', () => {
     const compiler = getCompiler('simple-module-named-export.js', {
       exposes: {
         globalName: ['myGlobal.alias', 'globalObject6'],
-        localName: 'globalObject6',
+        moduleLocalName: 'globalObject6',
       },
     });
     const stats = await compile(compiler);
@@ -178,11 +194,11 @@ describe('loader', () => {
       exposes: [
         {
           globalName: ['myGlobal_alias', 'globalObject6'],
-          localName: 'globalObject6',
+          moduleLocalName: 'globalObject6',
         },
         {
           globalName: ['myGlobal_alias', 'globalObject7'],
-          localName: 'globalObject7',
+          moduleLocalName: 'globalObject7',
         },
         'myGlobal_alias.default default',
       ],
@@ -284,50 +300,15 @@ describe('loader', () => {
       }
     );
     const stats = await compile(compiler);
+    const module = stats.compilation.modules.find((m) =>
+      m.id.endsWith('./simple-commonjs2-single-export.js-exposed')
+    );
 
-    const webpack4Filename = 'main-9486a32a.bundle.js';
-    const webpack5Filename = 'main-22966fe7.bundle.js';
-    const bundleName =
-      webpack.version[0] === '5' ? webpack5Filename : webpack4Filename;
-
+    // const bundleName = webpack.version[0] === '5' ? webpack5Filename : webpack4Filename;
     expect(
       getModuleSource('./simple-commonjs2-single-export.js-exposed', stats)
     ).toMatchSnapshot('module');
-    expect(Object.keys(stats.compilation.assets)[0]).toBe(bundleName);
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
-  it('should work multiple name from one package', async () => {
-    const compiler = getCompiler(
-      'simple-commonjs2-single-export.js',
-      {
-        exposes: ['myOtherGlobal', 'myGlobal'],
-      },
-      {
-        output: {
-          path: path.resolve(__dirname, './outputs'),
-          filename: '[name]-[contenthash:8].bundle.js',
-          chunkFilename: '[name]-[contenthash:8].chunk.js',
-          library: 'ExposeLoader',
-          libraryTarget: 'var',
-        },
-      }
-    );
-    const stats = await compile(compiler);
-
-    const webpack4Filename = 'main-c6c3f480.bundle.js';
-    const webpack5Filename = 'main-e4eb4813.bundle.js';
-    const bundleName =
-      webpack.version[0] === '5' ? webpack5Filename : webpack4Filename;
-
-    expect(
-      getModuleSource('./global-commonjs2-single-export.js-exposed', stats)
-    ).toMatchSnapshot('module');
-    expect(Object.keys(stats.compilation.assets)[0]).toBe(bundleName);
-    expect(execute(readAsset(bundleName, compiler, stats))).toMatchSnapshot(
-      'result'
-    );
+    expect(module.hash).toBe('56f391f6477c50803096579fc5da431e');
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
