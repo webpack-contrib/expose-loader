@@ -53,4 +53,15 @@ function getExposes(items) {
   return result;
 }
 
-export default getExposes;
+function renameUserRequest(request) {
+  const splittedRequest = request.split('!');
+  const lastPartRequest = splittedRequest.pop().split('?', 2);
+
+  lastPartRequest[0] = `${lastPartRequest[0]}-exposed`;
+
+  splittedRequest.push(lastPartRequest.join('?'));
+
+  return splittedRequest.join('!');
+}
+
+export { getExposes, renameUserRequest };

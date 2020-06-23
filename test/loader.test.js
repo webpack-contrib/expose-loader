@@ -259,8 +259,41 @@ describe('loader', () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource('./custom.js?foo=bar-exposed', stats)
+      getModuleSource('./custom.js-exposed?foo=bar', stats)
     ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(readAsset('main.bundle.js.map', compiler, stats)).toBeDefined();
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work inline 1 without extension', async () => {
+    const compiler = getCompiler(
+      'inline-import-1.js',
+      {},
+      {
+        devtool: 'source-map',
+        module: {
+          rules: [
+            {
+              test: /.*custom/i,
+              use: [
+                {
+                  loader: 'babel-loader',
+                },
+              ],
+            },
+          ],
+        },
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./custom-exposed?foo=bar', stats)).toMatchSnapshot(
+      'module'
+    );
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
