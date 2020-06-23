@@ -16,6 +16,8 @@ import {
   readAsset,
 } from './helpers';
 
+jest.setTimeout(10000);
+
 describe('loader', () => {
   it('should work', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
