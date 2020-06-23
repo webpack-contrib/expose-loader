@@ -106,3 +106,27 @@ Object {
 `;
 
 exports[`loader should work with side-effects free modules: warnings 1`] = `Array []`;
+
+exports[`loader should work: errors 1`] = `Array []`;
+
+exports[`loader should work: module 1`] = `
+"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
+___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
+module.exports = ___EXPOSE_LOADER_IMPORT___;
+"
+`;
+
+exports[`loader should work: result 1`] = `
+Object {
+  "ExposeLoader": Object {
+    "foo": "bar",
+  },
+  "myGlobal": Object {
+    "foo": "bar",
+  },
+}
+`;
+
+exports[`loader should work: warnings 1`] = `Array []`;

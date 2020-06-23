@@ -16,7 +16,7 @@ import {
   readAsset,
 } from './helpers';
 
-jest.setTimeout(10000);
+jest.setTimeout(30000);
 
 describe('loader', () => {
   it('should work', async () => {
