@@ -16,6 +16,7 @@ import {
 describe('loader', () => {
   it('should work', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
+      type: 'commonjs',
       exposes: 'myGlobal',
     });
     const stats = await compile(compiler);
@@ -32,6 +33,7 @@ describe('loader', () => {
 
   it('should work with "moduleLocalName"', async () => {
     const compiler = getCompiler('simple-commonjs2-multiple-export.js', {
+      type: 'commonjs',
       exposes: 'moduleMethod myGlobal',
     });
     const stats = await compile(compiler);
@@ -48,6 +50,7 @@ describe('loader', () => {
 
   it('should work with multiple exposes', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
+      type: 'commonjs',
       exposes: ['myGlobal', 'myOtherGlobal'],
     });
     const stats = await compile(compiler);
@@ -64,6 +67,7 @@ describe('loader', () => {
 
   it('should work multiple commonjs exports', async () => {
     const compiler = getCompiler('simple-commonjs2-multiple-export.js', {
+      type: 'commonjs',
       exposes: ['myOtherGlobal', 'myGlobal.globalObject2 globalObject2'],
     });
     const stats = await compile(compiler);
@@ -80,6 +84,7 @@ describe('loader', () => {
 
   it('should work for a nested property for a global object', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
+      type: 'commonjs',
       exposes: 'myGlobal.nested',
     });
     const stats = await compile(compiler);
@@ -96,6 +101,7 @@ describe('loader', () => {
 
   it('should work for nested properties for a global object', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
+      type: 'commonjs',
       exposes: ['myGlobal.nested', 'myOtherGlobal.nested foo'],
     });
     const stats = await compile(compiler);
@@ -310,7 +316,7 @@ describe('loader', () => {
     ).toMatchSnapshot('module');
     expect(module.hash).toBe(
       isWebpack5
-        ? '50d7da20999a39862d3808619816b5b3'
+        ? 'c440ca2d9d70459fecf24e8109d10515'
         : '56f391f6477c50803096579fc5da431e'
     );
     expect(getErrors(stats)).toMatchSnapshot('errors');
@@ -339,6 +345,7 @@ describe('loader', () => {
 
   it('should work interpolate', async () => {
     const compiler = getCompiler('simple-commonjs2-single-export.js', {
+      type: 'commonjs',
       exposes: ['[name]', 'myGlobal.[name]'],
     });
     const stats = await compile(compiler);

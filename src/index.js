@@ -66,10 +66,21 @@ export default function loader(content, sourceMap) {
     return;
   }
 
-  let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${stringifyRequest(
-    this,
-    `-!${newRequestPath}`
-  )});\n`;
+  const isModule = options.type !== 'commonjs';
+
+  let code = '';
+
+  if (isModule) {
+    code = `import * as ___EXPOSE_LOADER_IMPORT___ from ${stringifyRequest(
+      this,
+      `-!${newRequestPath}`
+    )};\n`;
+  } else {
+    code = `var ___EXPOSE_LOADER_IMPORT___ = require(${stringifyRequest(
+      this,
+      `-!${newRequestPath}`
+    )});\n`;
+  }
 
   code += `var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(${stringifyRequest(
     this,
@@ -120,9 +131,15 @@ export default function loader(content, sourceMap) {
     return;
   }
 
-  callback(
-    null,
-    `${code}\nmodule.exports = ___EXPOSE_LOADER_IMPORT___;\n`,
-    sourceMap
-  );
+  if (isModule) {
+    code += `export { default } from ${stringifyRequest(
+      this,
+      `-!${newRequestPath}`
+    )};\n`;
+    code += `export * from ${stringifyRequest(this, `-!${newRequestPath}`)};\n`;
+  } else {
+    code += `module.exports = ___EXPOSE_LOADER_IMPORT___;`;
+  }
+
+  callback(null, code, sourceMap);
 }
