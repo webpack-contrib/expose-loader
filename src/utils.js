@@ -27,7 +27,7 @@ function resolveExposes(item) {
 
     result = {
       globalName: splittedItem[0],
-      localName: splittedItem[1],
+      moduleLocalName: splittedItem[1],
     };
   } else {
     result = item;

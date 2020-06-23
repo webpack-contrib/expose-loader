@@ -13,9 +13,7 @@ import {
   getRemainingRequest,
   interpolateName,
 } from 'loader-utils';
-
 import { SourceNode, SourceMapConsumer } from 'source-map';
-
 import validateOptions from 'schema-utils';
 
 import schema from './options.json';
@@ -72,6 +70,7 @@ export default function loader(content, sourceMap) {
     this,
     `-!${newRequestPath}`
   )});\n`;
+
   code += `var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(${stringifyRequest(
     this,
     require.resolve('./runtime/getGlobalThis.js')
@@ -79,19 +78,18 @@ export default function loader(content, sourceMap) {
   code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();\n`;
 
   for (const expose of exposes) {
-    const { globalName, localName } = expose;
-    const { length } = globalName;
+    const { globalName, moduleLocalName } = expose;
     const globalNameInterpolated = globalName.map((item) => {
       return interpolateName(this, item, {});
     });
 
-    if (typeof localName !== 'undefined') {
-      code += `var ___EXPOSE_LOADER_IMPORT_NAMED___ = ___EXPOSE_LOADER_IMPORT___.${localName}\n`;
+    if (typeof moduleLocalName !== 'undefined') {
+      code += `var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.${moduleLocalName}\n`;
     }
 
     let propertyString = '___EXPOSE_LOADER_GLOBAL_THIS___';
 
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < globalName.length; i++) {
       if (i > 0) {
         code += `if (!${propertyString}) ${propertyString} = {};\n`;
       }
@@ -100,8 +98,8 @@ export default function loader(content, sourceMap) {
     }
 
     code +=
-      typeof localName !== 'undefined'
-        ? `${propertyString} = ___EXPOSE_LOADER_IMPORT_NAMED___;\n`
+      typeof moduleLocalName !== 'undefined'
+        ? `${propertyString} = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;\n`
         : `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
   }
 
@@ -110,10 +108,13 @@ export default function loader(content, sourceMap) {
       content,
       new SourceMapConsumer(sourceMap)
     );
+
     node.add(`\n${code}`);
+
     const result = node.toStringWithSourceMap({
       file: getCurrentRequest(this),
     });
+
     this.callback(null, result.code, result.map.toJSON());
 
     return;
@@ -121,7 +122,7 @@ export default function loader(content, sourceMap) {
 
   callback(
     null,
-    `${code}\nmodule.exports = ___EXPOSE_LOADER_IMPORT___`,
+    `${code}\nmodule.exports = ___EXPOSE_LOADER_IMPORT___;\n`,
     sourceMap
   );
 }

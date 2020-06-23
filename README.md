@@ -14,7 +14,9 @@
 
 # expose-loader
 
-The `expose-loader` loader allow you to expose module to `global` object (`self`, `window` and `global`).
+The `expose-loader` loader allow you to expose a module (in whole or in part) to `global` scope (`self`, `window` and `global`).
+
+For further hints on compatibility issues, check out [Shimming](https://webpack.js.org/guides/shimming/) of the official docs.
 
 ## Getting Started
 
@@ -86,11 +88,11 @@ module.exports = {
             '_.map|map',
             {
               globalName: '_.reduce',
-              localName: 'reduce',
+              moduleLocalName: 'reduce',
             },
             {
               globalName: ['_', 'filter'],
-              localName: 'filter',
+              moduleLocalName: 'filter',
             },
           ],
         },
@@ -108,9 +110,13 @@ And run `webpack` via your preferred method.
 
 ## Options
 
-### exposes
+|           Name            |                   Type                    |   Default   | Description     |
+| :-----------------------: | :---------------------------------------: | :---------: | :-------------- |
+| **[`exposes`](#exposes)** | `{String\|Object\|Array<String\|Object>}` | `undefined` | List of exposes |
 
-Type: `String|Object|Array`
+### `exposes`
+
+Type: `String|Object|Array<String|Object>`
 Default: `undefined`
 
 List of exposes.
@@ -119,35 +125,152 @@ List of exposes.
 
 Allows to use a string to describe an expose.
 
-The `" "` (space) or `|` separate command parts.
+String syntax - `[[globalName] [moduleLocalName]]` or `[[globalName]|[moduleLocalName]]`, where:
 
-String syntax - `[[globalName] [localName]]` or `[[globalName]|[localName]]`, where:
+- `globalName` - the name under which the value will be available in the global scope, for example `windows.$` for a browser environment (**required**)
+- `moduleLocalName` - the name of method or variable (module should export it) (**may be omitted**)
 
-##### globalName
+If no `moduleLocalName` is specified, it exposes the entire module to global scope, otherwise it exposes only the `moduleLocalName` value.
 
-Type: `String|Array`
+**src/index.js**
+
+```js
+import _ from 'underscore';
+```
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('jquery'),
+        loader: 'expose-loader',
+        options: {
+          // For `underscore` library, it can be `_.map map` or `_.map|map`
+          exposes: 'jquery',
+        },
+      },
+    ],
+  },
+};
+```
+
+#### `Object`
+
+Allows to use an object to describe an expose.
+
+##### `globalName`
+
+Type: `String|Array<String>`
 Default: `undefined`
 
-Name of an exposed value in `global` object (**required**)
+Name of an exposed value in `global` scope (**required**).
 
-Possible syntax:
+**src/index.js**
 
-- `root`
-- `root.nested`
-- `["root", "nested"]` - may be useful if the dot is part of the name
-- `[[name]]` - expose module in `global` object under the name equal to the filename, for `single.js` it will be `global.single`.
-- `[myGlobal.[name]]` - expose module in `global.myGlobal` under the name equal to the filename, for `single.js` it will be `global.myGlobal.single`.
+```js
+import _ from 'underscore';
+```
 
-##### localName
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('underscore'),
+        loader: 'expose-loader',
+        options: {
+          exposes: {
+            // Can be `['_', 'filter']`
+            globalName: '_.filter',
+            moduleLocalName: 'filter',
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+##### `moduleLocalName`
 
 Type: `String`
 Default: `undefined`
 
-Name of an exposed value
+Name of method or variable (module should export it).
 
-## Contributing
+If the `moduleLocalName` option is specified, it exposes only the `moduleLocalName` value.
 
-Please take a moment to read our contributing guidelines if you haven't yet done so.
+**src/index.js**
+
+```js
+import _ from 'underscore';
+```
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('underscore'),
+        loader: 'expose-loader',
+        options: {
+          exposes: {
+            globalName: '_.filter',
+            moduleLocalName: 'filter',
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+#### `Array`
+
+**src/index.js**
+
+```js
+import _ from 'underscore';
+```
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('underscore'),
+        loader: 'expose-loader',
+        options: {
+          exposes: [
+            '_.map map',
+            {
+              globalName: '_.filter',
+              moduleLocalName: 'filter',
+            },
+            {
+              globalName: ['_', 'find'],
+              moduleLocalName: 'myNameForFind',
+            },
+          ],
+        },
+      },
+    ],
+  },
+};
+```
+
+It will expose **only** `map`, `filter` and `find` (under `myNameForFind` name) methods in global scope.
+
+In a browser these methods will be available under `windows._.map(..args)`, `windows._.filter(...args)` and `windows._.myNameForFind(...args)` methods.
 
 ## Contributing
 
