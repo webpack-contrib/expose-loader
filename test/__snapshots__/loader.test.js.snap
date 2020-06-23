@@ -153,20 +153,13 @@ exports[`loader should work from esModule export: warnings 1`] = `Array []`;
 exports[`loader should work inline 1 without extension: errors 1`] = `Array []`;
 
 exports[`loader should work inline 1 without extension: module 1`] = `
-"function getAddress() {
-  return {
-    city: 'Tokyo'
-  };
-}
-
-const address = getAddress();
-const myExports = address === null || address === void 0 ? void 0 : address.city;
-export default myExports;
-import * as ___EXPOSE_LOADER_IMPORT___ from \\"-!./../../node_modules/babel-loader/lib/index.js!./custom\\";
+"import * as ___EXPOSE_LOADER_IMPORT___ from \\"-!./../../node_modules/babel-loader/lib/index.js!./custom\\";
 var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.default
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+export { default } from \\"-!./../../node_modules/babel-loader/lib/index.js!./custom\\";
+export * from \\"-!./../../node_modules/babel-loader/lib/index.js!./custom\\";
 "
 `;
 
@@ -184,20 +177,13 @@ exports[`loader should work inline 1 without extension: warnings 1`] = `Array []
 exports[`loader should work inline 1: errors 1`] = `Array []`;
 
 exports[`loader should work inline 1: module 1`] = `
-"function getAddress() {
-  return {
-    city: 'Tokyo'
-  };
-}
-
-const address = getAddress();
-const myExports = address === null || address === void 0 ? void 0 : address.city;
-export default myExports;
-import * as ___EXPOSE_LOADER_IMPORT___ from \\"-!./../../node_modules/babel-loader/lib/index.js!./custom.js\\";
+"import * as ___EXPOSE_LOADER_IMPORT___ from \\"-!./../../node_modules/babel-loader/lib/index.js!./custom.js\\";
 var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.default
 ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+export { default } from \\"-!./../../node_modules/babel-loader/lib/index.js!./custom.js\\";
+export * from \\"-!./../../node_modules/babel-loader/lib/index.js!./custom.js\\";
 "
 `;
 
