@@ -30,7 +30,10 @@ Then you can use the `expose-loader` using two approaches.
 
 ## Inline
 
-**src/index.js**
+The `|` or `%20` (space) allow to separate the `globalName`, `moduleLocalName` and `override` of expose.
+The documentation and syntax examples can be read [here](#syntax).
+
+> ⚠ `%20` is space in a query string, because you can't use spaces in URLs
 
 ```js
 import $ from 'expose-loader?exposes[]=$&exposes[]=jQuery!jquery';
@@ -38,15 +41,11 @@ import $ from 'expose-loader?exposes[]=$&exposes[]=jQuery!jquery';
 // Adds the `jquery` to the global object under the names `$` and `jQuery`
 ```
 
-**src/index.js**
-
 ```js
 import { concat } from 'expose-loader?exposes=_.concat!lodash/concat';
 //
 // Adds the `lodash/concat` to the global object under the name `_.concat`
 ```
-
-**src/index.js**
 
 ```js
 import {
@@ -56,12 +55,6 @@ import {
 //
 // Adds the `map` and `reduce` method from `underscore` to the global object under the name `_.map` and `_.reduce`
 ```
-
-The `|` or `%20` (space) allow to separate the export name of the module and the name in the global object.
-
-> ⚠ `%20` is space in a query string, because you can't use spaces in URLs
-
-Description of string values can be found in the documentation below.
 
 ## Using Configuration
 
@@ -128,6 +121,10 @@ List of exposes.
 #### `String`
 
 Allows to use a string to describe an expose.
+
+##### `Syntax`
+
+The `|` or `%20` (space) allow to separate the `globalName`, `moduleLocalName` and `override` of expose.
 
 String syntax - `[[globalName] [moduleLocalName] [override]]` or `[[globalName]|[moduleLocalName]|[override]]`, where:
 
