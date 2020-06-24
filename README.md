@@ -14,7 +14,7 @@
 
 # expose-loader
 
-The `expose-loader` loader allow you to expose a module (in whole or in part) to `global` scope (`self`, `window` and `global`).
+The `expose-loader` loader allows to expose a module (in whole or in part) to global object (`self`, `window` and `global`).
 
 For further hints on compatibility issues, check out [Shimming](https://webpack.js.org/guides/shimming/) of the official docs.
 
@@ -30,23 +30,23 @@ Then you can use the `expose-loader` using two approaches.
 
 ## Inline
 
-The `|` or `%20` (space) separate command parts.
-
-> ⚠ `%20` is space in a query string, because you can't use spaces in URLs
-
 **src/index.js**
 
 ```js
 import $ from 'expose-loader?exposes[]=$&exposes[]=jQuery!jquery';
 //
-// Adds the `jquery` to the `global` object under the names `$` and `jQuery`
+// Adds the `jquery` to the global object under the names `$` and `jQuery`
 ```
+
+**src/index.js**
 
 ```js
 import { concat } from 'expose-loader?exposes=_.concat!lodash/concat';
 //
-// Adds the `lodash/concat` to the `global` object under the name `_.concat`
+// Adds the `lodash/concat` to the global object under the name `_.concat`
 ```
+
+**src/index.js**
 
 ```js
 import {
@@ -54,8 +54,12 @@ import {
   reduce,
 } from 'expose-loader?exposes[]=_.map|map&exposes[]=_.reduce|reduce!underscore';
 //
-// Adds the `map` and `reduce` method from `underscore` to the `global` object under the name `_.map` and `_.reduce`
+// Adds the `map` and `reduce` method from `underscore` to the global object under the name `_.map` and `_.reduce`
 ```
+
+The `|` or `%20` (space) allow to separate the export name of the module and the name in the global object.
+
+> ⚠ `%20` is space in a query string, because you can't use spaces in URLs
 
 Description of string values can be found in the documentation below.
 
@@ -125,12 +129,13 @@ List of exposes.
 
 Allows to use a string to describe an expose.
 
-String syntax - `[[globalName] [moduleLocalName]]` or `[[globalName]|[moduleLocalName]]`, where:
+String syntax - `[[globalName] [moduleLocalName] [override]]` or `[[globalName]|[moduleLocalName]|[override]]`, where:
 
-- `globalName` - the name under which the value will be available in the global scope, for example `windows.$` for a browser environment (**required**)
-- `moduleLocalName` - the name of method or variable (module should export it) (**may be omitted**)
+- `globalName` - the name in the global object, for example `window.$` for a browser environment (**required**)
+- `moduleLocalName` - the name of method/variable/etc of the module (the module must export it) (**may be omitted**)
+- `override` - allows to override existing value in the global object (**may be omitted**)
 
-If no `moduleLocalName` is specified, it exposes the entire module to global scope, otherwise it exposes only the `moduleLocalName` value.
+If `moduleLocalName` is not specified, it exposes the entire module to the global object, otherwise it exposes only the value of `moduleLocalName`.
 
 **src/index.js**
 
@@ -166,7 +171,7 @@ Allows to use an object to describe an expose.
 Type: `String|Array<String>`
 Default: `undefined`
 
-Name of an exposed value in `global` scope (**required**).
+The name in the global object. (**required**).
 
 **src/index.js**
 
@@ -201,9 +206,8 @@ module.exports = {
 Type: `String`
 Default: `undefined`
 
-Name of method or variable (module should export it).
-
-If the `moduleLocalName` option is specified, it exposes only the `moduleLocalName` value.
+The name of method/variable/etc of the module (the module must export it).
+If `moduleLocalName` is specified, it exposes only the value of `moduleLocalName`.
 
 **src/index.js**
 
@@ -224,6 +228,44 @@ module.exports = {
           exposes: {
             globalName: '_.filter',
             moduleLocalName: 'filter',
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+##### `override`
+
+Type: `Boolean`
+Default: `false`
+
+By default loader does not override the existing value in the global object, because it is unsafe.
+In `development` mode, we throw an error if the value already present in the global object.
+But you can configure loader to override the existing value in the global object using this option.
+
+To force override the value that is already present in the global object you can set the `override` option to the `true` value.
+
+**src/index.js**
+
+```js
+import $ from 'jquery';
+```
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('jquery'),
+        loader: 'expose-loader',
+        options: {
+          exposes: {
+            globalName: '$',
+            override: true,
           },
         },
       },
@@ -268,7 +310,7 @@ module.exports = {
 };
 ```
 
-It will expose **only** `map`, `filter` and `find` (under `myNameForFind` name) methods in global scope.
+It will expose **only** `map`, `filter` and `find` (under `myNameForFind` name) methods to the global object.
 
 In a browser these methods will be available under `windows._.map(..args)`, `windows._.filter(...args)` and `windows._.myNameForFind(...args)` methods.
 

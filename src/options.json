@@ -23,6 +23,9 @@
         "moduleLocalName": {
           "type": "string",
           "minLength": 1
+        },
+        "override": {
+          "type": "boolean"
         }
       },
       "required": ["globalName"]

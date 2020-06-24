@@ -56,10 +56,10 @@ export default function loader() {
     this,
     require.resolve('./runtime/getGlobalThis.js')
   )});\n`;
-  code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();\n`;
+  code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;\n`;
 
   for (const expose of exposes) {
-    const { globalName, moduleLocalName } = expose;
+    const { globalName, moduleLocalName, override } = expose;
     const globalNameInterpolated = globalName.map((item) =>
       interpolateName(this, item, {})
     );
@@ -72,16 +72,28 @@ export default function loader() {
 
     for (let i = 0; i < globalName.length; i++) {
       if (i > 0) {
-        code += `if (!${propertyString}) ${propertyString} = {};\n`;
+        code += `if (typeof ${propertyString} === 'undefined') ${propertyString} = {};\n`;
       }
 
       propertyString += `[${JSON.stringify(globalNameInterpolated[i])}]`;
+    }
+
+    if (!override) {
+      code += `if (typeof ${propertyString} === 'undefined') `;
     }
 
     code +=
       typeof moduleLocalName !== 'undefined'
         ? `${propertyString} = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;\n`
         : `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
+
+    if (!override) {
+      if (this.mode === 'development') {
+        code += `else throw new Error('[exposes-loader] The "${globalName.join(
+          '.'
+        )}" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')\n`;
+      }
+    }
   }
 
   code += `module.exports = ___EXPOSE_LOADER_IMPORT___;\n`;

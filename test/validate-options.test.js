@@ -17,6 +17,7 @@ describe('validate options', () => {
         },
         'globalObject1',
         'globalObject1 myMethodName',
+        'globalObject1 myMethodName true',
         'globalObject1.foo',
         'globalObject1.foo myMethodName',
         ['globalObject1'],
