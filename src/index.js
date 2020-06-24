@@ -56,7 +56,7 @@ export default function loader() {
     this,
     require.resolve('./runtime/getGlobalThis.js')
   )});\n`;
-  code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();\n`;
+  code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;\n`;
 
   for (const expose of exposes) {
     const { globalName, moduleLocalName, override } = expose;

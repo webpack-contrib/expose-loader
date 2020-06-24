@@ -15,6 +15,8 @@ export default (code) => {
   // eslint-disable-next-line no-underscore-dangle
   module._compile(
     `
+console.log = () => {};
+
 const result = {};
 
 if (typeof myGlobal !== "undefined") {

@@ -1,8 +1,8 @@
-const global = require('../../src/runtime/getGlobalThis');
+const myGlobalThis = require('../../src/runtime/getGlobalThis');
 
-global().myGlobal = 'not overridden';
+myGlobalThis.myGlobal = 'not overridden';
 
-global().myOtherGlobal = { foo: 'not overridden' };
+myGlobalThis.myOtherGlobal = { foo: 'not overridden' };
 
 const myExports = require('./global-commonjs2-single-export');
 
