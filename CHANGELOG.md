@@ -1,6 +1,33 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.0.0](https://github.com/webpack-contrib/expose-loader/compare/v0.7.5...v1.0.0) (2020-06-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* minimum supported Node.js version is `10.13`
+* minimum supported `webpack` version is `4`
+* `inline` syntax was changed, please [read](https://github.com/webpack-contrib/expose-loader#inline)
+* list of exposed values moved to the `exposes` option, please [read](https://github.com/webpack-contrib/expose-loader#exposes)
+* migrate away from `pitch` phase
+* do not override existing exposed values in the global object by default, because it is unsafe, please [read](https://github.com/webpack-contrib/expose-loader#override)
+
+### Features
+
+* validate options
+* support webpack 5
+* support multiple exposed values
+* interpolate exposed values
+* allow to expose part of a module
+* allow to expose values with `.` (dot) in the name
+
+### Fixes
+
+* do not break source maps
+* do not generate different hashed on different os
+* compatibility with ES module syntax
 
 <a name="0.7.5"></a>
 ## [0.7.5](https://github.com/webpack-contrib/expose-loader/compare/v0.7.4...v0.7.5) (2018-03-09)
