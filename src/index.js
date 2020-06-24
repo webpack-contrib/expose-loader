@@ -58,10 +58,8 @@ export default function loader() {
   )});\n`;
   code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___();\n`;
 
-  code += `var allowOverride = false;\n`;
-
   for (const expose of exposes) {
-    const { globalName, moduleLocalName } = expose;
+    const { globalName, moduleLocalName, override } = expose;
     const globalNameInterpolated = globalName.map((item) =>
       interpolateName(this, item, {})
     );
@@ -74,26 +72,28 @@ export default function loader() {
 
     for (let i = 0; i < globalName.length; i++) {
       if (i > 0) {
-        code += `if (!${propertyString}) ${propertyString} = {};\n`;
+        code += `if (typeof ${propertyString} === 'undefined') ${propertyString} = {};\n`;
       }
 
       propertyString += `[${JSON.stringify(globalNameInterpolated[i])}]`;
-
-      code +=
-        this.mode === 'development'
-          ? '\n'
-          : `if (${propertyString}) throw new Error('test');\n`;
-
-      code += `if(!${propertyString}) { allowOverride = true }\n`;
-      code += `if(${override}) { allowOverride = true }\n`;
     }
 
-    code += `if(allowOverride) {`;
+    if (!override) {
+      code += `if (typeof ${propertyString} === 'undefined') `;
+    }
+
     code +=
       typeof moduleLocalName !== 'undefined'
         ? `${propertyString} = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;\n`
         : `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
-    code += `}`;
+
+    if (!override) {
+      if (this.mode === 'development') {
+        code += `else throw new Error('[exposes-loader] The "${globalName.join(
+          '.'
+        )}" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')\n`;
+      }
+    }
   }
 
   code += `module.exports = ___EXPOSE_LOADER_IMPORT___;\n`;

@@ -349,7 +349,7 @@ describe('loader', () => {
     expect(module.hash).toBe(
       isWebpack5
         ? 'b993fe180cfddcb0d654fd862e6f1afe'
-        : '40beb9b0cb6f070cad500e1179e00e12'
+        : '717ef0bd800e5bf108223b4bf8c1bd5f'
     );
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
@@ -391,12 +391,188 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should work override', async () => {
+  it('should throw an error on existing value in the global object in the "development" mode', async () => {
     const compiler = getCompiler(
       'override-1.js',
       {
         exposes: {
           globalName: ['myGlobal'],
+          override: false,
+        },
+      },
+      {
+        mode: 'development',
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-commonjs2-single-export-exposed.js', stats)
+    ).toMatchSnapshot('module');
+    expect(() =>
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toThrowErrorMatchingSnapshot('runtime error');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should not override existing value in the global object in the "production" mode', async () => {
+    const compiler = getCompiler(
+      'override-1.js',
+      {
+        exposes: {
+          globalName: ['myGlobal'],
+        },
+      },
+      {
+        mode: 'production',
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-commonjs2-single-export-exposed.js', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work and override existing value in the global object in the "development" mode', async () => {
+    const compiler = getCompiler(
+      'override-1.js',
+      {
+        exposes: {
+          globalName: ['myGlobal'],
+          override: true,
+        },
+      },
+      {
+        mode: 'development',
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-commonjs2-single-export-exposed.js', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work and override existing value in the global object in the "production" mode', async () => {
+    const compiler = getCompiler(
+      'override-1.js',
+      {
+        exposes: {
+          globalName: ['myGlobal'],
+          override: true,
+        },
+      },
+      {
+        mode: 'production',
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-commonjs2-single-export-exposed.js', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should throw an error on existing module local value in the global object', async () => {
+    const compiler = getCompiler(
+      'override-1.js',
+      {
+        exposes: {
+          moduleLocalName: 'foo',
+          globalName: ['myGlobal'],
+          override: false,
+        },
+      },
+      {
+        mode: 'development',
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-commonjs2-single-export-exposed.js', stats)
+    ).toMatchSnapshot('module');
+    expect(() =>
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toThrowErrorMatchingSnapshot('runtime error');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work and override existing module local value in the global object', async () => {
+    const compiler = getCompiler(
+      'override-1.js',
+      {
+        exposes: {
+          moduleLocalName: 'foo',
+          globalName: ['myGlobal'],
+          override: true,
+        },
+      },
+      {
+        mode: 'development',
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-commonjs2-single-export-exposed.js', stats)
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should throw an error on existing nested value in the global object', async () => {
+    const compiler = getCompiler(
+      'override-1.js',
+      {
+        exposes: {
+          globalName: ['myOtherGlobal', 'foo', 'bar', 'bar'],
+          override: false,
+        },
+      },
+      {
+        mode: 'development',
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(
+      getModuleSource('./global-commonjs2-single-export-exposed.js', stats)
+    ).toMatchSnapshot('module');
+    expect(() =>
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toThrowErrorMatchingSnapshot('runtime error');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work and override existing nested value in the global object', async () => {
+    const compiler = getCompiler(
+      'override-1.js',
+      {
+        exposes: {
+          globalName: ['myOtherGlobal', 'foo'],
           override: true,
         },
       },
@@ -514,6 +690,16 @@ describe('loader', () => {
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should throw an error on invalid exposed value', async () => {
+    const compiler = getCompiler('simple-commonjs2-single-export.js', {
+      exposes: 'myGlobal foo bar baz',
+    });
+    const stats = await compile(compiler);
+
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });

@@ -61,7 +61,11 @@ function resolveExposes(item) {
     result = {
       globalName: splittedItem[0],
       moduleLocalName: splittedItem[1],
-      override: parseBoolean(splittedItem[2], false),
+      override:
+        typeof splittedItem[2] !== 'undefined'
+          ? parseBoolean(splittedItem[2], false)
+          : // eslint-disable-next-line no-undefined
+            undefined,
     };
   } else {
     result = item;
