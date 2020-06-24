@@ -348,7 +348,7 @@ describe('loader', () => {
     ).toMatchSnapshot('module');
     expect(module.hash).toBe(
       isWebpack5
-        ? '831c7da5277e410ba05dd629968bd7e3'
+        ? '66885468666c44a6f1c2edf107b8893d'
         : 'c3e516476bee11406ecca2a29b66c743'
     );
     expect(getErrors(stats)).toMatchSnapshot('errors');
