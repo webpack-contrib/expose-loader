@@ -338,7 +338,7 @@ describe('loader', () => {
       }
     );
     const stats = await compile(compiler);
-    const module = stats.compilation.modules.find((m) =>
+    const module = Array.from(stats.compilation.modules).find((m) =>
       m.id.endsWith('./simple-commonjs2-single-export-exposed.js')
     );
     const isWebpack5 = webpack.version[0] === '5';
@@ -348,7 +348,7 @@ describe('loader', () => {
     ).toMatchSnapshot('module');
     expect(module.hash).toBe(
       isWebpack5
-        ? '66885468666c44a6f1c2edf107b8893d'
+        ? 'ca629829313dd6de9e673c154aa723c4'
         : 'c3e516476bee11406ecca2a29b66c743'
     );
     expect(getErrors(stats)).toMatchSnapshot('errors');
