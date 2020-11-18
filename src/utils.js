@@ -95,7 +95,7 @@ function contextify(context, request) {
   return request
     .split('!')
     .map((r) => {
-      const splitPath = r.split('?', 2);
+      const splitPath = r.split('?');
 
       if (/^[a-zA-Z]:\\/.test(splitPath[0])) {
         splitPath[0] = path.win32.relative(context, splitPath[0]);
