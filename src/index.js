@@ -8,20 +8,20 @@ import {
   stringifyRequest,
   getRemainingRequest,
   interpolateName,
-} from 'loader-utils';
+} from "loader-utils";
 
-import { validate } from 'schema-utils';
+import { validate } from "schema-utils";
 
-import schema from './options.json';
+import schema from "./options.json";
 
-import { getExposes, contextify, getNewUserRequest } from './utils';
+import { getExposes, contextify, getNewUserRequest } from "./utils";
 
 export default function loader() {
   const options = getOptions(this);
 
   validate(schema, options, {
-    name: 'Expose Loader',
-    baseDataPath: 'options',
+    name: "Expose Loader",
+    baseDataPath: "options",
   });
 
   /*
@@ -54,7 +54,7 @@ export default function loader() {
 
   code += `var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(${stringifyRequest(
     this,
-    require.resolve('./runtime/getGlobalThis.js')
+    require.resolve("./runtime/getGlobalThis.js")
   )});\n`;
   code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;\n`;
 
@@ -64,11 +64,11 @@ export default function loader() {
       interpolateName(this, item, {})
     );
 
-    if (typeof moduleLocalName !== 'undefined') {
+    if (typeof moduleLocalName !== "undefined") {
       code += `var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.${moduleLocalName}\n`;
     }
 
-    let propertyString = '___EXPOSE_LOADER_GLOBAL_THIS___';
+    let propertyString = "___EXPOSE_LOADER_GLOBAL_THIS___";
 
     for (let i = 0; i < globalName.length; i++) {
       if (i > 0) {
@@ -83,14 +83,14 @@ export default function loader() {
     }
 
     code +=
-      typeof moduleLocalName !== 'undefined'
+      typeof moduleLocalName !== "undefined"
         ? `${propertyString} = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;\n`
         : `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
 
     if (!override) {
-      if (this.mode === 'development') {
+      if (this.mode === "development") {
         code += `else throw new Error('[exposes-loader] The "${globalName.join(
-          '.'
+          "."
         )}" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')\n`;
       }
     }
