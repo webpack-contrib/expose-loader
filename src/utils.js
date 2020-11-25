@@ -1,8 +1,8 @@
-import path from 'path';
+import path from "path";
 
 function getNewUserRequest(request) {
-  const splittedRequest = request.split('!');
-  const lastPartRequest = splittedRequest.pop().split('?', 2);
+  const splittedRequest = request.split("!");
+  const lastPartRequest = splittedRequest.pop().split("?", 2);
   const pathObject = path.parse(lastPartRequest[0]);
 
   pathObject.base = `${path.basename(pathObject.base, pathObject.ext)}-exposed${
@@ -11,15 +11,15 @@ function getNewUserRequest(request) {
 
   lastPartRequest[0] = path.format(pathObject);
 
-  splittedRequest.push(lastPartRequest.join('?'));
+  splittedRequest.push(lastPartRequest.join("?"));
 
-  return splittedRequest.join('!');
+  return splittedRequest.join("!");
 }
 
 function splitCommand(command) {
   const result = command
-    .split('|')
-    .map((item) => item.split(' '))
+    .split("|")
+    .map((item) => item.split(" "))
     .reduce((acc, val) => acc.concat(val), []);
 
   for (const item of result) {
@@ -34,14 +34,14 @@ function splitCommand(command) {
 }
 
 function parseBoolean(string, defaultValue = null) {
-  if (typeof string === 'undefined') {
+  if (typeof string === "undefined") {
     return defaultValue;
   }
 
   switch (string.toLowerCase()) {
-    case 'true':
+    case "true":
       return true;
-    case 'false':
+    case "false":
       return false;
     default:
       return defaultValue;
@@ -51,7 +51,7 @@ function parseBoolean(string, defaultValue = null) {
 function resolveExposes(item) {
   let result;
 
-  if (typeof item === 'string') {
+  if (typeof item === "string") {
     const splittedItem = splitCommand(item.trim());
 
     if (splittedItem.length > 3) {
@@ -62,7 +62,7 @@ function resolveExposes(item) {
       globalName: splittedItem[0],
       moduleLocalName: splittedItem[1],
       override:
-        typeof splittedItem[2] !== 'undefined'
+        typeof splittedItem[2] !== "undefined"
           ? parseBoolean(splittedItem[2], false)
           : // eslint-disable-next-line no-undefined
             undefined,
@@ -72,8 +72,8 @@ function resolveExposes(item) {
   }
 
   const nestedGlobalName =
-    typeof result.globalName === 'string'
-      ? result.globalName.split('.')
+    typeof result.globalName === "string"
+      ? result.globalName.split(".")
       : result.globalName;
 
   return { ...result, globalName: nestedGlobalName };
@@ -82,7 +82,7 @@ function resolveExposes(item) {
 function getExposes(items) {
   let result = [];
 
-  if (typeof items === 'string') {
+  if (typeof items === "string") {
     result.push(resolveExposes(items));
   } else {
     result = [].concat(items).map((item) => resolveExposes(item));
@@ -93,15 +93,15 @@ function getExposes(items) {
 
 function contextify(context, request) {
   return request
-    .split('!')
+    .split("!")
     .map((r) => {
-      const splitPath = r.split('?');
+      const splitPath = r.split("?");
 
       if (/^[a-zA-Z]:\\/.test(splitPath[0])) {
         splitPath[0] = path.win32.relative(context, splitPath[0]);
 
         if (!/^[a-zA-Z]:\\/.test(splitPath[0])) {
-          splitPath[0] = splitPath[0].replace(/\\/g, '/');
+          splitPath[0] = splitPath[0].replace(/\\/g, "/");
         }
       }
 
@@ -113,9 +113,9 @@ function contextify(context, request) {
         splitPath[0] = `./${splitPath[0]}`;
       }
 
-      return splitPath.join('?');
+      return splitPath.join("?");
     })
-    .join('!');
+    .join("!");
 }
 
 export { getNewUserRequest, getExposes, contextify };
