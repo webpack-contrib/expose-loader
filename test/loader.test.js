@@ -268,6 +268,48 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
+  it('should work inline 1 with config loader options', async () => {
+    const compiler = getCompiler(
+      'inline-import-equality.js',
+      {},
+      {
+        devtool: 'source-map',
+        module: {
+          rules: [
+            {
+              test: /.*global-commonjs2-single-export\.js/i,
+              use: [
+                {
+                  loader: 'babel-loader',
+                  options: {
+                    presets: ['@babel/preset-env'],
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      }
+    );
+    const stats = await compile(compiler);
+
+    const isWebpack5 = webpack.version[0] === '5';
+    const refRegexp = isWebpack5 ? /\?ruleSet\[\d+\].*!/ : /\?ref--[0-9-]+!/;
+
+    expect(
+      getModuleSource(
+        './global-commonjs2-single-export-exposed.js',
+        stats
+      ).replace(refRegexp, '?{{config-reference}}!')
+    ).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(readAsset('main.bundle.js.map', compiler, stats)).toBeDefined();
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
   it('should work inline 1 without extension', async () => {
     const compiler = getCompiler(
       'inline-import-1.js',
@@ -348,7 +390,7 @@ describe('loader', () => {
     ).toMatchSnapshot('module');
     expect(module.hash).toBe(
       isWebpack5
-        ? 'ca629829313dd6de9e673c154aa723c4'
+        ? '53b5c93a2ac82d2e55921ab5bcf9649e'
         : 'c3e516476bee11406ecca2a29b66c743'
     );
     expect(getErrors(stats)).toMatchSnapshot('errors');
