@@ -15,6 +15,7 @@ export default (code) => {
   // eslint-disable-next-line no-underscore-dangle
   module._compile(
     `
+window = {};
 console.log = () => {};
 
 const result = {};

@@ -24,15 +24,6 @@ export default function loader() {
     baseDataPath: "options",
   });
 
-  /*
-   * Workaround until module.libIdent() in webpack/webpack handles this correctly.
-   *
-   * Fixes:
-   * - https://github.com/webpack-contrib/expose-loader/issues/55
-   * - https://github.com/webpack-contrib/expose-loader/issues/49
-   */
-  this._module.userRequest = getNewUserRequest(this._module.userRequest);
-
   const callback = this.async();
 
   let exposes;
@@ -43,6 +34,25 @@ export default function loader() {
     callback(error);
 
     return;
+  }
+
+  /*
+   * Workaround until module.libIdent() in webpack/webpack handles this correctly.
+   *
+   * Fixes:
+   * - https://github.com/webpack-contrib/expose-loader/issues/55
+   * - https://github.com/webpack-contrib/expose-loader/issues/49
+   */
+  this._module.userRequest = getNewUserRequest(this._module.userRequest);
+
+  /*
+   * Adding side effects
+   *
+   * Fixes:
+   * - https://github.com/webpack-contrib/expose-loader/issues/120
+   */
+  if (this._module.factoryMeta) {
+    this._module.factoryMeta.sideEffectFree = false;
   }
 
   // Change the request from an /abolute/path.js to a relative ./path.js.

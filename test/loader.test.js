@@ -736,6 +736,25 @@ describe("loader", () => {
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
 
+  it("should work with side-effects free modules #1", async () => {
+    const compiler = getCompiler(
+      "side-effects-1.js",
+      {
+        exposes: "styled",
+      },
+      {
+        mode: "production",
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(
+      execute(readAsset("main.bundle.js", compiler, stats))
+    ).toMatchSnapshot("result");
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
+
   it("should throw an error on invalid exposed value", async () => {
     const compiler = getCompiler("simple-commonjs2-single-export.js", {
       exposes: "myGlobal foo bar baz",
