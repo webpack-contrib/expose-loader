@@ -1006,6 +1006,92 @@ Object {
 
 exports[`loader should work with multiple exposes: warnings 1`] = `Array []`;
 
+exports[`loader should work with side-effects free modules #1: errors 1`] = `Array []`;
+
+exports[`loader should work with side-effects free modules #1: result 1`] = `
+Object {
+  "ExposeLoader": Object {
+    "default": Object {
+      "ServerStyleSheet": [Function],
+      "StyleSheetConsumer": Object {
+        "$$typeof": Symbol(react.context),
+        "Consumer": [Circular],
+        "Provider": Object {
+          "$$typeof": Symbol(react.provider),
+          "_context": [Circular],
+        },
+        "_calculateChangedBits": null,
+        "_currentValue": undefined,
+        "_currentValue2": undefined,
+        "_threadCount": 0,
+      },
+      "StyleSheetContext": Object {
+        "$$typeof": Symbol(react.context),
+        "Consumer": [Circular],
+        "Provider": Object {
+          "$$typeof": Symbol(react.provider),
+          "_context": [Circular],
+        },
+        "_calculateChangedBits": null,
+        "_currentValue": undefined,
+        "_currentValue2": undefined,
+        "_threadCount": 0,
+      },
+      "StyleSheetManager": [Function],
+      "ThemeConsumer": Object {
+        "$$typeof": Symbol(react.context),
+        "Consumer": [Circular],
+        "Provider": Object {
+          "$$typeof": Symbol(react.provider),
+          "_context": [Circular],
+        },
+        "_calculateChangedBits": null,
+        "_currentValue": undefined,
+        "_currentValue2": undefined,
+        "_threadCount": 0,
+      },
+      "ThemeContext": Object {
+        "$$typeof": Symbol(react.context),
+        "Consumer": [Circular],
+        "Provider": Object {
+          "$$typeof": Symbol(react.provider),
+          "_context": [Circular],
+        },
+        "_calculateChangedBits": null,
+        "_currentValue": undefined,
+        "_currentValue2": undefined,
+        "_threadCount": 0,
+      },
+      "ThemeProvider": [Function],
+      "__PRIVATE__": Object {
+        "StyleSheet": [Function],
+        "masterSheet": e {
+          "gs": Object {},
+          "names": Map {},
+          "options": Object {
+            "isServer": true,
+            "useCSSOMInjection": true,
+          },
+        },
+      },
+      "createGlobalStyle": [Function],
+      "css": [Function],
+      "default": [Function],
+      "isStyledComponent": [Function],
+      "keyframes": [Function],
+      "useTheme": [Function],
+      "version": "5.2.1",
+      "withTheme": [Function],
+    },
+  },
+  "global-commonjs2-single-export": Object {
+    "foo": "bar",
+  },
+}
+`;
+
+exports[`loader should work with side-effects free modules #1: warnings 1`] = `Array []`;
+
 exports[`loader should work with side-effects free modules: errors 1`] = `Array []`;
 
 exports[`loader should work with side-effects free modules: module 1`] = `
