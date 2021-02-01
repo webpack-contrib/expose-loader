@@ -4,26 +4,17 @@
 */
 
 import {
-  getOptions,
   stringifyRequest,
   getRemainingRequest,
   interpolateName,
 } from "loader-utils";
-
-import { validate } from "schema-utils";
 
 import schema from "./options.json";
 
 import { getExposes, contextify, getNewUserRequest } from "./utils";
 
 export default function loader() {
-  const options = getOptions(this);
-
-  validate(schema, options, {
-    name: "Expose Loader",
-    baseDataPath: "options",
-  });
-
+  const options = this.getOptions(schema);
   const callback = this.async();
 
   let exposes;

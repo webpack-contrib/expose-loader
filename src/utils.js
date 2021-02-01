@@ -80,12 +80,14 @@ function resolveExposes(item) {
 }
 
 function getExposes(items) {
-  let result = [];
+  let result;
+  const exposeItems =
+    typeof items === "string" && items.includes(",") ? items.split(",") : items;
 
-  if (typeof items === "string") {
-    result.push(resolveExposes(items));
+  if (typeof exposeItems === "string") {
+    result = [resolveExposes(exposeItems)];
   } else {
-    result = [].concat(items).map((item) => resolveExposes(item));
+    result = [].concat(exposeItems).map((item) => resolveExposes(item));
   }
 
   return result;
