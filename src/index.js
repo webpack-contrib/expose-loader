@@ -3,15 +3,15 @@
   Author Tobias Koppers @sokra
 */
 
-import {
-  stringifyRequest,
-  getRemainingRequest,
-  interpolateName,
-} from "loader-utils";
-
 import schema from "./options.json";
 
-import { getExposes, contextify, getNewUserRequest } from "./utils";
+import {
+  getExposes,
+  contextify,
+  getNewUserRequest,
+  stringifyRequest,
+  interpolateName,
+} from "./utils";
 
 export default function loader() {
   const options = this.getOptions(schema);
@@ -48,7 +48,7 @@ export default function loader() {
 
   // Change the request from an /abolute/path.js to a relative ./path.js.
   // This prevents [chunkhash] values from changing when running webpack builds in different directories.
-  const newRequest = contextify(this.context, getRemainingRequest(this));
+  const newRequest = contextify(this.context, this.remainingRequest);
   const stringifiedNewRequest = stringifyRequest(this, `-!${newRequest}`);
 
   let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${stringifiedNewRequest});\n`;

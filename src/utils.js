@@ -120,4 +120,52 @@ function contextify(context, request) {
     .join("!");
 }
 
-export { getNewUserRequest, getExposes, contextify };
+function isAbsolutePath(str) {
+  return path.posix.isAbsolute(str) || path.win32.isAbsolute(str);
+}
+
+function stringifyRequest(loaderContext, request) {
+  const splitted = request.split("!");
+  const context =
+    loaderContext.context ||
+    (loaderContext.options && loaderContext.options.context);
+
+  return JSON.stringify(
+    splitted
+      .map((part) => {
+        // First, separate singlePath from query, because the query might contain paths again
+        const splittedPart = part.match(/^(.*?)(\?.*)/);
+        const query = splittedPart ? splittedPart[2] : "";
+        let singlePath = splittedPart ? splittedPart[1] : part;
+
+        if (isAbsolutePath(singlePath) && context) {
+          singlePath = path.relative(context, singlePath);
+        }
+
+        return singlePath.replace(/\\/g, "/") + query;
+      })
+      .join("!")
+  );
+}
+
+function interpolateName(loaderContext, filename) {
+  let basename = "file";
+
+  if (loaderContext.resourcePath) {
+    const parsed = path.parse(loaderContext.resourcePath);
+
+    if (parsed.dir) {
+      basename = parsed.name;
+    }
+  }
+
+  return filename.replace(/\[name\]/gi, () => basename);
+}
+
+export {
+  getNewUserRequest,
+  getExposes,
+  contextify,
+  stringifyRequest,
+  interpolateName,
+};
