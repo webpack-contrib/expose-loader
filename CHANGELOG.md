@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/webpack-contrib/expose-loader/compare/v1.0.3...v2.0.0) (2021-02-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* minimum supported `webpack` version is `5`
+* inline syntax was changed: `[]` is no longer supported (i.e. `import $ from "expose-loader?exposes[]=$&exposes[]=jQuery!jquery`), please use `,` comma separator (i.e. `import $ from "expose-loader?exposes=$,jQuery!jquery`)
+
 ### [1.0.3](https://github.com/webpack-contrib/expose-loader/compare/v1.0.2...v1.0.3) (2020-11-26)
 
 
