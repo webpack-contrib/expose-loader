@@ -3,8 +3,6 @@
  */
 import path from "path";
 
-import webpack from "webpack";
-
 import {
   compile,
   execute,
@@ -292,9 +290,7 @@ describe("loader", () => {
       }
     );
     const stats = await compile(compiler);
-
-    const isWebpack5 = webpack.version[0] === "5";
-    const refRegexp = isWebpack5 ? /\?ruleSet\[\d+\].*!/ : /\?ref--[0-9-]+!/;
+    const refRegexp = /\?ruleSet\[\d+\].*!/;
 
     expect(
       getModuleSource(
@@ -380,18 +376,19 @@ describe("loader", () => {
       }
     );
     const stats = await compile(compiler);
+    const { chunkGraph } = stats.compilation;
+
     const module = Array.from(stats.compilation.modules).find((m) =>
-      m.id.endsWith("./simple-commonjs2-single-export-exposed.js")
+      chunkGraph
+        .getModuleId(m)
+        .endsWith("./simple-commonjs2-single-export-exposed.js")
     );
-    const isWebpack5 = webpack.version[0] === "5";
 
     expect(
       getModuleSource("./simple-commonjs2-single-export-exposed.js", stats)
     ).toMatchSnapshot("module");
-    expect(module.hash).toBe(
-      isWebpack5
-        ? "53b5c93a2ac82d2e55921ab5bcf9649e"
-        : "c3e516476bee11406ecca2a29b66c743"
+    expect(chunkGraph.getModuleHash(module)).toBe(
+      "34429e229c60b66e2bb98684f7f32605"
     );
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");

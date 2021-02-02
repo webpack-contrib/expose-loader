@@ -36,7 +36,7 @@ The documentation and syntax examples can be read [here](#syntax).
 > ⚠ `%20` is space in a query string, because you can't use spaces in URLs
 
 ```js
-import $ from "expose-loader?exposes[]=$&exposes[]=jQuery!jquery";
+import $ from "expose-loader?exposes=$,jQuery!jquery";
 //
 // Adds the `jquery` to the global object under the names `$` and `jQuery`
 ```
@@ -51,7 +51,7 @@ import { concat } from "expose-loader?exposes=_.concat!lodash/concat";
 import {
   map,
   reduce,
-} from "expose-loader?exposes[]=_.map|map&exposes[]=_.reduce|reduce!underscore";
+} from "expose-loader?exposes=_.map|map,_.reduce|reduce!underscore";
 //
 // Adds the `map` and `reduce` method from `underscore` to the global object under the name `_.map` and `_.reduce`
 ```
