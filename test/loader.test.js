@@ -388,7 +388,7 @@ describe("loader", () => {
       getModuleSource("./simple-commonjs2-single-export-exposed.js", stats)
     ).toMatchSnapshot("module");
     expect(chunkGraph.getModuleHash(module)).toBe(
-      "34429e229c60b66e2bb98684f7f32605"
+      "0f36538686929ab9693cc011812d2b0a"
     );
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
