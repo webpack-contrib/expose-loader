@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/webpack-contrib/expose-loader/compare/v2.0.0...v3.0.0) (2021-05-20)
+
+### ⚠ BREAKING CHANGES
+
+* minimum supported `Node.js` version is `12.13.0`
+
 ## [2.0.0](https://github.com/webpack-contrib/expose-loader/compare/v1.0.3...v2.0.0) (2021-02-02)
 
 
