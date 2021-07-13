@@ -65,6 +65,7 @@
           "minItems": 1
         }
       ],
+      "description": "List of exposes.",
       "link": "https://github.com/webpack-contrib/expose-loader#exposes"
     }
   },
