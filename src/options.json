@@ -19,14 +19,20 @@
               },
               "minItems": 1
             }
-          ]
+          ],
+          "description": "The name in the global object.",
+          "link": "https://github.com/webpack-contrib/expose-loader#globalname"
         },
         "moduleLocalName": {
           "type": "string",
+          "description": "he name of method/variable/etc of the module (the module must export it).",
+          "link:": "https://github.com/webpack-contrib/expose-loader#modulelocalname",
           "minLength": 1
         },
         "override": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Configure loader to override the existing value in the global object.",
+          "link": "https://github.com/webpack-contrib/expose-loader#override"
         }
       },
       "required": ["globalName"]
@@ -58,7 +64,8 @@
           },
           "minItems": 1
         }
-      ]
+      ],
+      "link": "https://github.com/webpack-contrib/expose-loader#exposes"
     }
   },
   "anyOf": [{ "required": ["exposes"] }],

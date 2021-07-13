@@ -2,29 +2,31 @@
 
 exports[`validate options should throw an error on the "exposes" option with "" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
- - options.exposes should be an non-empty string."
+ - options.exposes should be a non-empty string."
 `;
 
 exports[`validate options should throw an error on the "exposes" option with "/test/" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options.exposes misses the property 'globalName'. Should be:
-   non-empty string | [non-empty string, ...] (should not have fewer than 1 item)"
+   non-empty string | [non-empty string, ...] (should not have fewer than 1 item)
+   -> The name in the global object."
 `;
 
 exports[`validate options should throw an error on the "exposes" option with "[""]" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
- - options.exposes[0] should be an non-empty string."
+ - options.exposes[0] should be a non-empty string."
 `;
 
 exports[`validate options should throw an error on the "exposes" option with "[]" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
- - options.exposes should be an non-empty array."
+ - options.exposes should be a non-empty array."
 `;
 
 exports[`validate options should throw an error on the "exposes" option with "{}" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options.exposes misses the property 'globalName'. Should be:
-   non-empty string | [non-empty string, ...] (should not have fewer than 1 item)"
+   non-empty string | [non-empty string, ...] (should not have fewer than 1 item)
+   -> The name in the global object."
 `;
 
 exports[`validate options should throw an error on the "exposes" option with "false" value 1`] = `
