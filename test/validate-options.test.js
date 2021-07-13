@@ -24,7 +24,24 @@ describe("validate options", () => {
         ["globalObject1.foo"],
         ["globalObject1.foo", "globalObject1.bar"],
       ],
-      failure: [false, true, /test/, "", [], [""], {}],
+      failure: [
+        false,
+        true,
+        /test/,
+        "",
+        [],
+        [""],
+        {},
+        {
+          globalName: true,
+        },
+        {
+          moduleLocalName: true,
+        },
+        {
+          override: "test",
+        },
+      ],
     },
     unknown: {
       success: [],

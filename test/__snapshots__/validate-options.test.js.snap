@@ -8,7 +8,8 @@ exports[`validate options should throw an error on the "exposes" option with "" 
 exports[`validate options should throw an error on the "exposes" option with "/test/" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options.exposes misses the property 'globalName'. Should be:
-   non-empty string | [non-empty string, ...] (should not have fewer than 1 item)"
+   non-empty string | [non-empty string, ...] (should not have fewer than 1 item)
+   -> The name in the global object."
 `;
 
 exports[`validate options should throw an error on the "exposes" option with "[""]" value 1`] = `
@@ -21,16 +22,45 @@ exports[`validate options should throw an error on the "exposes" option with "[]
  - options.exposes should be an non-empty array."
 `;
 
+exports[`validate options should throw an error on the "exposes" option with "{"globalName":true}" value 1`] = `
+"Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
+ - options.exposes should be one of these:
+   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)
+   -> List of exposes.
+   Details:
+    * options.exposes.globalName should be one of these:
+      non-empty string | [non-empty string, ...] (should not have fewer than 1 item)
+      -> The name in the global object.
+      Details:
+       * options.exposes.globalName should be a non-empty string.
+       * options.exposes.globalName should be an array:
+         [non-empty string, ...] (should not have fewer than 1 item)"
+`;
+
+exports[`validate options should throw an error on the "exposes" option with "{"moduleLocalName":true}" value 1`] = `
+"Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
+ - options.exposes.moduleLocalName should be a non-empty string.
+   -> he name of method/variable/etc of the module (the module must export it)."
+`;
+
+exports[`validate options should throw an error on the "exposes" option with "{"override":"test"}" value 1`] = `
+"Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
+ - options.exposes.override should be a boolean.
+   -> Configure loader to override the existing value in the global object."
+`;
+
 exports[`validate options should throw an error on the "exposes" option with "{}" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options.exposes misses the property 'globalName'. Should be:
-   non-empty string | [non-empty string, ...] (should not have fewer than 1 item)"
+   non-empty string | [non-empty string, ...] (should not have fewer than 1 item)
+   -> The name in the global object."
 `;
 
 exports[`validate options should throw an error on the "exposes" option with "false" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options.exposes should be one of these:
    non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)
+   -> List of exposes.
    Details:
     * options.exposes should be a non-empty string.
     * options.exposes should be an object:
@@ -43,6 +73,7 @@ exports[`validate options should throw an error on the "exposes" option with "tr
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options.exposes should be one of these:
    non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)
+   -> List of exposes.
    Details:
     * options.exposes should be a non-empty string.
     * options.exposes should be an object:
@@ -54,47 +85,55 @@ exports[`validate options should throw an error on the "exposes" option with "tr
 exports[`validate options should throw an error on the "unknown" option with "/test/" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options misses the property 'exposes'. Should be:
-   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)"
+   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)
+   -> List of exposes."
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "[]" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options misses the property 'exposes'. Should be:
-   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)"
+   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)
+   -> List of exposes."
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "{"foo":"bar"}" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options misses the property 'exposes'. Should be:
-   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)"
+   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)
+   -> List of exposes."
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "{}" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options misses the property 'exposes'. Should be:
-   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)"
+   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)
+   -> List of exposes."
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "1" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options misses the property 'exposes'. Should be:
-   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)"
+   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)
+   -> List of exposes."
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "false" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options misses the property 'exposes'. Should be:
-   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)"
+   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)
+   -> List of exposes."
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "test" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options misses the property 'exposes'. Should be:
-   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)"
+   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)
+   -> List of exposes."
 `;
 
 exports[`validate options should throw an error on the "unknown" option with "true" value 1`] = `
 "Invalid options object. Expose Loader has been initialized using an options object that does not match the API schema.
  - options misses the property 'exposes'. Should be:
-   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)"
+   non-empty string | object { globalName, moduleLocalName?, override? } | [non-empty string | object { globalName, moduleLocalName?, override? }, ...] (should not have fewer than 1 item)
+   -> List of exposes."
 `;
