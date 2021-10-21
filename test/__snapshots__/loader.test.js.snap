@@ -116,8 +116,6 @@ module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
-exports[`loader should throw an error on existing nested value in the global object: runtime error 1`] = `"Cannot read property 'bar' of undefined"`;
-
 exports[`loader should throw an error on existing nested value in the global object: warnings 1`] = `Array []`;
 
 exports[`loader should throw an error on existing value in the global object in the "development" mode: errors 1`] = `Array []`;
@@ -1072,6 +1070,7 @@ Object {
             "isServer": true,
             "useCSSOMInjection": true,
           },
+          "server": false,
         },
       },
       "createGlobalStyle": [Function],
@@ -1080,7 +1079,7 @@ Object {
       "isStyledComponent": [Function],
       "keyframes": [Function],
       "useTheme": [Function],
-      "version": "5.3.0",
+      "version": "5.3.3",
       "withTheme": [Function],
     },
   },
