@@ -93,7 +93,15 @@ function getExposes(items) {
   return result;
 }
 
-function contextify(context, request) {
+// TODO simplify for the next major release
+function contextify(loaderContext, context, request) {
+  if (
+    typeof loaderContext.utils !== "undefined" &&
+    typeof loaderContext.utils.contextify === "function"
+  ) {
+    loaderContext.utils.contextify(loaderContext.context, request);
+  }
+
   return request
     .split("!")
     .map((r) => {
@@ -124,7 +132,17 @@ function isAbsolutePath(str) {
   return path.posix.isAbsolute(str) || path.win32.isAbsolute(str);
 }
 
+// TODO simplify for the next major release
 function stringifyRequest(loaderContext, request) {
+  if (
+    typeof loaderContext.utils !== "undefined" &&
+    typeof loaderContext.utils.contextify === "function"
+  ) {
+    return JSON.stringify(
+      loaderContext.utils.contextify(loaderContext.context, request)
+    );
+  }
+
   const splitted = request.split("!");
   const context =
     loaderContext.context ||

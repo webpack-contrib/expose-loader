@@ -46,9 +46,9 @@ export default function loader() {
     this._module.factoryMeta.sideEffectFree = false;
   }
 
-  // Change the request from an /abolute/path.js to a relative ./path.js.
-  // This prevents [chunkhash] values from changing when running webpack builds in different directories.
-  const newRequest = contextify(this.context, this.remainingRequest);
+  // Change the request from an /absolute/path.js to a relative ./path.js.
+  // This prevents `[chunkhash]` values from changing when running webpack builds in different directories.
+  const newRequest = contextify(this, this.context, this.remainingRequest);
   const stringifiedNewRequest = stringifyRequest(this, `-!${newRequest}`);
 
   let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${stringifiedNewRequest});\n`;
