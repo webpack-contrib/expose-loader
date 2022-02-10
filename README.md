@@ -134,8 +134,8 @@ type exposes =
   | string
   | {
       globalName: string | Array<string>;
-      moduleLocalName: string;
-      override: boolean;
+      moduleLocalName?: string;
+      override?: boolean;
     }
   | Array<
       | string
