@@ -23,7 +23,19 @@ For further hints on compatibility issues, check out [Shimming](https://webpack.
 To begin, you'll need to install `expose-loader`:
 
 ```console
-$ npm install expose-loader --save-dev
+npm install expose-loader --save-dev
+```
+
+or
+
+```console
+yarn add -D expose-loader
+```
+
+or
+
+```console
+pnpm -D expose-loader
 ```
 
 (If you're using WebPack 4, install `expose-loader@1` and follow the [corresponding instructions](https://v4.webpack.js.org/loaders/expose-loader/) instead.)
@@ -115,16 +127,35 @@ And run `webpack` via your preferred method.
 
 ### `exposes`
 
-Type: `String|Object|Array<String|Object>`
+Type:
+
+```ts
+type exposes =
+  | string
+  | {
+      globalName: string | Array<string>;
+      moduleLocalName: string;
+      override: boolean;
+    }
+  | Array<
+      | string
+      | {
+          globalName: string | Array<string>;
+          moduleLocalName?: string;
+          override?: boolean;
+        }
+    >;
+```
+
 Default: `undefined`
 
 List of exposes.
 
-#### `String`
+#### `string`
 
 Allows to use a string to describe an expose.
 
-##### `Syntax`
+##### `syntax`
 
 The `|` or `%20` (space) allow to separate the `globalName`, `moduleLocalName` and `override` of expose.
 
@@ -161,13 +192,18 @@ module.exports = {
 };
 ```
 
-#### `Object`
+#### `object`
 
 Allows to use an object to describe an expose.
 
 ##### `globalName`
 
-Type: `String|Array<String>`
+Type:
+
+```ts
+type globalName = string | Array<string>;
+```
+
 Default: `undefined`
 
 The name in the global object. (**required**).
@@ -202,7 +238,12 @@ module.exports = {
 
 ##### `moduleLocalName`
 
-Type: `String`
+Type:
+
+```ts
+type moduleLocalName = string;
+```
+
 Default: `undefined`
 
 The name of method/variable/etc of the module (the module must export it).
@@ -237,7 +278,12 @@ module.exports = {
 
 ##### `override`
 
-Type: `Boolean`
+Type:
+
+```ts
+type override = boolean;
+```
+
 Default: `false`
 
 By default loader does not override the existing value in the global object, because it is unsafe.
@@ -273,7 +319,7 @@ module.exports = {
 };
 ```
 
-#### `Array`
+#### `array`
 
 **src/index.js**
 
