@@ -74,6 +74,7 @@ jobs:
         run: npm ci
 
       - name: Run tests for webpack version ${{ matrix.webpack-version }}
+        if: matrix.webpack-version != 'latest'
         run: npm run test:coverage -- --ci
 
       - name: Submit coverage data to codecov
