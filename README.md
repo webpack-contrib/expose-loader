@@ -34,7 +34,7 @@ yarn add -D expose-loader
 or
 
 ```console
-pnpm -D expose-loader
+pnpm add -D expose-loader
 ```
 
 (If you're using WebPack 4, install `expose-loader@1` and follow the [corresponding instructions](https://v4.webpack.js.org/loaders/expose-loader/) instead.)
