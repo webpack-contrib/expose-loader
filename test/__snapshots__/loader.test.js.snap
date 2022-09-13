@@ -1,27 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`loader should be different modules id: errors 1`] = `Array []`;
+exports[`loader should be different modules id: errors 1`] = `[]`;
 
 exports[`loader should be different modules id: result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "default": Object {
+{
+  "ExposeLoader": {
+    "default": {
       "default": [Function],
-      "globalObject6": Object {
+      "globalObject6": {
         "foo": "bar",
       },
-      "globalObject7": Object {
+      "globalObject7": {
         "bar": "foo",
       },
     },
   },
-  "myGlobal_alias": Object {
-    "default": Object {
+  "myGlobal_alias": {
+    "default": {
       "default": [Function],
-      "globalObject6": Object {
+      "globalObject6": {
         "foo": "bar",
       },
-      "globalObject7": Object {
+      "globalObject7": {
         "bar": "foo",
       },
     },
@@ -29,838 +29,838 @@ Object {
 }
 `;
 
-exports[`loader should be different modules id: warnings 1`] = `Array []`;
+exports[`loader should be different modules id: warnings 1`] = `[]`;
 
 exports[`loader should emit error because of invalid arguments: errors 1`] = `
-Array [
+[
   "ModuleBuildError: Module build failed (from \`replaced original path\`):
-Error: Invalid command \\"\\" in \\"myGlobal_alias  |  globalObject6\\" for expose. There must be only one separator: \\" \\", or \\"|\\".",
+Error: Invalid command "" in "myGlobal_alias  |  globalObject6" for expose. There must be only one separator: " ", or "|".",
 ]
 `;
 
-exports[`loader should emit error because of invalid arguments: warnings 1`] = `Array []`;
+exports[`loader should emit error because of invalid arguments: warnings 1`] = `[]`;
 
-exports[`loader should emit error because of many arguments: errors 1`] = `Array []`;
+exports[`loader should emit error because of many arguments: errors 1`] = `[]`;
 
-exports[`loader should emit error because of many arguments: warnings 1`] = `Array []`;
+exports[`loader should emit error because of many arguments: warnings 1`] = `[]`;
 
-exports[`loader should match hashes on all operating systems: errors 1`] = `Array []`;
+exports[`loader should match hashes on all operating systems: errors 1`] = `[]`;
 
 exports[`loader should match hashes on all operating systems: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./simple-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./simple-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
-exports[`loader should match hashes on all operating systems: warnings 1`] = `Array []`;
+exports[`loader should match hashes on all operating systems: warnings 1`] = `[]`;
 
-exports[`loader should not override existing value in the global object in the "production" mode: errors 1`] = `Array []`;
+exports[`loader should not override existing value in the global object in the "production" mode: errors 1`] = `[]`;
 
 exports[`loader should not override existing value in the global object in the "production" mode: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should not override existing value in the global object in the "production" mode: result 1`] = `
-Object {
+{
   "ExposeLoader": "no exports",
-  "global-commonjs2-single-export": Object {
+  "global-commonjs2-single-export": {
     "foo": "bar",
   },
   "myGlobal": "not overridden",
-  "myOtherGlobal": Object {
+  "myOtherGlobal": {
     "foo": "not overridden",
   },
 }
 `;
 
-exports[`loader should not override existing value in the global object in the "production" mode: warnings 1`] = `Array []`;
+exports[`loader should not override existing value in the global object in the "production" mode: warnings 1`] = `[]`;
 
-exports[`loader should throw an error on existing module local value in the global object: errors 1`] = `Array []`;
+exports[`loader should throw an error on existing module local value in the global object: errors 1`] = `[]`;
 
 exports[`loader should throw an error on existing module local value in the global object: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.foo
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
-exports[`loader should throw an error on existing module local value in the global object: runtime error 1`] = `"[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option"`;
+exports[`loader should throw an error on existing module local value in the global object: runtime error 1`] = `"[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option"`;
 
-exports[`loader should throw an error on existing module local value in the global object: warnings 1`] = `Array []`;
+exports[`loader should throw an error on existing module local value in the global object: warnings 1`] = `[]`;
 
-exports[`loader should throw an error on existing nested value in the global object: errors 1`] = `Array []`;
+exports[`loader should throw an error on existing nested value in the global object: errors 1`] = `[]`;
 
 exports[`loader should throw an error on existing nested value in the global object: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"][\\"foo\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"][\\"foo\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"][\\"foo\\"][\\"bar\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"][\\"foo\\"][\\"bar\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"][\\"foo\\"][\\"bar\\"][\\"bar\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"][\\"foo\\"][\\"bar\\"][\\"bar\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myOtherGlobal.foo.bar.bar\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"]["foo"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"]["foo"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"]["foo"]["bar"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"]["foo"]["bar"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"]["foo"]["bar"]["bar"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"]["foo"]["bar"]["bar"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myOtherGlobal.foo.bar.bar" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
-exports[`loader should throw an error on existing nested value in the global object: warnings 1`] = `Array []`;
+exports[`loader should throw an error on existing nested value in the global object: warnings 1`] = `[]`;
 
-exports[`loader should throw an error on existing value in the global object in the "development" mode: errors 1`] = `Array []`;
+exports[`loader should throw an error on existing value in the global object in the "development" mode: errors 1`] = `[]`;
 
 exports[`loader should throw an error on existing value in the global object in the "development" mode: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
-exports[`loader should throw an error on existing value in the global object in the "development" mode: runtime error 1`] = `"[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option"`;
+exports[`loader should throw an error on existing value in the global object in the "development" mode: runtime error 1`] = `"[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option"`;
 
-exports[`loader should throw an error on existing value in the global object in the "development" mode: warnings 1`] = `Array []`;
+exports[`loader should throw an error on existing value in the global object in the "development" mode: warnings 1`] = `[]`;
 
 exports[`loader should throw an error on invalid exposed value: errors 1`] = `
-Array [
+[
   "ModuleBuildError: Module build failed (from \`replaced original path\`):
-Error: Invalid \\"myGlobal foo bar baz\\" for exposes",
+Error: Invalid "myGlobal foo bar baz" for exposes",
 ]
 `;
 
-exports[`loader should throw an error on invalid exposed value: warnings 1`] = `Array []`;
+exports[`loader should throw an error on invalid exposed value: warnings 1`] = `[]`;
 
-exports[`loader should work and override existing module local value in the global object: errors 1`] = `Array []`;
+exports[`loader should work and override existing module local value in the global object: errors 1`] = `[]`;
 
 exports[`loader should work and override existing module local value in the global object: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.foo
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work and override existing module local value in the global object: result 1`] = `
-Object {
+{
   "ExposeLoader": "no exports",
-  "global-commonjs2-single-export": Object {
+  "global-commonjs2-single-export": {
     "foo": "bar",
   },
   "myGlobal": "bar",
-  "myOtherGlobal": Object {
+  "myOtherGlobal": {
     "foo": "not overridden",
   },
 }
 `;
 
-exports[`loader should work and override existing module local value in the global object: warnings 1`] = `Array []`;
+exports[`loader should work and override existing module local value in the global object: warnings 1`] = `[]`;
 
-exports[`loader should work and override existing nested value in the global object: errors 1`] = `Array []`;
+exports[`loader should work and override existing nested value in the global object: errors 1`] = `[]`;
 
 exports[`loader should work and override existing nested value in the global object: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = {};
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"][\\"foo\\"] = ___EXPOSE_LOADER_IMPORT___;
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"] = {};
+___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"]["foo"] = ___EXPOSE_LOADER_IMPORT___;
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work and override existing nested value in the global object: result 1`] = `
-Object {
+{
   "ExposeLoader": "no exports",
-  "global-commonjs2-single-export": Object {
+  "global-commonjs2-single-export": {
     "foo": "bar",
   },
   "myGlobal": "not overridden",
-  "myOtherGlobal": Object {
-    "foo": Object {
+  "myOtherGlobal": {
+    "foo": {
       "foo": "bar",
     },
   },
 }
 `;
 
-exports[`loader should work and override existing nested value in the global object: warnings 1`] = `Array []`;
+exports[`loader should work and override existing nested value in the global object: warnings 1`] = `[]`;
 
-exports[`loader should work and override existing value in the global object in the "development" mode: errors 1`] = `Array []`;
+exports[`loader should work and override existing value in the global object in the "development" mode: errors 1`] = `[]`;
 
 exports[`loader should work and override existing value in the global object in the "development" mode: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
+___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work and override existing value in the global object in the "development" mode: result 1`] = `
-Object {
+{
   "ExposeLoader": "no exports",
-  "global-commonjs2-single-export": Object {
+  "global-commonjs2-single-export": {
     "foo": "bar",
   },
-  "myGlobal": Object {
+  "myGlobal": {
     "foo": "bar",
   },
-  "myOtherGlobal": Object {
+  "myOtherGlobal": {
     "foo": "not overridden",
   },
 }
 `;
 
-exports[`loader should work and override existing value in the global object in the "development" mode: warnings 1`] = `Array []`;
+exports[`loader should work and override existing value in the global object in the "development" mode: warnings 1`] = `[]`;
 
-exports[`loader should work and override existing value in the global object in the "production" mode: errors 1`] = `Array []`;
+exports[`loader should work and override existing value in the global object in the "production" mode: errors 1`] = `[]`;
 
 exports[`loader should work and override existing value in the global object in the "production" mode: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
+___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work and override existing value in the global object in the "production" mode: result 1`] = `
-Object {
+{
   "ExposeLoader": "no exports",
-  "global-commonjs2-single-export": Object {
+  "global-commonjs2-single-export": {
     "foo": "bar",
   },
-  "myGlobal": Object {
+  "myGlobal": {
     "foo": "bar",
   },
-  "myOtherGlobal": Object {
+  "myOtherGlobal": {
     "foo": "not overridden",
   },
 }
 `;
 
-exports[`loader should work and override existing value in the global object in the "production" mode: warnings 1`] = `Array []`;
+exports[`loader should work and override existing value in the global object in the "production" mode: warnings 1`] = `[]`;
 
-exports[`loader should work for a nested property for a global object: errors 1`] = `Array []`;
+exports[`loader should work for a nested property for a global object: errors 1`] = `[]`;
 
 exports[`loader should work for a nested property for a global object: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"nested\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"nested\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal.nested\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"]["nested"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"]["nested"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal.nested" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work for a nested property for a global object: result 1`] = `
-Object {
-  "ExposeLoader": Object {
+{
+  "ExposeLoader": {
     "foo": "bar",
   },
-  "myGlobal": Object {
-    "nested": Object {
+  "myGlobal": {
+    "nested": {
       "foo": "bar",
     },
   },
 }
 `;
 
-exports[`loader should work for a nested property for a global object: warnings 1`] = `Array []`;
+exports[`loader should work for a nested property for a global object: warnings 1`] = `[]`;
 
-exports[`loader should work for nested properties for a global object: errors 1`] = `Array []`;
+exports[`loader should work for nested properties for a global object: errors 1`] = `[]`;
 
 exports[`loader should work for nested properties for a global object: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"nested\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"nested\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal.nested\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"]["nested"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"]["nested"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal.nested" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.foo
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"][\\"nested\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"][\\"nested\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myOtherGlobal.nested\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"]["nested"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"]["nested"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myOtherGlobal.nested" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work for nested properties for a global object: result 1`] = `
-Object {
-  "ExposeLoader": Object {
+{
+  "ExposeLoader": {
     "foo": "bar",
   },
-  "myGlobal": Object {
-    "nested": Object {
+  "myGlobal": {
+    "nested": {
       "foo": "bar",
     },
   },
-  "myOtherGlobal": Object {
+  "myOtherGlobal": {
     "nested": "bar",
   },
 }
 `;
 
-exports[`loader should work for nested properties for a global object: warnings 1`] = `Array []`;
+exports[`loader should work for nested properties for a global object: warnings 1`] = `[]`;
 
-exports[`loader should work from esModule export: errors 1`] = `Array []`;
+exports[`loader should work from esModule export: errors 1`] = `[]`;
 
 exports[`loader should work from esModule export: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-default-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-module-default-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work from esModule export: result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "default": Object {
+{
+  "ExposeLoader": {
+    "default": {
       "foo": "bar",
     },
   },
-  "myGlobal": Object {
-    "default": Object {
+  "myGlobal": {
+    "default": {
       "foo": "bar",
     },
   },
 }
 `;
 
-exports[`loader should work from esModule export: warnings 1`] = `Array []`;
+exports[`loader should work from esModule export: warnings 1`] = `[]`;
 
-exports[`loader should work inline 1 with config loader options: errors 1`] = `Array []`;
+exports[`loader should work inline 1 with config loader options: errors 1`] = `[]`;
 
 exports[`loader should work inline 1 with config loader options: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!../../node_modules/babel-loader/lib/index.js??{{config-reference}}!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!../../node_modules/babel-loader/lib/index.js??{{config-reference}}!./global-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work inline 1 with config loader options: result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "default": Object {
+{
+  "ExposeLoader": {
+    "default": {
       "exposedEqualsGlobal": true,
       "exposedEqualsImported": true,
       "importedEqualsGlobal": true,
     },
   },
-  "myGlobal": Object {
+  "myGlobal": {
     "foo": "bar",
   },
 }
 `;
 
-exports[`loader should work inline 1 with config loader options: warnings 1`] = `Array []`;
+exports[`loader should work inline 1 with config loader options: warnings 1`] = `[]`;
 
-exports[`loader should work inline 1 without extension: errors 1`] = `Array []`;
+exports[`loader should work inline 1 without extension: errors 1`] = `[]`;
 
 exports[`loader should work inline 1 without extension: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!../../node_modules/babel-loader/lib/index.js!./custom?foo=bar\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!../../node_modules/babel-loader/lib/index.js!./custom?foo=bar");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.default
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work inline 1 without extension: result 1`] = `
-Object {
-  "ExposeLoader": Object {
+{
+  "ExposeLoader": {
     "default": "Tokyo",
   },
   "myGlobal": "Tokyo",
 }
 `;
 
-exports[`loader should work inline 1 without extension: warnings 1`] = `Array []`;
+exports[`loader should work inline 1 without extension: warnings 1`] = `[]`;
 
-exports[`loader should work inline 1: errors 1`] = `Array []`;
+exports[`loader should work inline 1: errors 1`] = `[]`;
 
 exports[`loader should work inline 1: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!../../node_modules/babel-loader/lib/index.js!./custom.js?foo=bar\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!../../node_modules/babel-loader/lib/index.js!./custom.js?foo=bar");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.default
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work inline 1: result 1`] = `
-Object {
-  "ExposeLoader": Object {
+{
+  "ExposeLoader": {
     "default": "Tokyo",
   },
   "myGlobal": "Tokyo",
 }
 `;
 
-exports[`loader should work inline 1: warnings 1`] = `Array []`;
+exports[`loader should work inline 1: warnings 1`] = `[]`;
 
-exports[`loader should work inline 2: errors 1`] = `Array []`;
+exports[`loader should work inline 2: errors 1`] = `[]`;
 
 exports[`loader should work inline 2: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./simple-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./simple-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work inline 2: result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "myExports": Object {
+{
+  "ExposeLoader": {
+    "myExports": {
       "foo": "bar",
     },
-    "myExports2": Object {
-      "globalObject2": Object {
+    "myExports2": {
+      "globalObject2": {
         "foo": "bar",
       },
-      "globalObject3": Object {
+      "globalObject3": {
         "bar": "foo",
       },
     },
   },
-  "myGlobal": Object {
+  "myGlobal": {
     "foo": "bar",
   },
-  "myOtherGlobal": Object {
-    "globalObject2": Object {
+  "myOtherGlobal": {
+    "globalObject2": {
       "foo": "bar",
     },
-    "globalObject3": Object {
+    "globalObject3": {
       "bar": "foo",
     },
   },
 }
 `;
 
-exports[`loader should work inline 2: warnings 1`] = `Array []`;
+exports[`loader should work inline 2: warnings 1`] = `[]`;
 
-exports[`loader should work interpolate: errors 1`] = `Array []`;
+exports[`loader should work interpolate: errors 1`] = `[]`;
 
 exports[`loader should work interpolate: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"global-commonjs2-single-export\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"global-commonjs2-single-export\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"[name]\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"global-commonjs2-single-export\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"global-commonjs2-single-export\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal.[name]\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["global-commonjs2-single-export"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["global-commonjs2-single-export"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "[name]" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"]["global-commonjs2-single-export"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"]["global-commonjs2-single-export"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal.[name]" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work interpolate: result 1`] = `
-Object {
-  "ExposeLoader": Object {
+{
+  "ExposeLoader": {
     "foo": "bar",
   },
-  "global-commonjs2-single-export": Object {
+  "global-commonjs2-single-export": {
     "foo": "bar",
   },
-  "myGlobal": Object {
-    "global-commonjs2-single-export": Object {
+  "myGlobal": {
+    "global-commonjs2-single-export": {
       "foo": "bar",
     },
   },
 }
 `;
 
-exports[`loader should work interpolate: warnings 1`] = `Array []`;
+exports[`loader should work interpolate: warnings 1`] = `[]`;
 
-exports[`loader should work multiple commonjs exports: errors 1`] = `Array []`;
+exports[`loader should work multiple commonjs exports: errors 1`] = `[]`;
 
 exports[`loader should work multiple commonjs exports: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-multiple-exports.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-multiple-exports.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myOtherGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myOtherGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject2
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"globalObject2\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"][\\"globalObject2\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myGlobal.globalObject2\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"]["globalObject2"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"]["globalObject2"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myGlobal.globalObject2" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work multiple commonjs exports: result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "globalObject2": Object {
+{
+  "ExposeLoader": {
+    "globalObject2": {
       "foo": "bar",
     },
-    "globalObject3": Object {
+    "globalObject3": {
       "bar": "foo",
     },
   },
-  "myGlobal": Object {
-    "globalObject2": Object {
+  "myGlobal": {
+    "globalObject2": {
       "foo": "bar",
     },
   },
-  "myOtherGlobal": Object {
-    "globalObject2": Object {
+  "myOtherGlobal": {
+    "globalObject2": {
       "foo": "bar",
     },
-    "globalObject3": Object {
+    "globalObject3": {
       "bar": "foo",
     },
   },
 }
 `;
 
-exports[`loader should work multiple commonjs exports: warnings 1`] = `Array []`;
+exports[`loader should work multiple commonjs exports: warnings 1`] = `[]`;
 
-exports[`loader should work multiple syntax to array: errors 1`] = `Array []`;
+exports[`loader should work multiple syntax to array: errors 1`] = `[]`;
 
 exports[`loader should work multiple syntax to array: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-named-exports.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-module-named-exports.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject6
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject6\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject6\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myGlobal_alias.globalObject6\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["globalObject6"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["globalObject6"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myGlobal_alias.globalObject6" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject7
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject7\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject7\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myGlobal_alias.globalObject7\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["globalObject7"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["globalObject7"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myGlobal_alias.globalObject7" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.default
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"default\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"default\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myGlobal_alias.default\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["default"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["default"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myGlobal_alias.default" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work multiple syntax to array: result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "default": Object {
+{
+  "ExposeLoader": {
+    "default": {
       "default": [Function],
-      "globalObject6": Object {
+      "globalObject6": {
         "foo": "bar",
       },
-      "globalObject7": Object {
+      "globalObject7": {
         "bar": "foo",
       },
     },
   },
-  "myGlobal_alias": Object {
+  "myGlobal_alias": {
     "default": [Function],
-    "globalObject6": Object {
+    "globalObject6": {
       "foo": "bar",
     },
-    "globalObject7": Object {
+    "globalObject7": {
       "bar": "foo",
     },
   },
 }
 `;
 
-exports[`loader should work multiple syntax to array: warnings 1`] = `Array []`;
+exports[`loader should work multiple syntax to array: warnings 1`] = `[]`;
 
-exports[`loader should work object config: errors 1`] = `Array []`;
+exports[`loader should work object config: errors 1`] = `[]`;
 
 exports[`loader should work object config: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-named-exports.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-module-named-exports.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject6
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal.alias\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal.alias\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal.alias\\"][\\"globalObject6\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal.alias\\"][\\"globalObject6\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myGlobal.alias.globalObject6\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal.alias"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal.alias"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal.alias"]["globalObject6"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal.alias"]["globalObject6"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myGlobal.alias.globalObject6" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work object config: result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "default": Object {
+{
+  "ExposeLoader": {
+    "default": {
       "default": [Function],
-      "globalObject6": Object {
+      "globalObject6": {
         "foo": "bar",
       },
-      "globalObject7": Object {
+      "globalObject7": {
         "bar": "foo",
       },
     },
   },
-  "myGlobal.alias": Object {
-    "globalObject6": Object {
+  "myGlobal.alias": {
+    "globalObject6": {
       "foo": "bar",
     },
   },
 }
 `;
 
-exports[`loader should work object config: warnings 1`] = `Array []`;
+exports[`loader should work object config: warnings 1`] = `[]`;
 
-exports[`loader should work string config 2: errors 1`] = `Array []`;
+exports[`loader should work string config 2: errors 1`] = `[]`;
 
 exports[`loader should work string config 2: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-named-exports.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-module-named-exports.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject6
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject6\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject6\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myGlobal_alias.globalObject6\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["globalObject6"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["globalObject6"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myGlobal_alias.globalObject6" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject7
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject7\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject7\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myGlobal_alias.globalObject7\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["globalObject7"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["globalObject7"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myGlobal_alias.globalObject7" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.default
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"default\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"default\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myGlobal_alias.default\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myOtherGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["default"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["default"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myGlobal_alias.default" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myOtherGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work string config 2: result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "default": Object {
+{
+  "ExposeLoader": {
+    "default": {
       "default": [Function],
-      "globalObject6": Object {
+      "globalObject6": {
         "foo": "bar",
       },
-      "globalObject7": Object {
+      "globalObject7": {
         "bar": "foo",
       },
     },
   },
-  "myGlobal": Object {
+  "myGlobal": {
     "default": [Function],
-    "globalObject6": Object {
+    "globalObject6": {
       "foo": "bar",
     },
-    "globalObject7": Object {
+    "globalObject7": {
       "bar": "foo",
     },
   },
-  "myGlobal_alias": Object {
+  "myGlobal_alias": {
     "default": [Function],
-    "globalObject6": Object {
+    "globalObject6": {
       "foo": "bar",
     },
-    "globalObject7": Object {
+    "globalObject7": {
       "bar": "foo",
     },
   },
-  "myOtherGlobal": Object {
+  "myOtherGlobal": {
     "default": [Function],
-    "globalObject6": Object {
+    "globalObject6": {
       "foo": "bar",
     },
-    "globalObject7": Object {
+    "globalObject7": {
       "bar": "foo",
     },
   },
 }
 `;
 
-exports[`loader should work string config 2: warnings 1`] = `Array []`;
+exports[`loader should work string config 2: warnings 1`] = `[]`;
 
-exports[`loader should work string config: errors 1`] = `Array []`;
+exports[`loader should work string config: errors 1`] = `[]`;
 
 exports[`loader should work string config: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-named-exports.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-module-named-exports.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject6
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject6\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject6\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myGlobal_alias.globalObject6\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["globalObject6"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["globalObject6"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myGlobal_alias.globalObject6" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.globalObject7
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject7\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"globalObject7\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myGlobal_alias.globalObject7\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["globalObject7"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["globalObject7"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myGlobal_alias.globalObject7" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.default
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"] = {};
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"default\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal_alias\\"][\\"default\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"myGlobal_alias.default\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myOtherGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"] = {};
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["default"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal_alias"]["default"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "myGlobal_alias.default" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myOtherGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work string config: result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "default": Object {
+{
+  "ExposeLoader": {
+    "default": {
       "default": [Function],
-      "globalObject6": Object {
+      "globalObject6": {
         "foo": "bar",
       },
-      "globalObject7": Object {
+      "globalObject7": {
         "bar": "foo",
       },
     },
   },
-  "myGlobal": Object {
+  "myGlobal": {
     "default": [Function],
-    "globalObject6": Object {
+    "globalObject6": {
       "foo": "bar",
     },
-    "globalObject7": Object {
+    "globalObject7": {
       "bar": "foo",
     },
   },
-  "myGlobal_alias": Object {
+  "myGlobal_alias": {
     "default": [Function],
-    "globalObject6": Object {
+    "globalObject6": {
       "foo": "bar",
     },
-    "globalObject7": Object {
+    "globalObject7": {
       "bar": "foo",
     },
   },
-  "myOtherGlobal": Object {
+  "myOtherGlobal": {
     "default": [Function],
-    "globalObject6": Object {
+    "globalObject6": {
       "foo": "bar",
     },
-    "globalObject7": Object {
+    "globalObject7": {
       "bar": "foo",
     },
   },
 }
 `;
 
-exports[`loader should work string config: warnings 1`] = `Array []`;
+exports[`loader should work string config: warnings 1`] = `[]`;
 
-exports[`loader should work with "moduleLocalName": errors 1`] = `Array []`;
+exports[`loader should work with "moduleLocalName": errors 1`] = `[]`;
 
 exports[`loader should work with "moduleLocalName": module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-multiple-exports.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-multiple-exports.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
 var ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___ = ___EXPOSE_LOADER_IMPORT___.myGlobal
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"moduleMethod\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"moduleMethod\\"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
-else throw new Error('[exposes-loader] The \\"moduleMethod\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["moduleMethod"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["moduleMethod"] = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;
+else throw new Error('[exposes-loader] The "moduleMethod" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work with "moduleLocalName": result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "globalObject2": Object {
+{
+  "ExposeLoader": {
+    "globalObject2": {
       "foo": "bar",
     },
-    "globalObject3": Object {
+    "globalObject3": {
       "bar": "foo",
     },
   },
 }
 `;
 
-exports[`loader should work with "moduleLocalName": warnings 1`] = `Array []`;
+exports[`loader should work with "moduleLocalName": warnings 1`] = `[]`;
 
-exports[`loader should work with CommonJS format when module in CommonJS format: errors 1`] = `Array []`;
+exports[`loader should work with CommonJS format when module in CommonJS format: errors 1`] = `[]`;
 
 exports[`loader should work with CommonJS format when module in CommonJS format: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-commonjs.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-module-commonjs.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work with CommonJS format when module in CommonJS format: result 1`] = `
-Object {
-  "ExposeLoader": Object {
+{
+  "ExposeLoader": {
     "foo": "bar",
     "myMethod": [Function],
   },
-  "global-commonjs2-single-export": Object {
+  "global-commonjs2-single-export": {
     "foo": "bar",
   },
-  "myGlobal": Object {
+  "myGlobal": {
     "foo": "bar",
     "myMethod": [Function],
   },
 }
 `;
 
-exports[`loader should work with CommonJS format when module in CommonJS format: warnings 1`] = `Array []`;
+exports[`loader should work with CommonJS format when module in CommonJS format: warnings 1`] = `[]`;
 
-exports[`loader should work with CommonJS module format when module in ES module format: errors 1`] = `Array []`;
+exports[`loader should work with CommonJS module format when module in ES module format: errors 1`] = `[]`;
 
 exports[`loader should work with CommonJS module format when module in ES module format: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-es.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-module-es.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work with CommonJS module format when module in ES module format: result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "bar": Array [
+{
+  "ExposeLoader": {
+    "bar": [
       "test",
     ],
-    "default": Object {
+    "default": {
       "foo": "bar",
       "myMethod": [Function],
     },
   },
-  "global-commonjs2-single-export": Object {
+  "global-commonjs2-single-export": {
     "foo": "bar",
   },
-  "myGlobal": Object {
-    "bar": Array [
+  "myGlobal": {
+    "bar": [
       "test",
     ],
-    "default": Object {
+    "default": {
       "foo": "bar",
       "myMethod": [Function],
     },
@@ -868,63 +868,63 @@ Object {
 }
 `;
 
-exports[`loader should work with CommonJS module format when module in ES module format: warnings 1`] = `Array []`;
+exports[`loader should work with CommonJS module format when module in ES module format: warnings 1`] = `[]`;
 
-exports[`loader should work with ES module format when module in CommonJS format: errors 1`] = `Array []`;
+exports[`loader should work with ES module format when module in CommonJS format: errors 1`] = `[]`;
 
 exports[`loader should work with ES module format when module in CommonJS format: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-commonjs.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-module-commonjs.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work with ES module format when module in CommonJS format: result 1`] = `
-Object {
-  "ExposeLoader": Object {
+{
+  "ExposeLoader": {
     "foo": "bar",
     "myMethod": [Function],
   },
-  "global-commonjs2-single-export": Object {
+  "global-commonjs2-single-export": {
     "foo": "bar",
   },
-  "myGlobal": Object {
+  "myGlobal": {
     "foo": "bar",
     "myMethod": [Function],
   },
 }
 `;
 
-exports[`loader should work with ES module format when module in CommonJS format: warnings 1`] = `Array []`;
+exports[`loader should work with ES module format when module in CommonJS format: warnings 1`] = `[]`;
 
-exports[`loader should work with ES module format when module in ES format without default: errors 1`] = `Array []`;
+exports[`loader should work with ES module format when module in ES format without default: errors 1`] = `[]`;
 
 exports[`loader should work with ES module format when module in ES format without default: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-es-without-default.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-module-es-without-default.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work with ES module format when module in ES format without default: result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "foo": Object {
+{
+  "ExposeLoader": {
+    "foo": {
       "foo": "bar",
       "myMethod": [Function],
     },
   },
-  "global-commonjs2-single-export": Object {
+  "global-commonjs2-single-export": {
     "foo": "bar",
   },
-  "myGlobal": Object {
-    "foo": Object {
+  "myGlobal": {
+    "foo": {
       "foo": "bar",
       "myMethod": [Function],
     },
@@ -932,39 +932,39 @@ Object {
 }
 `;
 
-exports[`loader should work with ES module format when module in ES format without default: warnings 1`] = `Array []`;
+exports[`loader should work with ES module format when module in ES format without default: warnings 1`] = `[]`;
 
-exports[`loader should work with ES module format when module in ES format: errors 1`] = `Array []`;
+exports[`loader should work with ES module format when module in ES format: errors 1`] = `[]`;
 
 exports[`loader should work with ES module format when module in ES format: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-module-es.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-module-es.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work with ES module format when module in ES format: result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "bar": Array [
+{
+  "ExposeLoader": {
+    "bar": [
       "test",
     ],
-    "default": Object {
+    "default": {
       "foo": "bar",
       "myMethod": [Function],
     },
   },
-  "global-commonjs2-single-export": Object {
+  "global-commonjs2-single-export": {
     "foo": "bar",
   },
-  "myGlobal": Object {
-    "bar": Array [
+  "myGlobal": {
+    "bar": [
       "test",
     ],
-    "default": Object {
+    "default": {
       "foo": "bar",
       "myMethod": [Function],
     },
@@ -972,49 +972,49 @@ Object {
 }
 `;
 
-exports[`loader should work with ES module format when module in ES format: warnings 1`] = `Array []`;
+exports[`loader should work with ES module format when module in ES format: warnings 1`] = `[]`;
 
-exports[`loader should work with multiple exposes: errors 1`] = `Array []`;
+exports[`loader should work with multiple exposes: errors 1`] = `[]`;
 
 exports[`loader should work with multiple exposes: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myOtherGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myOtherGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myOtherGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myOtherGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work with multiple exposes: result 1`] = `
-Object {
-  "ExposeLoader": Object {
+{
+  "ExposeLoader": {
     "foo": "bar",
   },
-  "myGlobal": Object {
+  "myGlobal": {
     "foo": "bar",
   },
-  "myOtherGlobal": Object {
+  "myOtherGlobal": {
     "foo": "bar",
   },
 }
 `;
 
-exports[`loader should work with multiple exposes: warnings 1`] = `Array []`;
+exports[`loader should work with multiple exposes: warnings 1`] = `[]`;
 
-exports[`loader should work with side-effects free modules #1: errors 1`] = `Array []`;
+exports[`loader should work with side-effects free modules #1: errors 1`] = `[]`;
 
 exports[`loader should work with side-effects free modules #1: result 1`] = `
-Object {
-  "ExposeLoader": Object {
-    "default": Object {
+{
+  "ExposeLoader": {
+    "default": {
       "ServerStyleSheet": [Function],
-      "StyleSheetConsumer": Object {
+      "StyleSheetConsumer": {
         "$$typeof": Symbol(react.context),
         "Consumer": [Circular],
-        "Provider": Object {
+        "Provider": {
           "$$typeof": Symbol(react.provider),
           "_context": [Circular],
         },
@@ -1024,10 +1024,10 @@ Object {
         "_globalName": null,
         "_threadCount": 0,
       },
-      "StyleSheetContext": Object {
+      "StyleSheetContext": {
         "$$typeof": Symbol(react.context),
         "Consumer": [Circular],
-        "Provider": Object {
+        "Provider": {
           "$$typeof": Symbol(react.provider),
           "_context": [Circular],
         },
@@ -1038,10 +1038,10 @@ Object {
         "_threadCount": 0,
       },
       "StyleSheetManager": [Function],
-      "ThemeConsumer": Object {
+      "ThemeConsumer": {
         "$$typeof": Symbol(react.context),
         "Consumer": [Circular],
-        "Provider": Object {
+        "Provider": {
           "$$typeof": Symbol(react.provider),
           "_context": [Circular],
         },
@@ -1051,10 +1051,10 @@ Object {
         "_globalName": null,
         "_threadCount": 0,
       },
-      "ThemeContext": Object {
+      "ThemeContext": {
         "$$typeof": Symbol(react.context),
         "Consumer": [Circular],
-        "Provider": Object {
+        "Provider": {
           "$$typeof": Symbol(react.provider),
           "_context": [Circular],
         },
@@ -1065,12 +1065,12 @@ Object {
         "_threadCount": 0,
       },
       "ThemeProvider": [Function],
-      "__PRIVATE__": Object {
+      "__PRIVATE__": {
         "StyleSheet": [Function],
         "masterSheet": e {
-          "gs": Object {},
+          "gs": {},
           "names": Map {},
-          "options": Object {
+          "options": {
             "isServer": true,
             "useCSSOMInjection": true,
           },
@@ -1087,34 +1087,34 @@ Object {
       "withTheme": [Function],
     },
   },
-  "global-commonjs2-single-export": Object {
+  "global-commonjs2-single-export": {
     "foo": "bar",
   },
 }
 `;
 
-exports[`loader should work with side-effects free modules #1: warnings 1`] = `Array []`;
+exports[`loader should work with side-effects free modules #1: warnings 1`] = `[]`;
 
-exports[`loader should work with side-effects free modules: errors 1`] = `Array []`;
+exports[`loader should work with side-effects free modules: errors 1`] = `[]`;
 
 exports[`loader should work with side-effects free modules: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./rx.all.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./rx.all.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work with side-effects free modules: result 1`] = `
-Object {
-  "ExposeLoader": Object {
+{
+  "ExposeLoader": {
     "default": [Function],
   },
-  "global-commonjs2-single-export": Object {
+  "global-commonjs2-single-export": {
     "foo": "bar",
   },
-  "myGlobal": Object {
+  "myGlobal": {
     "AnonymousObservable": [Function],
     "AnonymousObserver": [Function],
     "AnonymousSubject": [Function],
@@ -1139,7 +1139,7 @@ Object {
     "ObservableBase": [Function],
     "Observer": [Function],
     "Pauser": [Function],
-    "ReactiveTest": Object {
+    "ReactiveTest": {
       "created": 100,
       "disposed": 1000,
       "onCompleted": [Function],
@@ -1159,16 +1159,16 @@ Object {
     "TestScheduler": [Function],
     "TimeoutError": [Function],
     "VirtualTimeScheduler": [Function],
-    "config": Object {
+    "config": {
       "Promise": [Function],
       "longStackSupport": false,
       "useNativeEvents": false,
     },
-    "doneEnumerator": Object {
+    "doneEnumerator": {
       "done": true,
       "value": undefined,
     },
-    "helpers": Object {
+    "helpers": {
       "defaultComparer": [Function],
       "defaultError": [Function],
       "defaultKeySerializer": [Function],
@@ -1184,7 +1184,7 @@ Object {
       "notImplemented": [Function],
       "notSupported": [Function],
     },
-    "internals": Object {
+    "internals": {
       "AbstractObserver": [Function],
       "Enumerable": [Function],
       "PriorityQueue": [Function],
@@ -1203,29 +1203,29 @@ Object {
 }
 `;
 
-exports[`loader should work with side-effects free modules: warnings 1`] = `Array []`;
+exports[`loader should work with side-effects free modules: warnings 1`] = `[]`;
 
-exports[`loader should work: errors 1`] = `Array []`;
+exports[`loader should work: errors 1`] = `[]`;
 
 exports[`loader should work: module 1`] = `
-"var ___EXPOSE_LOADER_IMPORT___ = require(\\"-!./global-commonjs2-single-export.js\\");
-var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(\\"../../src/runtime/getGlobalThis.js\\");
+"var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-single-export.js");
+var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
 var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;
-if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___[\\"myGlobal\\"] = ___EXPOSE_LOADER_IMPORT___;
-else throw new Error('[exposes-loader] The \\"myGlobal\\" value exists in the global scope, it may not be safe to overwrite it, use the \\"override\\" option')
+if (typeof ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] === 'undefined') ___EXPOSE_LOADER_GLOBAL_THIS___["myGlobal"] = ___EXPOSE_LOADER_IMPORT___;
+else throw new Error('[exposes-loader] The "myGlobal" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
 
 exports[`loader should work: result 1`] = `
-Object {
-  "ExposeLoader": Object {
+{
+  "ExposeLoader": {
     "foo": "bar",
   },
-  "myGlobal": Object {
+  "myGlobal": {
     "foo": "bar",
   },
 }
 `;
 
-exports[`loader should work: warnings 1`] = `Array []`;
+exports[`loader should work: warnings 1`] = `[]`;
