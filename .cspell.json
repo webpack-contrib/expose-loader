@@ -1,0 +1,13 @@
+{
+  "version": "0.2",
+  "language": "en,en-gb",
+  "words": ["commitlint", "concat", "Koppers", "sokra", "chunkhash", "memfs"],
+
+  "ignorePaths": [
+    "CHANGELOG.md",
+    "package.json",
+    "dist/**",
+    "**/__snapshots__/**",
+    "package-lock.json"
+  ]
+}
