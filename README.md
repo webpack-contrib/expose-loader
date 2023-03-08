@@ -122,9 +122,10 @@ And run `webpack` via your preferred method.
 
 ## Options
 
-|           Name            |                   Type                    |   Default   | Description     |
-| :-----------------------: | :---------------------------------------: | :---------: | :-------------- |
-| **[`exposes`](#exposes)** | `{String\|Object\|Array<String\|Object>}` | `undefined` | List of exposes |
+|                Name                 |                   Type                    |   Default   | Description                    |
+| :---------------------------------: | :---------------------------------------: | :---------: | :----------------------------- |
+|      **[`exposes`](#exposes)**      | `{String\|Object\|Array<String\|Object>}` | `undefined` | List of exposes                |
+| **[`globalObject`](#globalObject)** |                 `String`                  | `undefined` | Object used for global context |
 
 ### `exposes`
 
@@ -359,6 +360,43 @@ module.exports = {
 It will expose **only** `map`, `filter` and `find` (under `myNameForFind` name) methods to the global object.
 
 In a browser these methods will be available under `windows._.map(..args)`, `windows._.filter(...args)` and `windows._.myNameForFind(...args)` methods.
+
+### `globalObject`
+
+```ts
+type globalObject = string;
+```
+
+Default: `undefined`
+
+Object used for global context
+
+```js
+import _ from "underscore";
+```
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve("underscore"),
+        loader: "expose-loader",
+        options: {
+          exposes: [
+            {
+              globalName: "_",
+            },
+          ],
+          globalObject: "this",
+        },
+      },
+    ],
+  },
+};
+```
 
 ## Contributing
 

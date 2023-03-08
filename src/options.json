@@ -40,6 +40,11 @@
   },
   "type": "object",
   "properties": {
+    "globalObject": {
+      "type": "string",
+      "description": "Global object used as global context",
+      "link": "https://github.com/webpack-contrib/expose-loader#globalObject"
+    },
     "exposes": {
       "anyOf": [
         {
@@ -69,6 +74,5 @@
       "link": "https://github.com/webpack-contrib/expose-loader#exposes"
     }
   },
-  "anyOf": [{ "required": ["exposes"] }],
-  "additionalProperties": false
+  "anyOf": [{ "required": ["exposes"] }]
 }
