@@ -761,4 +761,22 @@ describe("loader", () => {
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
+
+  it("should work with globalObject", async () => {
+    const compiler = getCompiler("global-module-es.js", {
+      exposes: {
+        globalName: "FOO",
+        moduleLocalName: "default",
+      },
+      globalObject: "this",
+    });
+    const stats = await compile(compiler);
+
+    expect(readAsset("main.bundle.js", compiler, stats)).toContain(
+      "var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = this;\n"
+    );
+
+    expect(getErrors(stats)).toMatchSnapshot("errors");
+    expect(getWarnings(stats)).toMatchSnapshot("warnings");
+  });
 });
