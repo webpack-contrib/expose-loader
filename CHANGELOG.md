@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/webpack-contrib/expose-loader/compare/v4.0.0...v4.1.0) (2023-03-09)
+
+
+### Features
+
+* added `globalObject` option to modify global context ([#205](https://github.com/webpack-contrib/expose-loader/issues/205)) ([1ad9096](https://github.com/webpack-contrib/expose-loader/commit/1ad90966b8676ba21e9d42d75cc0d9885e332ffc))
+
 ## [4.0.0](https://github.com/webpack-contrib/expose-loader/compare/v3.1.0...v4.0.0) (2022-05-17)
 
 
