@@ -53,10 +53,14 @@ export default function loader() {
 
   let code = `var ___EXPOSE_LOADER_IMPORT___ = require(${stringifiedNewRequest});\n`;
 
-  code += `var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require(${stringifyRequest(
-    this,
-    require.resolve("./runtime/getGlobalThis.js")
-  )});\n`;
+  const getGlobalThis =
+    options.globalObject ||
+    `require(${stringifyRequest(
+      this,
+      require.resolve("./runtime/getGlobalThis.js")
+    )})`;
+
+  code += `var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = ${getGlobalThis};\n`;
   code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;\n`;
 
   for (const expose of exposes) {

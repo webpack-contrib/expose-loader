@@ -974,6 +974,10 @@ exports[`loader should work with ES module format when module in ES format: resu
 
 exports[`loader should work with ES module format when module in ES format: warnings 1`] = `[]`;
 
+exports[`loader should work with globalObject: errors 1`] = `[]`;
+
+exports[`loader should work with globalObject: warnings 1`] = `[]`;
+
 exports[`loader should work with multiple exposes: errors 1`] = `[]`;
 
 exports[`loader should work with multiple exposes: module 1`] = `
