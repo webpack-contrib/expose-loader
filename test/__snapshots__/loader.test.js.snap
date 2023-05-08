@@ -1087,7 +1087,7 @@ exports[`loader should work with side-effects free modules #1: result 1`] = `
       "isStyledComponent": [Function],
       "keyframes": [Function],
       "useTheme": [Function],
-      "version": "5.3.9",
+      "version": "5.3.10",
       "withTheme": [Function],
     },
   },
