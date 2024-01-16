@@ -57,7 +57,7 @@ export default function loader() {
     options.globalObject ||
     `require(${stringifyRequest(
       this,
-      require.resolve("./runtime/getGlobalThis.js")
+      require.resolve("./runtime/getGlobalThis.js"),
     )})`;
 
   code += `var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = ${getGlobalThis};\n`;
@@ -66,7 +66,7 @@ export default function loader() {
   for (const expose of exposes) {
     const { globalName, moduleLocalName, override } = expose;
     const globalNameInterpolated = globalName.map((item) =>
-      interpolateName(this, item, {})
+      interpolateName(this, item, {}),
     );
 
     if (typeof moduleLocalName !== "undefined") {
@@ -95,7 +95,7 @@ export default function loader() {
     if (!override) {
       if (this.mode === "development") {
         code += `else throw new Error('[exposes-loader] The "${globalName.join(
-          "."
+          ".",
         )}" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')\n`;
       }
     }

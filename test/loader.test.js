@@ -24,10 +24,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./global-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -40,10 +40,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-multiple-exports-exposed.js", stats)
+      getModuleSource("./global-commonjs2-multiple-exports-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -56,10 +56,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./global-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -72,10 +72,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-multiple-exports-exposed.js", stats)
+      getModuleSource("./global-commonjs2-multiple-exports-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -88,10 +88,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./global-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -104,10 +104,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./global-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -120,10 +120,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-module-default-export-exposed.js", stats)
+      getModuleSource("./global-module-default-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -142,10 +142,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-module-named-exports-exposed.js", stats)
+      getModuleSource("./global-module-named-exports-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -164,10 +164,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-module-named-exports-exposed.js", stats)
+      getModuleSource("./global-module-named-exports-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -183,10 +183,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-module-named-exports-exposed.js", stats)
+      getModuleSource("./global-module-named-exports-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(stats.compilation.errors).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -209,10 +209,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-module-named-exports-exposed.js", stats)
+      getModuleSource("./global-module-named-exports-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -227,7 +227,7 @@ describe("loader", () => {
 
     expect(modules[0] !== modules[1]).toBe(true);
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -251,15 +251,15 @@ describe("loader", () => {
             },
           ],
         },
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./custom-exposed.js?foo=bar", stats)
+      getModuleSource("./custom-exposed.js?foo=bar", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(readAsset("main.bundle.js.map", compiler, stats)).toBeDefined();
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -287,7 +287,7 @@ describe("loader", () => {
             },
           ],
         },
-      }
+      },
     );
     const stats = await compile(compiler);
     const refRegexp = /\?ruleSet\[\d+\].*!/;
@@ -295,11 +295,11 @@ describe("loader", () => {
     expect(
       getModuleSource(
         "./global-commonjs2-single-export-exposed.js",
-        stats
-      ).replace(refRegexp, "?{{config-reference}}!")
+        stats,
+      ).replace(refRegexp, "?{{config-reference}}!"),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(readAsset("main.bundle.js.map", compiler, stats)).toBeDefined();
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -324,15 +324,15 @@ describe("loader", () => {
             },
           ],
         },
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(getModuleSource("./custom-exposed?foo=bar", stats)).toMatchSnapshot(
-      "module"
+      "module",
     );
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(readAsset("main.bundle.js.map", compiler, stats)).toBeDefined();
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -345,15 +345,15 @@ describe("loader", () => {
       {},
       {
         module: {},
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./simple-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./simple-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(readAsset("main.bundle.js.map", compiler, stats)).toBeDefined();
     expect(getErrors(stats)).toMatchSnapshot("errors");
@@ -373,7 +373,7 @@ describe("loader", () => {
           libraryTarget: "var",
         },
         module: {},
-      }
+      },
     );
     const stats = await compile(compiler);
     const { chunkGraph } = stats.compilation;
@@ -381,14 +381,14 @@ describe("loader", () => {
     const module = Array.from(stats.compilation.modules).find((m) =>
       chunkGraph
         .getModuleId(m)
-        .endsWith("./simple-commonjs2-single-export-exposed.js")
+        .endsWith("./simple-commonjs2-single-export-exposed.js"),
     );
 
     expect(
-      getModuleSource("./simple-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./simple-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(chunkGraph.getModuleHash(module)).toBe(
-      "0f36538686929ab9693cc011812d2b0a"
+      "0f36538686929ab9693cc011812d2b0a",
     );
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -421,10 +421,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./global-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -441,15 +441,15 @@ describe("loader", () => {
       },
       {
         mode: "development",
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./global-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(() =>
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toThrowErrorMatchingSnapshot("runtime error");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -465,15 +465,15 @@ describe("loader", () => {
       },
       {
         mode: "production",
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./global-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -490,15 +490,15 @@ describe("loader", () => {
       },
       {
         mode: "development",
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./global-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -515,15 +515,15 @@ describe("loader", () => {
       },
       {
         mode: "production",
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./global-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -541,15 +541,15 @@ describe("loader", () => {
       },
       {
         mode: "development",
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./global-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(() =>
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toThrowErrorMatchingSnapshot("runtime error");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -567,15 +567,15 @@ describe("loader", () => {
       },
       {
         mode: "development",
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./global-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -592,15 +592,15 @@ describe("loader", () => {
       },
       {
         mode: "development",
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./global-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(() =>
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toThrowError(/Cannot read/);
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -617,15 +617,15 @@ describe("loader", () => {
       },
       {
         mode: "development",
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-commonjs2-single-export-exposed.js", stats)
+      getModuleSource("./global-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -638,10 +638,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-module-commonjs-exposed.js", stats)
+      getModuleSource("./global-module-commonjs-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -654,10 +654,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-module-es-exposed.js", stats)
+      getModuleSource("./global-module-es-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -670,10 +670,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-module-commonjs-exposed.js", stats)
+      getModuleSource("./global-module-commonjs-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -686,10 +686,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-module-es-exposed.js", stats)
+      getModuleSource("./global-module-es-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -702,10 +702,10 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(
-      getModuleSource("./global-module-es-without-default-exposed.js", stats)
+      getModuleSource("./global-module-es-without-default-exposed.js", stats),
     ).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -719,15 +719,15 @@ describe("loader", () => {
       },
       {
         mode: "production",
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(getModuleSource("rx.all-exposed.js", stats)).toMatchSnapshot(
-      "module"
+      "module",
     );
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -741,12 +741,12 @@ describe("loader", () => {
       },
       {
         mode: "production",
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -773,7 +773,7 @@ describe("loader", () => {
     const stats = await compile(compiler);
 
     expect(readAsset("main.bundle.js", compiler, stats)).toContain(
-      "var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = this;\n"
+      "var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = this;\n",
     );
 
     expect(getErrors(stats)).toMatchSnapshot("errors");

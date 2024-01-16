@@ -25,7 +25,7 @@ function splitCommand(command) {
   for (const item of result) {
     if (!item) {
       throw new Error(
-        `Invalid command "${item}" in "${command}" for expose. There must be only one separator: " ", or "|".`
+        `Invalid command "${item}" in "${command}" for expose. There must be only one separator: " ", or "|".`,
       );
     }
   }
@@ -139,7 +139,7 @@ function stringifyRequest(loaderContext, request) {
     typeof loaderContext.utils.contextify === "function"
   ) {
     return JSON.stringify(
-      loaderContext.utils.contextify(loaderContext.context, request)
+      loaderContext.utils.contextify(loaderContext.context, request),
     );
   }
 
@@ -162,7 +162,7 @@ function stringifyRequest(loaderContext, request) {
 
         return singlePath.replace(/\\/g, "/") + query;
       })
-      .join("!")
+      .join("!"),
   );
 }
 
