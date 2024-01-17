@@ -172,6 +172,7 @@ If `moduleLocalName` is not specified, it exposes the entire module to the globa
 **src/index.js**
 
 ```js
+import $ from "jquery";
 import _ from "underscore";
 ```
 
@@ -186,7 +187,19 @@ module.exports = {
         loader: "expose-loader",
         options: {
           // For `underscore` library, it can be `_.map map` or `_.map|map`
-          exposes: "jquery",
+          exposes: "$",
+          // To access please use `window.$` or `globalThis.$`
+        },
+      },
+      {
+        // test: require.resolve("jquery"),
+        test: /node_modules[/\\]underscore[/\\]modules[/\\]index-all\.js$/,
+        loader: "expose-loader",
+        type: "javascript/auto",
+        options: {
+          // For `underscore` library, it can be `_.map map` or `_.map|map`
+          exposes: "_",
+          // To access please use `window._` or `globalThis._`
         },
       },
     ],
@@ -223,8 +236,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve("underscore"),
+        test: /node_modules[/\\]underscore[/\\]modules[/\\]index-all\.js$/,
         loader: "expose-loader",
+        type: "javascript/auto",
         options: {
           exposes: {
             // Can be `['_', 'filter']`
@@ -264,8 +278,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve("underscore"),
+        test: /node_modules[/\\]underscore[/\\]modules[/\\]index-all\.js$/,
         loader: "expose-loader",
+        type: "javascript/auto",
         options: {
           exposes: {
             globalName: "_.filter",
@@ -288,7 +303,7 @@ type override = boolean;
 
 Default: `false`
 
-By default loader does not override the existing value in the global object, because it is unsafe.
+By default, loader does not override the existing value in the global object, because it is unsafe.
 In `development` mode, we throw an error if the value already present in the global object.
 But you can configure loader to override the existing value in the global object using this option.
 
@@ -336,8 +351,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve("underscore"),
+        test: /node_modules[/\\]underscore[/\\]modules[/\\]index-all\.js$/,
         loader: "expose-loader",
+        type: "javascript/auto",
         options: {
           exposes: [
             "_.map map",
@@ -382,8 +398,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve("underscore"),
+        test: /node_modules[/\\]underscore[/\\]modules[/\\]index-all\.js$/,
         loader: "expose-loader",
+        type: "javascript/auto",
         options: {
           exposes: [
             {
@@ -391,6 +408,49 @@ module.exports = {
             },
           ],
           globalObject: "this",
+        },
+      },
+    ],
+  },
+};
+```
+
+## Examples
+
+### Expose a local module
+
+**index.js**
+
+```js
+import { method1 } from "./my-module.js";
+```
+
+**my-module.js**
+
+```js
+function method1() {
+  console.log("method1");
+}
+
+function method2() {
+  console.log("method1");
+}
+
+export { method1, method2 };
+```
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /my-module\.js$/,
+        loader: "expose-loader",
+        options: {
+          exposes: "mod",
+          // // To access please use `window.mod` or `globalThis.mod`
         },
       },
     ],
