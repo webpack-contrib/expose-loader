@@ -8,7 +8,7 @@ export default (code) => {
   const module = new Module(resource, parentModule);
   // eslint-disable-next-line no-underscore-dangle
   module.paths = Module._nodeModulePaths(
-    path.resolve(__dirname, "../fixtures")
+    path.resolve(__dirname, "../fixtures"),
   );
   module.filename = resource;
 
@@ -65,7 +65,7 @@ if (typeof global['global-commonjs2-single-export'] !== "undefined") {
 }
 
 module.exports = result;`,
-    resource
+    resource,
   );
 
   return module.exports;
