@@ -46,7 +46,7 @@ Then you can use the `expose-loader` using two approaches.
 The `|` or `%20` (space) allow to separate the `globalName`, `moduleLocalName` and `override` of expose.
 The documentation and syntax examples can be read [here](#syntax).
 
-> **Warning**
+> [!WARNING]
 >
 > `%20` is space in a query string, because you can't use spaces in URLs
 
