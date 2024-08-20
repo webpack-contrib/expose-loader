@@ -1136,7 +1136,7 @@ exports[`loader should work with side-effects free modules #1: result 1`] = `
       "keyframes": [Function],
       "styled": [Function],
       "useTheme": [Function],
-      "version": "6.1.11",
+      "version": "6.1.12",
       "withTheme": [Function],
     },
   },
