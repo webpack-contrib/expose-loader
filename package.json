@@ -1,6 +1,6 @@
 {
   "name": "expose-loader",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "expose loader module for webpack",
   "license": "MIT",
   "repository": "webpack-contrib/expose-loader",

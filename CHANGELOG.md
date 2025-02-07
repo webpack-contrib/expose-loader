@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.0.1](https://github.com/webpack-contrib/expose-loader/compare/v5.0.0...v5.0.1) (2025-02-07)
+
+
+### Bug Fixes
+
+* add missing return statement ([#244](https://github.com/webpack-contrib/expose-loader/issues/244)) ([bc741a0](https://github.com/webpack-contrib/expose-loader/commit/bc741a0abbf589c9065d5966cfd2f36ca9c3c9a6))
+
 ## [5.0.0](https://github.com/webpack-contrib/expose-loader/compare/v4.1.0...v5.0.0) (2024-01-17)
 
 
