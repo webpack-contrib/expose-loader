@@ -99,7 +99,7 @@ function contextify(loaderContext, context, request) {
     typeof loaderContext.utils !== "undefined" &&
     typeof loaderContext.utils.contextify === "function"
   ) {
-    loaderContext.utils.contextify(loaderContext.context, request);
+    return loaderContext.utils.contextify(loaderContext.context, request);
   }
 
   return request
