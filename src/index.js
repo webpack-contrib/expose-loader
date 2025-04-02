@@ -94,7 +94,7 @@ export default function loader() {
 
     if (!override) {
       if (this.mode === "development") {
-        code += `else throw new Error('[exposes-loader] The "${globalName.join(
+        code += `else throw new Error('[expose-loader] The "${globalName.join(
           ".",
         )}" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')\n`;
       }
