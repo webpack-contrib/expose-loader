@@ -13,9 +13,9 @@
 
 # expose-loader
 
-The `expose-loader` loader allows to expose a module (in whole or in part) to global object (`self`, `window` and `global`).
+The `expose-loader` loader allows to expose a module (either in whole or in part) to global object (`self`, `window` and `global`).
 
-For further hints on compatibility issues, check out [Shimming](https://webpack.js.org/guides/shimming/) of the official docs.
+For compatibility tips and examples, check out [Shimming](https://webpack.js.org/guides/shimming/) guide in the official documentation.
 
 ## Getting Started
 
@@ -37,7 +37,7 @@ or
 pnpm add -D expose-loader
 ```
 
-(If you're using WebPack 4, install `expose-loader@1` and follow the [corresponding instructions](https://v4.webpack.js.org/loaders/expose-loader/) instead.)
+(If you're using webpack 4, install `expose-loader@1` and follow the [corresponding instructions](https://v4.webpack.js.org/loaders/expose-loader/) instead.)
 
 Then you can use the `expose-loader` using two approaches.
 
@@ -48,7 +48,7 @@ The documentation and syntax examples can be read [here](#syntax).
 
 > [!WARNING]
 >
-> `%20` is space in a query string, because you can't use spaces in URLs
+> `%20` represents a `space` in a query string because spaces are not allowed in URLs.
 
 ```js
 import $ from "expose-loader?exposes=$,jQuery!jquery";
@@ -115,10 +115,10 @@ module.exports = {
 ```
 
 The [`require.resolve`](https://nodejs.org/api/modules.html#modules_require_resolve_request_options) call is a Node.js function (unrelated to `require.resolve` in webpack processing).
-`require.resolve` gives you the absolute path to the module (`"/.../app/node_modules/jquery/dist/jquery.js"`).
-So the expose only applies to the `jquery` module. And it's only exposed when used in the bundle.
+`require.resolve` that returns the absolute path of the module (`"/.../app/node_modules/jquery/dist/jquery.js"`).
+So the expose only applies to the `jquery` module and it's only exposed when used in the bundle.
 
-And run `webpack` via your preferred method.
+Finally, run `webpack` using the method you normally use (e.g., via CLI or an npm script).
 
 ## Options
 
@@ -155,7 +155,7 @@ List of exposes.
 
 #### `string`
 
-Allows to use a string to describe an expose.
+Allows to use a `string` to describe an expose.
 
 ##### `syntax`
 
@@ -163,9 +163,9 @@ The `|` or `%20` (space) allow to separate the `globalName`, `moduleLocalName` a
 
 String syntax - `[[globalName] [moduleLocalName] [override]]` or `[[globalName]|[moduleLocalName]|[override]]`, where:
 
-- `globalName` - the name in the global object, for example `window.$` for a browser environment (**required**)
-- `moduleLocalName` - the name of method/variable/etc of the module (the module must export it) (**may be omitted**)
-- `override` - allows to override existing value in the global object (**may be omitted**)
+- `globalName` - The name on the global object, for example `window.$` for a browser environment (**required**)
+- `moduleLocalName` - The name of method/variable etc of the module (the module must export it) (**may be omitted**)
+- `override` - Allows to override existing value in the global object (**may be omitted**)
 
 If `moduleLocalName` is not specified, it exposes the entire module to the global object, otherwise it exposes only the value of `moduleLocalName`.
 
@@ -262,7 +262,7 @@ type moduleLocalName = string;
 
 Default: `undefined`
 
-The name of method/variable/etc of the module (the module must export it).
+The name of method/variable etc of the module (the module must export it).
 If `moduleLocalName` is specified, it exposes only the value of `moduleLocalName`.
 
 **src/index.js**
@@ -375,7 +375,7 @@ module.exports = {
 
 It will expose **only** `map`, `filter` and `find` (under `myNameForFind` name) methods to the global object.
 
-In a browser these methods will be available under `windows._.map(..args)`, `windows._.filter(...args)` and `windows._.myNameForFind(...args)` methods.
+In browsers, these methods will be available under `windows._.map(..args)`, `windows._.filter(...args)` and `windows._.myNameForFind(...args)` methods.
 
 ### `globalObject`
 
@@ -460,7 +460,8 @@ module.exports = {
 
 ## Contributing
 
-Please take a moment to read our contributing guidelines if you haven't yet done so.
+We welcome all contributions!
+If you're new here, please take a moment to review our contributing guidelines before submitting issues or pull requests.
 
 [CONTRIBUTING](./.github/CONTRIBUTING.md)
 
