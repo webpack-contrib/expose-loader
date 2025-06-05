@@ -44,6 +44,7 @@ Then you can use the `expose-loader` using two approaches.
 ## Inline
 
 The `|` or `%20` (space) allow to separate the `globalName`, `moduleLocalName` and `override` of expose.
+
 The documentation and syntax examples can be read [here](#syntax).
 
 > [!WARNING]
@@ -115,7 +116,9 @@ module.exports = {
 ```
 
 The [`require.resolve`](https://nodejs.org/api/modules.html#modules_require_resolve_request_options) call is a Node.js function (unrelated to `require.resolve` in webpack processing).
+
 `require.resolve` that returns the absolute path of the module (`"/.../app/node_modules/jquery/dist/jquery.js"`).
+
 So the expose only applies to the `jquery` module and it's only exposed when used in the bundle.
 
 Finally, run `webpack` using the method you normally use (e.g., via CLI or an npm script).
@@ -263,6 +266,7 @@ type moduleLocalName = string;
 Default: `undefined`
 
 The name of method/variable etc of the module (the module must export it).
+
 If `moduleLocalName` is specified, it exposes only the value of `moduleLocalName`.
 
 **src/index.js**
@@ -304,7 +308,9 @@ type override = boolean;
 Default: `false`
 
 By default, loader does not override the existing value in the global object, because it is unsafe.
+
 In `development` mode, we throw an error if the value already present in the global object.
+
 But you can configure loader to override the existing value in the global object using this option.
 
 To force override the value that is already present in the global object you can set the `override` option to the `true` value.
@@ -461,6 +467,7 @@ module.exports = {
 ## Contributing
 
 We welcome all contributions!
+
 If you're new here, please take a moment to review our contributing guidelines before submitting issues or pull requests.
 
 [CONTRIBUTING](./.github/CONTRIBUTING.md)
