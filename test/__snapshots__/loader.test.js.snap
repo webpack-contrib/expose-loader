@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`loader should be different modules id: errors 1`] = `[]`;
 
@@ -101,8 +101,6 @@ exports[`loader should throw an error on existing module local value in the glob
 
 exports[`loader should throw an error on existing module local value in the global object: warnings 1`] = `[]`;
 
-exports[`loader should throw an error on existing nested value in the global object: errors 1`] = `[]`;
-
 exports[`loader should throw an error on existing nested value in the global object: module 1`] = `
 "var ___EXPOSE_LOADER_IMPORT___ = require("-!./global-commonjs2-single-export.js");
 var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = require("../../src/runtime/getGlobalThis.js");
@@ -115,8 +113,6 @@ else throw new Error('[expose-loader] The "myOtherGlobal.foo.bar.bar" value exis
 module.exports = ___EXPOSE_LOADER_IMPORT___;
 "
 `;
-
-exports[`loader should throw an error on existing nested value in the global object: warnings 1`] = `[]`;
 
 exports[`loader should throw an error on existing value in the global object in the "development" mode: errors 1`] = `[]`;
 
@@ -1136,7 +1132,7 @@ exports[`loader should work with side-effects free modules #1: result 1`] = `
       "keyframes": [Function],
       "styled": [Function],
       "useTheme": [Function],
-      "version": "6.1.12",
+      "version": "6.1.18",
       "withTheme": [Function],
     },
   },
