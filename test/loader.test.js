@@ -601,7 +601,7 @@ describe("loader", () => {
     ).toMatchSnapshot("module");
     expect(() =>
       execute(readAsset("main.bundle.js", compiler, stats)),
-    ).toThrowError(/Cannot read/);
+    ).toThrow(/Cannot read/);
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
