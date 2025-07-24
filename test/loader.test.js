@@ -599,9 +599,9 @@ describe("loader", () => {
     expect(
       getModuleSource("./global-commonjs2-single-export-exposed.js", stats),
     ).toMatchSnapshot("module");
-    expect(() =>
-      execute(readAsset("main.bundle.js", compiler, stats)),
-    ).toThrowError(/Cannot read/);
+    expect(() => execute(readAsset("main.bundle.js", compiler, stats))).toThrow(
+      /Cannot read/,
+    );
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
   });
