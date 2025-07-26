@@ -4,28 +4,28 @@ module.exports = (function () {
     return globalThis;
   }
 
-  let g;
+  let globalObj;
 
   try {
     // This works if eval is allowed (see CSP)
     // eslint-disable-next-line no-new-func
-    g = this || new Function("return this")();
-  } catch (e) {
+    globalObj = this || new Function("return this")();
+  } catch {
     // This works if the window reference is available
-    if (typeof window === "object") {
-      return window;
+    if (typeof globalThis.window === "object") {
+      return globalThis;
     }
 
     // This works if the self reference is available
-    if (typeof self === "object") {
-      return self;
+    if (typeof globalThis.self === "object") {
+      return globalThis;
     }
 
     // This works if the global reference is available
-    if (typeof global !== "undefined") {
-      return global;
+    if (typeof globalThis.global !== "undefined") {
+      return globalThis;
     }
   }
 
-  return g;
+  return globalObj;
 })();

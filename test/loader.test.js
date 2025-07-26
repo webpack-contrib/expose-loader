@@ -1,15 +1,15 @@
 /**
  * @jest-environment node
  */
-import path from "path";
+import path from "node:path";
 
 import {
   compile,
   execute,
   getCompiler,
   getErrors,
-  getModulesList,
   getModuleSource,
+  getModulesList,
   getWarnings,
   readAsset,
 } from "./helpers";
@@ -225,7 +225,7 @@ describe("loader", () => {
     const stats = await compile(compiler);
     const modules = getModulesList("./global-module-named-exports.js", stats);
 
-    expect(modules[0] !== modules[1]).toBe(true);
+    expect(modules[0]).not.toBe(modules[1]);
     expect(
       execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
@@ -378,7 +378,7 @@ describe("loader", () => {
     const stats = await compile(compiler);
     const { chunkGraph } = stats.compilation;
 
-    const module = Array.from(stats.compilation.modules).find((m) =>
+    const module = [...stats.compilation.modules].find((m) =>
       chunkGraph
         .getModuleId(m)
         .endsWith("./simple-commonjs2-single-export-exposed.js"),

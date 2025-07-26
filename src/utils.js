@@ -1,4 +1,4 @@
-import path from "path";
+import path from "node:path";
 
 function getNewUserRequest(request) {
   const splittedRequest = request.split("!");
@@ -17,10 +17,7 @@ function getNewUserRequest(request) {
 }
 
 function splitCommand(command) {
-  const result = command
-    .split("|")
-    .map((item) => item.split(" "))
-    .reduce((acc, val) => acc.concat(val), []);
+  const result = command.split("|").flatMap((item) => item.split(" "));
 
   for (const item of result) {
     if (!item) {
@@ -64,8 +61,7 @@ function resolveExposes(item) {
       override:
         typeof splittedItem[2] !== "undefined"
           ? parseBoolean(splittedItem[2], false)
-          : // eslint-disable-next-line no-undefined
-            undefined,
+          : undefined,
     };
   } else {
     result = item;
@@ -80,15 +76,13 @@ function resolveExposes(item) {
 }
 
 function getExposes(items) {
-  let result;
   const exposeItems =
     typeof items === "string" && items.includes(",") ? items.split(",") : items;
 
-  if (typeof exposeItems === "string") {
-    result = [resolveExposes(exposeItems)];
-  } else {
-    result = [].concat(exposeItems).map((item) => resolveExposes(item));
-  }
+  const result =
+    typeof exposeItems === "string"
+      ? [resolveExposes(exposeItems)]
+      : [exposeItems].flat().map((item) => resolveExposes(item));
 
   return result;
 }
@@ -111,7 +105,7 @@ function contextify(loaderContext, context, request) {
         splitPath[0] = path.win32.relative(context, splitPath[0]);
 
         if (!/^[a-zA-Z]:\\/.test(splitPath[0])) {
-          splitPath[0] = splitPath[0].replace(/\\/g, "/");
+          splitPath[0] = splitPath[0].replaceAll("\\", "/");
         }
       }
 
@@ -160,7 +154,7 @@ function stringifyRequest(loaderContext, request) {
           singlePath = path.relative(context, singlePath);
         }
 
-        return singlePath.replace(/\\/g, "/") + query;
+        return singlePath.replaceAll("\\", "/") + query;
       })
       .join("!"),
   );
@@ -177,13 +171,13 @@ function interpolateName(loaderContext, filename) {
     }
   }
 
-  return filename.replace(/\[name\]/gi, () => basename);
+  return filename.replaceAll(/\[name\]/gi, () => basename);
 }
 
 export {
-  getNewUserRequest,
-  getExposes,
   contextify,
-  stringifyRequest,
+  getExposes,
+  getNewUserRequest,
   interpolateName,
+  stringifyRequest,
 };
