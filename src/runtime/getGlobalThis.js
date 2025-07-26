@@ -12,8 +12,10 @@ module.exports = (function () {
     globalObj = this || new Function("return this")();
   } catch {
     // This works if the window reference is available
-    if (typeof globalThis.window === "object") {
-      return globalThis;
+    // eslint-disable-next-line unicorn/prefer-global-this
+    if (typeof window === "object") {
+      // eslint-disable-next-line unicorn/prefer-global-this, no-undef
+      return window;
     }
 
     // This works if the self reference is available
