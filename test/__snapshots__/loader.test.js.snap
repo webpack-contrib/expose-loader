@@ -1016,49 +1016,47 @@ exports[`loader should work with side-effects free modules #1: result 1`] = `
     "default": {
       "ServerStyleSheet": [Function],
       "StyleSheetConsumer": {
-        "$$typeof": Symbol(react.context),
-        "Consumer": [Circular],
-        "Provider": {
-          "$$typeof": Symbol(react.provider),
-          "_context": [Circular],
-        },
-        "_currentValue": {
-          "shouldForwardProp": undefined,
-          "styleSheet": e {
-            "gs": {},
-            "names": Map {},
-            "options": {
-              "isServer": true,
-              "useCSSOMInjection": true,
+        "$$typeof": Symbol(react.consumer),
+        "_context": {
+          "$$typeof": Symbol(react.context),
+          "Consumer": [Circular],
+          "Provider": [Circular],
+          "_currentValue": {
+            "shouldForwardProp": undefined,
+            "styleSheet": e {
+              "gs": {},
+              "names": Map {},
+              "options": {
+                "isServer": true,
+                "useCSSOMInjection": true,
+              },
+              "server": false,
             },
-            "server": false,
+            "stylis": [Function],
           },
-          "stylis": [Function],
-        },
-        "_currentValue2": {
-          "shouldForwardProp": undefined,
-          "styleSheet": e {
-            "gs": {},
-            "names": Map {},
-            "options": {
-              "isServer": true,
-              "useCSSOMInjection": true,
+          "_currentValue2": {
+            "shouldForwardProp": undefined,
+            "styleSheet": e {
+              "gs": {},
+              "names": Map {},
+              "options": {
+                "isServer": true,
+                "useCSSOMInjection": true,
+              },
+              "server": false,
             },
-            "server": false,
+            "stylis": [Function],
           },
-          "stylis": [Function],
+          "_threadCount": 0,
         },
-        "_defaultValue": null,
-        "_globalName": null,
-        "_threadCount": 0,
       },
       "StyleSheetContext": {
         "$$typeof": Symbol(react.context),
-        "Consumer": [Circular],
-        "Provider": {
-          "$$typeof": Symbol(react.provider),
+        "Consumer": {
+          "$$typeof": Symbol(react.consumer),
           "_context": [Circular],
         },
+        "Provider": [Circular],
         "_currentValue": {
           "shouldForwardProp": undefined,
           "styleSheet": e {
@@ -1085,35 +1083,29 @@ exports[`loader should work with side-effects free modules #1: result 1`] = `
           },
           "stylis": [Function],
         },
-        "_defaultValue": null,
-        "_globalName": null,
         "_threadCount": 0,
       },
       "StyleSheetManager": [Function],
       "ThemeConsumer": {
-        "$$typeof": Symbol(react.context),
-        "Consumer": [Circular],
-        "Provider": {
-          "$$typeof": Symbol(react.provider),
-          "_context": [Circular],
+        "$$typeof": Symbol(react.consumer),
+        "_context": {
+          "$$typeof": Symbol(react.context),
+          "Consumer": [Circular],
+          "Provider": [Circular],
+          "_currentValue": undefined,
+          "_currentValue2": undefined,
+          "_threadCount": 0,
         },
-        "_currentValue": undefined,
-        "_currentValue2": undefined,
-        "_defaultValue": null,
-        "_globalName": null,
-        "_threadCount": 0,
       },
       "ThemeContext": {
         "$$typeof": Symbol(react.context),
-        "Consumer": [Circular],
-        "Provider": {
-          "$$typeof": Symbol(react.provider),
+        "Consumer": {
+          "$$typeof": Symbol(react.consumer),
           "_context": [Circular],
         },
+        "Provider": [Circular],
         "_currentValue": undefined,
         "_currentValue2": undefined,
-        "_defaultValue": null,
-        "_globalName": null,
         "_threadCount": 0,
       },
       "ThemeProvider": [Function],
@@ -1136,7 +1128,7 @@ exports[`loader should work with side-effects free modules #1: result 1`] = `
       "keyframes": [Function],
       "styled": [Function],
       "useTheme": [Function],
-      "version": "6.1.18",
+      "version": "6.1.19",
       "withTheme": [Function],
     },
   },
