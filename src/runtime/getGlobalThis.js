@@ -4,18 +4,19 @@ module.exports = (function () {
     return globalThis;
   }
 
+  // eslint-disable-next-line id-length
   let g;
 
   try {
     // This works if eval is allowed (see CSP)
     // eslint-disable-next-line no-new-func
     g = this || new Function("return this")();
-  } catch (e) {
+  } catch {
     // This works if the window reference is available
+    /* eslint-disable unicorn/prefer-global-this, no-undef */
     if (typeof window === "object") {
       return window;
     }
-
     // This works if the self reference is available
     if (typeof self === "object") {
       return self;
@@ -25,6 +26,7 @@ module.exports = (function () {
     if (typeof global !== "undefined") {
       return global;
     }
+    /* eslint-enable unicorn/prefer-global-this, no-undef */
   }
 
   return g;

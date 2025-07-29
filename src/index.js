@@ -6,11 +6,11 @@
 import schema from "./options.json";
 
 import {
-  getExposes,
   contextify,
+  getExposes,
   getNewUserRequest,
-  stringifyRequest,
   interpolateName,
+  stringifyRequest,
 } from "./utils";
 
 export default function loader() {
@@ -61,7 +61,8 @@ export default function loader() {
     )})`;
 
   code += `var ___EXPOSE_LOADER_GET_GLOBAL_THIS___ = ${getGlobalThis};\n`;
-  code += `var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;\n`;
+  code +=
+    "var ___EXPOSE_LOADER_GLOBAL_THIS___ = ___EXPOSE_LOADER_GET_GLOBAL_THIS___;\n";
 
   for (const expose of exposes) {
     const { globalName, moduleLocalName, override } = expose;
@@ -92,16 +93,14 @@ export default function loader() {
         ? `${propertyString} = ___EXPOSE_LOADER_IMPORT_MODULE_LOCAL_NAME___;\n`
         : `${propertyString} = ___EXPOSE_LOADER_IMPORT___;\n`;
 
-    if (!override) {
-      if (this.mode === "development") {
-        code += `else throw new Error('[expose-loader] The "${globalName.join(
-          ".",
-        )}" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')\n`;
-      }
+    if (!override && this.mode === "development") {
+      code += `else throw new Error('[expose-loader] The "${globalName.join(
+        ".",
+      )}" value exists in the global scope, it may not be safe to overwrite it, use the "override" option')\n`;
     }
   }
 
-  code += `module.exports = ___EXPOSE_LOADER_IMPORT___;\n`;
+  code += "module.exports = ___EXPOSE_LOADER_IMPORT___;\n";
 
   callback(null, code);
 }

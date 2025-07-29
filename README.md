@@ -138,18 +138,18 @@ Type:
 type exposes =
   | string
   | {
-      globalName: string | Array<string>;
+      globalName: string | string[];
       moduleLocalName?: string;
       override?: boolean;
     }
-  | Array<
+  | (
       | string
       | {
-          globalName: string | Array<string>;
+          globalName: string | string[];
           moduleLocalName?: string;
           override?: boolean;
         }
-    >;
+    )[];
 ```
 
 Default: `undefined`
@@ -219,7 +219,7 @@ Allows to use an object to describe an expose.
 Type:
 
 ```ts
-type globalName = string | Array<string>;
+type globalName = string | string[];
 ```
 
 Default: `undefined`
